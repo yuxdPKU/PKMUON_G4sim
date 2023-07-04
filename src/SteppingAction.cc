@@ -46,10 +46,10 @@
 #include "DetectorConstruction.hh"
 #include "G4RunManager.hh"
 
-SteppingAction::SteppingAction():fScoringVolume(nullptr),fScoringVolume3(nullptr)
+SteppingAction::SteppingAction():fScoringVolume(nullptr),fScoringVolume2(nullptr),fScoringVolume3(nullptr)
 {
   //fScoringVolume2=nullptr;
-  fScoringVolume2.clear();
+  //fScoringVolume2.clear();
 }
 
 SteppingAction::~SteppingAction()
@@ -71,7 +71,7 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
      	(G4RunManager::GetRunManager()->GetUserDetectorConstruction());
       fScoringVolume = detectorConstruction->GetScoringVolume();   
     }
-    if (fScoringVolume2.empty()){
+    if (!fScoringVolume2) { 
       const DetectorConstruction * detectorConstruction
      	= static_cast<const DetectorConstruction*>
      	(G4RunManager::GetRunManager()->GetUserDetectorConstruction());
@@ -98,31 +98,7 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
       Run::GetInstance()->AddZ(z/mm);
       Run::GetInstance()->AddEdep(energy/MeV);   
     }
-/*
-    G4cout<<"fScoringVolume2.size() = "<<fScoringVolume2.size()<<G4endl;
-    for(int i=0; i<(fScoringVolume2.size()); i++){
-    if (volume == fScoringVolume2[i]) {
-
-      // Get the physical volume
-      G4VPhysicalVolume* pv = aStep->GetPreStepPoint()->GetTouchableHandle()->GetVolume();
-      // Get the position of the physical volume
-      G4ThreeVector pos = pv->GetTranslation();
-      G4double x = pos.x();
-      G4double y = pos.y();
-      G4double z = pos.z();
-
-      G4cout<<"####### INFO #######"<<G4endl;
-      G4cout<<"in "<<i<<" readout bar"<<", pos = "<<pos<<G4endl;
-
-      Run::GetInstance()->AddReadoutEdepX(x/mm);
-      Run::GetInstance()->AddReadoutEdepY(y/mm);
-      Run::GetInstance()->AddReadoutEdepZ(z/mm);
-      Run::GetInstance()->AddReadoutEdep(energy/MeV);
-
-    }
-    }
-*/
-    if (volume == fScoringVolume3) {
+    if (volume == fScoringVolume2) {
       G4StepPoint* prePoint  = aStep->GetPreStepPoint();
       G4StepPoint* postPoint = aStep->GetPostStepPoint();
       G4double x = (prePoint->GetPosition().x()+ postPoint->GetPosition().x())/2.;
@@ -157,7 +133,30 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
       Run::GetInstance()->SetStatus(true);
 
     }
-  
+    if (volume == fScoringVolume3) {
+      G4StepPoint* prePoint  = aStep->GetPreStepPoint();
+      G4StepPoint* postPoint = aStep->GetPostStepPoint();
+      G4double x = (prePoint->GetPosition().x()+ postPoint->GetPosition().x())/2.;
+      G4double y = (prePoint->GetPosition().y()+ postPoint->GetPosition().y())/2.;
+      G4double z = (prePoint->GetPosition().z()+ postPoint->GetPosition().z())/2.;
+
+      Run::GetInstance()->AddPbEdepX(x/mm);
+      Run::GetInstance()->AddPbEdepY(y/mm);
+      Run::GetInstance()->AddPbEdepZ(z/mm);
+
+      G4int iTrkID = aStep->GetTrack()->GetTrackID();
+      Run::GetInstance()->AddPbTrkid(iTrkID);
+
+      //G4cout<<"TrkID = "<<iTrkID<<G4endl;
+      //G4cout<<"x,y,z = "<<x/mm<<" , "<<y/mm<<" , "<<z/mm<<" mm"<<G4endl;
+      //G4cout<<"energy = "<<energy/MeV<<" MeV"<<G4endl;
+
+    }
+
+
+
+
+
   }
   
 }

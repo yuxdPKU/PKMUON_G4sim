@@ -2,8 +2,19 @@
 /run/verbose 2
 /run/initialize
 /gps/particle mu-
-/gps/energy 10 MeV
-/gps/position 0 50 0  cm
-/gps/direction 0.1  -1.  0.
-/rlt/SetFileName mu10MeV.root
+/gps/energy 1 GeV
+
+/gps/position 0 0 -1.1  m
+/gps/direction 0.1  0.1  1.
+#/gps/direction 0.0  0.0  1.
+
+#/gps/pos/type Plane
+#/gps/pos/shape Square
+#/gps/pos/centre 0 0 -1.1 m
+#/gps/pos/halfx 50 cm
+#/gps/pos/halfy 50 cm
+#/gps/direction 0.0  0.0  1.
+
+/rlt/SetFileName mu1GeV.root
 /run/beamOn 10000
+#/run/beamOn 100

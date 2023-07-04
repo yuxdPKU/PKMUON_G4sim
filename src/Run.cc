@@ -80,6 +80,11 @@ void Run::initTree() {
   _tree->Branch("vReadoutPosY",&vReadoutPosY); //Edep Y in readout bar
   _tree->Branch("vReadoutPosZ",&vReadoutPosZ); //Edep Z in readout bar
 
+  _tree->Branch("vPbTrkid",&vPbTrkid); //Trk id in Pb Box
+  _tree->Branch("vPbPosX",&vPbPosX);//Edep X in Pb Box
+  _tree->Branch("vPbPosY",&vPbPosY);//Edep Y in Pb Box
+  _tree->Branch("vPbPosZ",&vPbPosZ);//Edep Z in Pb Box
+
   _tree->Branch("vPx",&vPx); //Pvx
   _tree->Branch("vPy",&vPy); //Pvy
   _tree->Branch("vPz",&vPz); //Pvz
@@ -119,6 +124,10 @@ void Run::initTree() {
   vPx.clear();
   vPy.clear();
   vPz.clear();
+  vPbTrkid.clear();
+  vPbPosX.clear();
+  vPbPosY.clear();
+  vPbPosZ.clear();
 
   std::vector<Double_t>().swap(vEdep);
   std::vector<Double_t>().swap(vX);
@@ -133,6 +142,10 @@ void Run::initTree() {
   std::vector<Double_t>().swap(vPx);
   std::vector<Double_t>().swap(vPy);
   std::vector<Double_t>().swap(vPz);
+  std::vector<Int_t>().swap(vPbTrkid);
+  std::vector<Double_t>().swap(vPbPosX);
+  std::vector<Double_t>().swap(vPbPosY);
+  std::vector<Double_t>().swap(vPbPosZ);
   
   G4cout << "ROOT Name = " << rootFileName << G4endl;
 
@@ -204,6 +217,10 @@ void Run::ClearAll(){
   vPx.clear();
   vPy.clear();
   vPz.clear();
+  vPbTrkid.clear();
+  vPbPosX.clear();
+  vPbPosY.clear();
+  vPbPosZ.clear();
 
   std::vector<Double_t>().swap(vEdep);
   std::vector<Double_t>().swap(vX);
@@ -218,6 +235,10 @@ void Run::ClearAll(){
   std::vector<Double_t>().swap(vPx);
   std::vector<Double_t>().swap(vPy);
   std::vector<Double_t>().swap(vPz);
+  std::vector<Int_t>().swap(vPbTrkid);
+  std::vector<Double_t>().swap(vPbPosX);
+  std::vector<Double_t>().swap(vPbPosY);
+  std::vector<Double_t>().swap(vPbPosZ);
  
 }
 void  Run::AddX(G4double inX){
@@ -249,6 +270,18 @@ void  Run::AddReadoutEdepZ(G4double Z){
   vReadoutPosZ.push_back(Z);
 }
 
+void  Run::AddPbEdepX(G4double X){
+  vPbPosX.push_back(X);
+}
+
+void  Run::AddPbEdepY(G4double Y){
+  vPbPosY.push_back(Y);
+}
+
+void  Run::AddPbEdepZ(G4double Z){
+  vPbPosZ.push_back(Z);
+}
+
 void  Run::AddReadoutEdep(G4double E){
   vReadoutEdep.push_back(E);
 }
@@ -267,6 +300,10 @@ void  Run::AddPz(G4double Z){
 
 void  Run::AddReadoutTrkid(G4int i){
   vReadoutTrkid.push_back(i);
+}
+
+void  Run::AddPbTrkid(G4int i){
+  vPbTrkid.push_back(i);
 }
 
 void Run::Fill(){

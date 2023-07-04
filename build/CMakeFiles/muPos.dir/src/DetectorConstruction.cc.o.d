@@ -1,6 +1,6 @@
 CMakeFiles/muPos.dir/src/DetectorConstruction.cc.o: \
-  /Users/yuxd/Desktop/basic/gem/src/DetectorConstruction.cc \
-  /Users/yuxd/Desktop/basic/gem/include/DetectorConstruction.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/src/DetectorConstruction.cc \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/DetectorConstruction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4VUserDetectorConstruction.hh \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/vector \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__config \

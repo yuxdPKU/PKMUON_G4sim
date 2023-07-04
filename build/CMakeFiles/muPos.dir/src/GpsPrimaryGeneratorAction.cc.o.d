@@ -1,6 +1,6 @@
 CMakeFiles/muPos.dir/src/GpsPrimaryGeneratorAction.cc.o: \
-  /Users/yuxd/Desktop/basic/gem/src/GpsPrimaryGeneratorAction.cc \
-  /Users/yuxd/Desktop/basic/gem/include/GpsPrimaryGeneratorAction.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/src/GpsPrimaryGeneratorAction.cc \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/GpsPrimaryGeneratorAction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4VUserPrimaryGeneratorAction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/globals.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4ios.hh \

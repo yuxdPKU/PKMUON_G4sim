@@ -1,6 +1,6 @@
 CMakeFiles/muPos.dir/src/SteppingAction.cc.o: \
-  /Users/yuxd/Desktop/basic/gem/src/SteppingAction.cc \
-  /Users/yuxd/Desktop/basic/gem/include/SteppingAction.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/src/SteppingAction.cc \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/SteppingAction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UserSteppingAction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4LogicalVolume.hh \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/vector \
@@ -653,7 +653,7 @@ CMakeFiles/muPos.dir/src/SteppingAction.cc.o: \
   /Applications/Geant4-11.1.1/install/include/Geant4/trkgdefs.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UnitsTable.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UnitsTable.icc \
-  /Users/yuxd/Desktop/basic/gem/include/Run.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/Run.hh \
   /Applications/root/include/TROOT.h \
   /Applications/root/include/TDirectory.h \
   /Applications/root/include/TNamed.h \
@@ -737,7 +737,7 @@ CMakeFiles/muPos.dir/src/SteppingAction.cc.o: \
   /Applications/Geant4-11.1.1/install/include/Geant4/CLHEP/Vector/TwoVector.h \
   /Applications/Geant4-11.1.1/install/include/Geant4/CLHEP/Vector/TwoVector.icc \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4VDiscreteProcess.hh \
-  /Users/yuxd/Desktop/basic/gem/include/DetectorConstruction.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/DetectorConstruction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4VUserDetectorConstruction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4RunManager.hh \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/list \

@@ -1,6 +1,6 @@
 CMakeFiles/muPos.dir/src/RunAction.cc.o: \
-  /Users/yuxd/Desktop/basic/gem/src/RunAction.cc \
-  /Users/yuxd/Desktop/basic/gem/include/RunAction.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/src/RunAction.cc \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/RunAction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UserRunAction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4Types.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4GlobalConfig.hh \
@@ -438,7 +438,7 @@ CMakeFiles/muPos.dir/src/RunAction.cc.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__node_handle \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/optional \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__tree \
-  /Users/yuxd/Desktop/basic/gem/include/Run.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/Run.hh \
   /Applications/root/include/TROOT.h \
   /Applications/root/include/TDirectory.h \
   /Applications/root/include/TNamed.h \
@@ -506,7 +506,7 @@ CMakeFiles/muPos.dir/src/RunAction.cc.o: \
   /Applications/root/include/TBranch.h \
   /Applications/root/include/TBranchCacheInfo.h \
   /Applications/root/include/TBits.h \
-  /Users/yuxd/Desktop/basic/gem/include/GpsPrimaryGeneratorAction.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/GpsPrimaryGeneratorAction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4VUserPrimaryGeneratorAction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4Run.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4Profiler.hh \

@@ -54,7 +54,7 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 DetectorConstruction::DetectorConstruction()
-  : G4VUserDetectorConstruction(),fScoringVolume(nullptr)
+  : G4VUserDetectorConstruction(),fScoringVolume(nullptr),fScoringVolume2(nullptr)
 {
   
 }
@@ -191,6 +191,22 @@ G4cout<<"define mixgass"<<G4endl;
   G4double Pbplatte_x=100*mm;
   G4double Pbplatte_y=100*mm;
   G4double Pbplatte_z=0.1*mm;
+
+/*
+  G4double Pbbox_x=0.5*m;
+  G4double Pbbox_y=0.5*m;
+  //G4double Pbbox_z=0.5*m;
+  G4double Pbbox_z=20*mm;
+  //G4double Pbbox_z=2*mm;
+*/
+
+  G4double Pbbox_x=20*mm;
+  G4double Pbbox_z=0.5*m;
+  G4double Pbbox_y=0.5*m;
+
+  G4double Vacbox_x=0.5*m-40*mm;
+  G4double Vacbox_y=0.5*m-40*mm;
+  G4double Vacbox_z=0.5*m-40*mm;
 
     /*******************************
    * Gem hole outter       *
@@ -661,6 +677,43 @@ G4cout<<"define mixgass"<<G4endl;
                           0);              //opt: UserLimits
 
     /*******************************
+   * The Pb box       *
+   *******************************/
+
+  G4VSolid* Pbbox_box 
+    = new G4Box("Pbbox_box",             // World Volume
+                Pbbox_x/2,        // x size
+                Pbbox_y/2,        // y size
+                Pbbox_z/2);       // z size
+  
+  G4LogicalVolume* PbboxLog 
+    = new G4LogicalVolume(Pbbox_box,
+			  pb,
+                          "PbboxLog",
+                          0,               //opt: fieldManager
+                          0,               //opt: SensitiveDetector
+                          0);              //opt: UserLimits
+
+    /*******************************
+   * The Vaccum box       *
+   *******************************/
+
+  G4VSolid* Vacbox_box 
+    = new G4Box("Vacbox_box",             // World Volume
+                Vacbox_x/2,        // x size
+                Vacbox_y/2,        // y size
+                Vacbox_z/2);       // z size
+  
+  G4LogicalVolume* VacboxLog 
+    = new G4LogicalVolume(Vacbox_box,
+			  pb,
+                          "VacboxLog",
+                          0,               //opt: fieldManager
+                          0,               //opt: SensitiveDetector
+                          0);              //opt: UserLimits
+
+
+    /*******************************
    * The Box       *
    *******************************/
 
@@ -678,6 +731,7 @@ G4cout<<"define mixgass"<<G4endl;
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
+  BoxLog->SetVisAttributes(G4VisAttributes::GetInvisible());
 
 /*
   // put Pbplatte in Box
@@ -692,6 +746,58 @@ G4cout<<"define mixgass"<<G4endl;
                     0,                       //copy number
                     0);          //overlaps checking
 */
+
+/*
+  // put Vacbox in Pbbox
+  //
+  G4VPhysicalVolume* VacboxPhys 
+    = new G4PVPlacement(0,                       //no rotation
+                    G4ThreeVector(),                    //at position
+                    VacboxLog,             //its logical volume
+                    "Vacbox",                //its name
+                    PbboxLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+*/
+
+/*
+  // put Pbbox in Box
+  //
+  G4VPhysicalVolume* PbboxPhys 
+    = new G4PVPlacement(0,                       //no rotation
+                    G4ThreeVector(),                    //at position
+                    PbboxLog,             //its logical volume
+                    "Pbbox",                //its name
+                    BoxLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+*/
+
+  // put Pbbox in Box
+  //
+  G4VPhysicalVolume* PbboxPhys1 
+    = new G4PVPlacement(0,                       //no rotation
+                    G4ThreeVector(-200*mm,0,0),                    //at position
+                    PbboxLog,             //its logical volume
+                    "Pbbox",                //its name
+                    BoxLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+
+  G4VPhysicalVolume* PbboxPhys2 
+    = new G4PVPlacement(0,                       //no rotation
+                    G4ThreeVector(200*mm,0,0),                    //at position
+                    PbboxLog,             //its logical volume
+                    "Pbbox",                //its name
+                    BoxLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    1,                       //copy number
+                    0);          //overlaps checking
+
+
 
     /*******************************
    * The Experimental Hall       *
@@ -750,15 +856,30 @@ G4cout<<"define mixgass"<<G4endl;
                     false,                   //no boolean operation
                     j+1);               //copy number
   }
-  //G4VisAttributes* GemLogAtt = new G4VisAttributes(G4Colour(233/256.,206/256.,238./256,0.1));
-  //GemLog->SetVisAttributes(GemLogAtt);
+  G4VisAttributes* GemLogAtt = new G4VisAttributes(G4Colour(233/256.,206/256.,238./256,0.1));
+  GemLog->SetVisAttributes(GemLogAtt);
 
   fScoringVolume = GemLog;
-  fScoringVolume2.clear();
-  for(int i=0; i<num_readout_bar; i++){
-    fScoringVolume2.push_back(readoutbarLog[i]);
-  }
-  fScoringVolume3 = readoutplatteLog;
+  fScoringVolume2 = readoutplatteLog;
+  fScoringVolume3 = PbboxLog;
+
+  // visualization attributes ------------------------------------------------
+
+  auto visAttributes = new G4VisAttributes(G4Colour(1.0,1.0,1.0));
+  visAttributes->SetVisibility(false);
+  experimentalHallLog->SetVisAttributes(visAttributes);
+
+  visAttributes = new G4VisAttributes(G4Colour(0.9,0.9,0.9));   // LightGray
+  BoxLog->SetVisAttributes(visAttributes);
+
+
+  visAttributes = new G4VisAttributes(G4Colour(0,1,0));
+  PbboxLog->SetVisAttributes(visAttributes);
+
+  visAttributes = new G4VisAttributes(G4Colour(0,0,1));
+  VacboxLog->SetVisAttributes(visAttributes);
+
+
 
   return experimentalHallPhys;
 

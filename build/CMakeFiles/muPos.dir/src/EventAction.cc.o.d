@@ -1,6 +1,6 @@
 CMakeFiles/muPos.dir/src/EventAction.cc.o: \
-  /Users/yuxd/Desktop/basic/gem/src/EventAction.cc \
-  /Users/yuxd/Desktop/basic/gem/include/EventAction.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/src/EventAction.cc \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/EventAction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UserEventAction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/globals.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4ios.hh \
@@ -694,13 +694,13 @@ CMakeFiles/muPos.dir/src/EventAction.cc.o: \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4HCtable.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UnitsTable.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UnitsTable.icc \
-  /Users/yuxd/Desktop/basic/gem/include/RunAction.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/RunAction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UserRunAction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4RunManager.hh \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/list \
   /Applications/Geant4-11.1.1/install/include/Geant4/rundefs.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4RunManagerKernel.hh \
-  /Users/yuxd/Desktop/basic/gem/include/Run.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/Run.hh \
   /Applications/root/include/TROOT.h \
   /Applications/root/include/TDirectory.h \
   /Applications/root/include/TNamed.h \

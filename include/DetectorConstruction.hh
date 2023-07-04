@@ -49,16 +49,14 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     virtual     
     G4VPhysicalVolume* Construct();
   G4LogicalVolume* GetScoringVolume() const { return fScoringVolume; };
-  std::vector<G4LogicalVolume*> GetScoringVolume2() const { return fScoringVolume2; };
-  //G4LogicalVolume* GetScoringVolume2() const { return fScoringVolume2; };
+  G4LogicalVolume* GetScoringVolume2() const { return fScoringVolume2; };
   G4LogicalVolume* GetScoringVolume3() const { return fScoringVolume3; };
            
   // G4double GetWorldSize() {return fWorldSize;}; 
 
   private:
      G4LogicalVolume*  fScoringVolume;
-     std::vector<G4LogicalVolume*> fScoringVolume2;
-     //G4LogicalVolume*  fScoringVolume2;
+     G4LogicalVolume*  fScoringVolume2;
      G4LogicalVolume*  fScoringVolume3;
 
 };

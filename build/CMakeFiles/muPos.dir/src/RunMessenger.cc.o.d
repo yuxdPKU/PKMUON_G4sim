@@ -1,6 +1,6 @@
 CMakeFiles/muPos.dir/src/RunMessenger.cc.o: \
-  /Users/yuxd/Desktop/basic/gem/src/RunMessenger.cc \
-  /Users/yuxd/Desktop/basic/gem/include/RunMessenger.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/src/RunMessenger.cc \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/RunMessenger.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UImessenger.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/globals.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4ios.hh \
@@ -450,7 +450,7 @@ CMakeFiles/muPos.dir/src/RunMessenger.cc.o: \
   /Applications/Geant4-11.1.1/install/include/Geant4/CLHEP/Utility/defs.h \
   /Applications/Geant4-11.1.1/install/include/Geant4/CLHEP/Vector/ThreeVector.icc \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UIcmdWithAString.hh \
-  /Users/yuxd/Desktop/basic/gem/include/Run.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/Run.hh \
   /Applications/root/include/TROOT.h \
   /Applications/root/include/TDirectory.h \
   /Applications/root/include/TNamed.h \

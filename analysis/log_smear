@@ -1,0 +1,202 @@
+   ------------------------------------------------------------------
+  | Welcome to ROOT 6.26/04                        https://root.cern |
+  | (c) 1995-2021, The ROOT Team; conception: R. Brun, F. Rademakers |
+  | Built for macosxarm64 on Jun 07 2022, 16:01:16                   |
+  | From tags/v6-26-04@v6-26-04                                      |
+  | With Apple clang version 13.1.6 (clang-1316.0.21.2.5)            |
+  | Try '.help', '.demo', '.license', '.credits', '.quit'/'.q'       |
+   ------------------------------------------------------------------
+
+
+Processing fit_smear.cxx...
+
+[1mRooFit v3.60 -- Developed by Wouter Verkerke and David Kirkby[0m 
+                Copyright (C) 2000-2013 NIKHEF, University of California & Stanford University
+                All rights reserved, please read http://roofit.sourceforge.net/license.txt
+
+[#1] INFO:Eval -- RooRealVar::setRange(dca_z_smear) new range named 'fitRange' created with bounds [-400,400]
+[#0] WARNING:InputArguments -- The parameter 'sigma1' with range [0, 500] of the RooGaussian 'gaus1' exceeds the safe range of (0, inf). Advise to limit its range.
+[#0] WARNING:InputArguments -- The parameter 'sigma2' with range [0, 500] of the RooGaussian 'gaus2' exceeds the safe range of (0, inf). Advise to limit its range.
+[#1] INFO:Fitting -- RooAbsOptTestStatistic::ctor(nll_model_data) constructing test statistic for sub-range named fitRange
+[#1] INFO:Eval -- RooRealVar::setRange(dca_z_smear) new range named 'NormalizationRangeForfitRange' created with bounds [-1000,1000]
+[#1] INFO:Eval -- RooRealVar::setRange(dca_z_smear) new range named 'fit_nll_model_data' created with bounds [-400,400]
+[#1] INFO:Fitting -- RooAbsOptTestStatistic::ctor(nll_model_data) fixing interpretation of coefficients of any RooAddPdf to full domain of observables 
+[#1] INFO:Caching -- RooAddModel::syncCoefProjList(sig) creating coefficient projection integrals
+  from current normalization: RooArgSet::dependents = (dca_z_smear)
+          with current range: <none>
+  to reference normalization: RooSetProxy::!refCoefNorm = (dca_z_smear)
+        with reference range: NormalizationRangeForfitRange
+[#1] INFO:Minimization -- RooAbsMinimizerFcn::setOptimizeConst: activating const optimization
+[#1] INFO:Caching -- RooAddModel::syncCoefProjList(sig) creating coefficient projection integrals
+  from current normalization: RooArgSet::dependents = (dca_z_smear)
+          with current range: <none>
+  to reference normalization: RooSetProxy::!refCoefNorm = (dca_z_smear)
+        with reference range: NormalizationRangeForfitRange
+[#1] INFO:Minimization --  The following expressions will be evaluated in cache-and-track mode: (sig)
+ **********
+ **    1 **SET PRINT           1
+ **********
+ **********
+ **    2 **SET NOGRAD
+ **********
+ PARAMETER DEFINITIONS:
+    NO.   NAME         VALUE      STEP SIZE      LIMITS
+     1 mean1       -1.85330e+01  4.00000e+01   -2.00000e+02  2.00000e+02
+     2 mean2       -1.00000e+01  4.00000e+01   -2.00000e+02  2.00000e+02
+     3 nsig         1.81928e+04  2.72892e+03    0.00000e+00  2.72892e+04
+     4 sig1frac     2.05650e-01  1.00000e-01    0.00000e+00  1.00000e+00
+     5 sigma1       2.00000e+01  1.00000e+01    0.00000e+00  5.00000e+02
+     6 sigma2       3.00000e+01  1.50000e+01    0.00000e+00  5.00000e+02
+ **********
+ **    3 **SET ERR         0.5
+ **********
+ **********
+ **    4 **SET PRINT           1
+ **********
+ **********
+ **    5 **SET STR           1
+ **********
+ NOW USING STRATEGY  1: TRY TO BALANCE SPEED AGAINST RELIABILITY
+ **********
+ **    6 **MIGRAD        3000           1
+ **********
+ FIRST CALL TO USER FUNCTION AT NEW START POINT, WITH IFLAG=4.
+ START MIGRAD MINIMIZATION.  STRATEGY  1.  CONVERGENCE WHEN EDM .LT. 1.00e-03
+ FCN=157682 FROM MIGRAD    STATUS=INITIATE       55 CALLS          56 TOTAL
+                     EDM= unknown      STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS       STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  mean1       -1.95352e+02   4.00000e+01  -1.26199e+00   1.62960e+04
+   2  mean2       -1.00000e+01   4.00000e+01   0.00000e+00  -2.89091e+05
+   3  nsig         1.81928e+04   2.72892e+03   0.00000e+00  -1.07639e+03
+   4  sig1frac     2.05650e-01   1.00000e-01   0.00000e+00  -1.28554e+03
+   5  sigma1       2.00000e+01   1.00000e+01   0.00000e+00  -3.52777e+05
+   6  sigma2       3.00000e+01   1.50000e+01   0.00000e+00  -1.53040e+06
+                               ERR DEF= 0.5
+ MIGRAD MINIMIZATION HAS CONVERGED.
+ MIGRAD WILL VERIFY CONVERGENCE AND ERROR MATRIX.
+ EIGENVALUES OF SECOND-DERIVATIVE MATRIX:
+        -2.1565e+01  7.6841e-01  1.0017e+00  1.0032e+00  1.2297e+00  2.3562e+01
+ MINUIT WARNING IN HESSE   
+ ============== MATRIX FORCED POS-DEF BY ADDING 21.588948 TO DIAGONAL.
+ FCN=-46083.9 FROM HESSE     STATUS=NOT POSDEF     46 CALLS         454 TOTAL
+                     EDM=0.000510212    STRATEGY= 1      ERR MATRIX NOT POS-DEF
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  mean1       -1.99398e+02   3.90429e+02   5.00000e-01   5.44969e-07
+   2  mean2        6.83389e+00   3.34417e-01   1.17737e-03  -2.08750e-01
+   3  nsig         2.05949e+04   3.08628e+01   1.85173e-03   1.27215e-02
+   4  sig1frac     2.33451e-08   5.53094e-02   1.51246e-02** at limit **
+   5  sigma1       1.36456e+02   3.14316e+02   5.00000e-01  -4.30141e-05
+   6  sigma2       1.97276e+02   3.12641e-01   9.01346e-04   2.47488e-01
+                               ERR DEF= 0.5
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element 1 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element 5 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ============== 6.56493 added to diagonal of error matrix
+ EIGENVALUES OF SECOND-DERIVATIVE MATRIX:
+        -7.9352e-01  1.0000e+00  1.0000e+00  1.0000e+00  1.0000e+00  2.7935e+00
+ MINUIT WARNING IN MIGRAD  
+ ============== MATRIX FORCED POS-DEF BY ADDING 0.796318 TO DIAGONAL.
+ MIGRAD MINIMIZATION HAS CONVERGED.
+ MIGRAD WILL VERIFY CONVERGENCE AND ERROR MATRIX.
+ COVARIANCE MATRIX CALCULATED SUCCESSFULLY
+ FCN=-46154.7 FROM MIGRAD    STATUS=CONVERGED     846 CALLS         847 TOTAL
+                     EDM=9.48772e-05    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                   STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  mean1        7.61920e+00   3.85643e+00   2.30881e-03  -5.85765e-02
+   2  mean2        7.52086e+00   3.50106e+00   2.08595e-03  -1.22109e-01
+   3  nsig         2.14905e+04   2.96655e+02   2.03207e-03   2.68402e-01
+   4  sig1frac     2.49496e-01   5.84163e-02   3.03869e-03   3.31163e-01
+   5  sigma1       1.07120e+02   1.02390e+01   1.90235e-03  -1.67690e-01
+   6  sigma2       2.50200e+02   1.58438e+01   1.91761e-03  -7.17697e-01
+                               ERR DEF= 0.5
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  6    ERR DEF=0.5
+  1.487e+01 -7.954e+00  1.555e+02  3.611e-02  6.358e+00  9.711e+00 
+ -7.954e+00  1.226e+01 -1.365e+02 -2.747e-02 -4.641e+00 -7.938e+00 
+  1.555e+02 -1.365e+02  8.802e+04  1.359e+01  2.167e+03  3.981e+03 
+  3.611e-02 -2.747e-02  1.359e+01  3.433e-03  5.765e-01  8.963e-01 
+  6.358e+00 -4.641e+00  2.167e+03  5.765e-01  1.049e+02  1.458e+02 
+  9.711e+00 -7.938e+00  3.981e+03  8.963e-01  1.458e+02  2.514e+02 
+ PARAMETER  CORRELATION COEFFICIENTS  
+       NO.  GLOBAL      1      2      3      4      5      6
+        1  0.59522   1.000 -0.589  0.136  0.160  0.161  0.159
+        2  0.59205  -0.589  1.000 -0.131 -0.134 -0.129 -0.143
+        3  0.85666   0.136 -0.131  1.000  0.782  0.713  0.846
+        4  0.98853   0.160 -0.134  0.782  1.000  0.960  0.965
+        5  0.96677   0.161 -0.129  0.713  0.960  1.000  0.898
+        6  0.97879   0.159 -0.143  0.846  0.965  0.898  1.000
+ **********
+ **    7 **SET ERR         0.5
+ **********
+ **********
+ **    8 **SET PRINT           1
+ **********
+ **********
+ **    9 **HESSE        3000
+ **********
+ COVARIANCE MATRIX CALCULATED SUCCESSFULLY
+ FCN=-46154.7 FROM HESSE     STATUS=OK             40 CALLS         887 TOTAL
+                     EDM=9.51508e-05    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                INTERNAL      INTERNAL  
+  NO.   NAME      VALUE            ERROR       STEP SIZE       VALUE   
+   1  mean1        7.61920e+00   3.89451e+00   4.61761e-04  -3.04773e+02
+   2  mean2        7.52086e+00   3.53201e+00   4.17189e-04   3.10398e+00
+   3  nsig         2.14905e+04   3.14930e+02   4.06413e-04   6.12625e-01
+   4  sig1frac     2.49496e-01   6.36713e-02   6.07739e-04  -5.24764e-01
+   5  sigma1       1.07120e+02   1.11034e+01   7.60940e-05   3.38684e+02
+   6  sigma2       2.50200e+02   1.72498e+01   3.83522e-04   7.98300e-04
+                               ERR DEF= 0.5
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  6    ERR DEF=0.5
+  1.517e+01 -8.208e+00  2.242e+02  5.248e-02  9.074e+00  1.413e+01 
+ -8.208e+00  1.248e+01 -1.974e+02 -4.193e-02 -7.047e+00 -1.185e+01 
+  2.242e+02 -1.974e+02  9.921e+04  1.629e+01  2.622e+03  4.704e+03 
+  5.248e-02 -4.193e-02  1.629e+01  4.084e-03  6.861e-01  1.071e+00 
+  9.074e+00 -7.047e+00  2.622e+03  6.861e-01  1.234e+02  1.752e+02 
+  1.413e+01 -1.185e+01  4.704e+03  1.071e+00  1.752e+02  2.980e+02 
+ PARAMETER  CORRELATION COEFFICIENTS  
+       NO.  GLOBAL      1      2      3      4      5      6
+        1  0.60568   1.000 -0.597  0.183  0.211  0.210  0.210
+        2  0.60155  -0.597  1.000 -0.177 -0.186 -0.180 -0.194
+        3  0.87399   0.183 -0.177  1.000  0.809  0.749  0.865
+        4  0.99037   0.211 -0.186  0.809  1.000  0.967  0.970
+        5  0.97182   0.210 -0.180  0.749  0.967  1.000  0.914
+        6  0.98214   0.210 -0.194  0.865  0.970  0.914  1.000
+[#1] INFO:Minimization -- RooAbsMinimizerFcn::setOptimizeConst: deactivating const optimization
+0x120f8a200 RooAddPdf::model = 0.999031 [Auto,Dirty] 
+  0x120f40800/V- RooAddModel::sig = 0.999031 [Auto,Dirty] 
+    0x1397b5db0/V- RooRealVar::dca_z_smear = 0
+    0x120f2c600/V- RooGaussian::gaus1 = 0.997474 [Auto,Dirty] 
+      0x1397b5db0/V- RooRealVar::dca_z_smear = 0
+      0x1397cba60/V- RooRealVar::mean1 = 7.6192 +/- 3.89451
+      0x1397ccef0/V- RooRealVar::sigma1 = 107.12 +/- 11.1034
+    0x1397ccb70/V- RooRealVar::sig1frac = 0.249496 +/- 0.0636713
+    0x120f3fc00/V- RooGaussian::gaus2 = 0.999548 [Auto,Dirty] 
+      0x1397b5db0/V- RooRealVar::dca_z_smear = 0
+      0x1397cbde0/V- RooRealVar::mean2 = 7.52086 +/- 3.53201
+      0x1397cd270/V- RooRealVar::sigma2 = 250.2 +/- 17.2498
+  0x16fb4b768/V- RooRealVar::nsig = 21490.5 +/- 314.93
+
+  RooFitResult: minimized FCN value: -46154.7, estimated distance to minimum: 9.51508e-05
+                covariance matrix quality: Full, accurate covariance matrix
+                Status : MINIMIZE=0 HESSE=0 
+
+    Floating Parameter  InitialValue    FinalValue +/-  Error     GblCorr.
+  --------------------  ------------  --------------------------  --------
+                 mean1   -1.8533e+01    7.6192e+00 +/-  3.89e+00  <none>
+                 mean2   -1.0000e+01    7.5209e+00 +/-  3.53e+00  <none>
+                  nsig    1.8193e+04    2.1490e+04 +/-  3.15e+02  <none>
+              sig1frac    2.0565e-01    2.4950e-01 +/-  6.37e-02  <none>
+                sigma1    2.0000e+01    1.0712e+02 +/-  1.11e+01  <none>
+                sigma2    3.0000e+01    2.5020e+02 +/-  1.72e+01  <none>
+
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(model) p.d.f was fitted in a subrange and no explicit Range() and NormRange() was specified. Plotting / normalising in fit range. To override, do one of the following
+	- Clear the automatic fit range attribute: <pdf>.setStringAttribute("fitrange", nullptr);
+	- Explicitly specify the plotting range: Range("<rangeName>").
+	- Explicitly specify where to compute the normalisation: NormRange("<rangeName>").
+	The default (full) range can be denoted with Range("") / NormRange("").
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(model) only plotting range 'fit_nll_model_data'
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(model) p.d.f. curve is normalized using explicit choice of ranges 'fit_nll_model_data'

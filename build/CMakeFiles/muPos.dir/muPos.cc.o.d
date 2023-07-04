@@ -1,4 +1,5 @@
-CMakeFiles/muPos.dir/muPos.cc.o: /Users/yuxd/Desktop/basic/gem/muPos.cc \
+CMakeFiles/muPos.dir/muPos.cc.o: \
+  /Users/yuxd/Desktop/PKMUON_G4sim/muPos.cc \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4Types.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4GlobalConfig.hh \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/complex \
@@ -692,11 +693,11 @@ CMakeFiles/muPos.dir/muPos.cc.o: /Users/yuxd/Desktop/basic/gem/muPos.cc \
   /Applications/Geant4-11.1.1/install/include/Geant4/icomsdefs.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4VStateDependent.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UIcommandStatus.hh \
-  /Users/yuxd/Desktop/basic/gem/include/DetectorConstruction.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/DetectorConstruction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4VUserDetectorConstruction.hh \
-  /Users/yuxd/Desktop/basic/gem/include/ActionInitialization.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/ActionInitialization.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4VUserActionInitialization.hh \
-  /Users/yuxd/Desktop/basic/gem/include/SteppingVerbose.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/SteppingVerbose.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4SteppingVerbose.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UIExecutive.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4VUIshell.hh \
@@ -813,7 +814,7 @@ CMakeFiles/muPos.dir/muPos.cc.o: /Users/yuxd/Desktop/basic/gem/muPos.cc \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4OpenGLStoredQt.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4Qt3D.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4ToolsSGQtGLES.hh \
-  /Users/yuxd/Desktop/basic/gem/include/GetSeedFromTime.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/GetSeedFromTime.hh \
   /Applications/root/include/TRandom3.h \
   /Applications/root/include/TRandom.h \
   /Applications/root/include/Math/TRandomEngine.h \

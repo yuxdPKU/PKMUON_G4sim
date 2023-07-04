@@ -1,6 +1,6 @@
 CMakeFiles/muPos.dir/src/PrimaryGeneratorAction.cc.o: \
-  /Users/yuxd/Desktop/basic/gem/src/PrimaryGeneratorAction.cc \
-  /Users/yuxd/Desktop/basic/gem/include/PrimaryGeneratorAction.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/src/PrimaryGeneratorAction.cc \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/PrimaryGeneratorAction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4VUserPrimaryGeneratorAction.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4ParticleGun.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/globals.hh \

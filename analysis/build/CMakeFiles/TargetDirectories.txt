@@ -1,3 +1,0 @@
-/Users/yuxd/Desktop/basic/gem/build/CMakeFiles/muPos.dir
-/Users/yuxd/Desktop/basic/gem/build/CMakeFiles/edit_cache.dir
-/Users/yuxd/Desktop/basic/gem/build/CMakeFiles/rebuild_cache.dir

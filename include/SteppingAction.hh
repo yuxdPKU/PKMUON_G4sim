@@ -45,7 +45,7 @@ class SteppingAction : public G4UserSteppingAction
 
    private:
     G4LogicalVolume*  fScoringVolume;
-    std::vector<G4LogicalVolume*> fScoringVolume2;
+    G4LogicalVolume*  fScoringVolume2;
     G4LogicalVolume*  fScoringVolume3;
 
    private:

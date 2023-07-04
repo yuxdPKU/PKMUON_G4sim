@@ -1,5 +1,5 @@
 CMakeFiles/muPos.dir/src/Run.cc.o: \
-  /Users/yuxd/Desktop/basic/gem/src/Run.cc \
+  /Users/yuxd/Desktop/PKMUON_G4sim/src/Run.cc \
   /Applications/root/include/TTree.h \
   /Applications/root/include/Compression.h \
   /Applications/root/include/RtypesCore.h \
@@ -428,7 +428,7 @@ CMakeFiles/muPos.dir/src/Run.cc.o: \
   /Applications/root/include/TBranch.h \
   /Applications/root/include/TBranchCacheInfo.h \
   /Applications/root/include/TBits.h \
-  /Users/yuxd/Desktop/basic/gem/include/Run.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/Run.hh \
   /Applications/root/include/TROOT.h /Applications/root/include/TFile.h \
   /Applications/root/include/TDirectoryFile.h \
   /Applications/root/include/TDatime.h /Applications/root/include/TUrl.h \
@@ -529,7 +529,7 @@ CMakeFiles/muPos.dir/src/Run.cc.o: \
   /Applications/root/include/TRandom.h \
   /Applications/root/include/Math/TRandomEngine.h \
   /Applications/root/include/TClonesArray.h \
-  /Users/yuxd/Desktop/basic/gem/include/RunMessenger.hh \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/RunMessenger.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UImessenger.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UIdirectory.hh \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UIcommand.hh \
