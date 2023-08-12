@@ -62,52 +62,55 @@ DetectorConstruction::DetectorConstruction()
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 DetectorConstruction::~DetectorConstruction()
-{}
+{
+     delete vacum;
+     delete air;
+     delete pb;
+     delete cu;
+     delete pbMore;
+     delete kapton;
+     delete gasMixture;
+
+     delete Drift_cathode_Mat;
+     delete Gem_inner_Mat;
+     delete Gem_outter_Mat;
+     delete Readout_platte_Mat;
+     delete Readout_bar_Mat;
+     delete Gem_Mat;
+     delete world_Mat;
+}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-G4VPhysicalVolume* DetectorConstruction::Construct()
+void DetectorConstruction::DefineMaterials()
 {
-  G4cout << "Construt the DetectorGeometry" <<G4endl;
-  
-  G4GeometryManager::GetInstance()->OpenGeometry();
-  G4PhysicalVolumeStore::GetInstance()->Clean();
-  G4LogicalVolumeStore::GetInstance()->Clean();
-  G4SolidStore::GetInstance()->Clean();
-
-  //
-  // define a material
-  //   
-    
   G4cout << "Defining the materials" << G4endl;
   // Get nist material manager
   G4NistManager* nistManager = G4NistManager::Instance();
   // Build materials
-  G4Material* vacum   = nistManager->FindOrBuildMaterial("G4_Galactic");
-  G4Material* air   = nistManager->FindOrBuildMaterial("G4_AIR");
-  G4Material* pb   = nistManager->FindOrBuildMaterial("G4_Pb");
-  G4Material* cu   = nistManager->FindOrBuildMaterial("G4_Cu");
-  G4Material* Water = nistManager->FindOrBuildMaterial("G4_WATER");
-  G4Material* fillM = nistManager->FindOrBuildMaterial("G4_PLEXIGLASS");
-  G4Material *detM = nistManager->FindOrBuildMaterial("G4_POLYSTYRENE");
+  vacum   = nistManager->FindOrBuildMaterial("G4_Galactic");
+  air   = nistManager->FindOrBuildMaterial("G4_AIR");
+  pb   = nistManager->FindOrBuildMaterial("G4_Pb");
+  fe   = nistManager->FindOrBuildMaterial("G4_Fe");
+  w   = nistManager->FindOrBuildMaterial("G4_W");
+  cu   = nistManager->FindOrBuildMaterial("G4_Cu");
+
+  G4cout<<"define high density Pb"<<G4endl;
+  // define high density Pb
   G4int nComponent;
   G4double fracmass=1.0;
-  G4Material* pbLess   = new G4Material("pbLess",1E-3*g/cm3,nComponent=1);
-  pbLess -> AddMaterial(pb,fracmass);
-  G4double temperature = 325000000.*kelvin;
-  G4double pressure = 50.*atmosphere;
-  G4Material* pbLessHT   = new G4Material("pbLessHT",1E-3*g/cm3,nComponent=1,kStateGas,temperature,pressure);
-  pbLessHT -> AddMaterial(pb,fracmass);
+  pbMore   = new G4Material("pbMore",11.34*1*g/cm3,nComponent=1);
+  pbMore -> AddMaterial(pb,fracmass);
 
-G4cout<<"define Kapton"<<G4endl;
+  G4cout<<"define Kapton"<<G4endl;
   // Define Kapton material
   G4double density = 1.42 * g/cm3; // Density of Kapton
-  G4Material* kapton = new G4Material("Kapton", density, 3);
+  kapton = new G4Material("Kapton", density, 3);
   kapton->AddElement(nistManager->FindOrBuildElement("H"), 0.0273);
   kapton->AddElement(nistManager->FindOrBuildElement("C"), 0.7213);
   kapton->AddElement(nistManager->FindOrBuildElement("O"), 0.2514);
 
-G4cout<<"define mixgass"<<G4endl;
+  G4cout<<"define mixgass"<<G4endl;
   // Define 70%Ar and 30%CO2 gas mixture
   density = 1.822 * mg/cm3; // Density of the gas mixture
   G4Material* gasMixture = new G4Material("ArCO2GasMixture", density, 3);
@@ -115,99 +118,130 @@ G4cout<<"define mixgass"<<G4endl;
   gasMixture->AddElement(nistManager->FindOrBuildElement("C"), 0.3/3);
   gasMixture->AddElement(nistManager->FindOrBuildElement("O"), 0.3/3*2);
 
-  G4Material* Drift_cathode_Mat = cu;
-  G4Material* Gem_inner_Mat = kapton;
-  G4Material* Gem_outter_Mat = cu;
-  G4Material* Readout_platte_Mat = cu;
-  G4Material* Readout_bar_Mat = cu;
-  G4Material* Gem_Mat = gasMixture;
-  G4Material* world_Mat = vacum;
+  G4cout<<"define detector material"<<G4endl;
+  // Define detector material
+  Drift_cathode_Mat = cu;
+  Gem_inner_Mat = kapton;
+  Gem_outter_Mat = cu;
+  Readout_platte_Mat = cu;
+  Readout_bar_Mat = cu;
+  Gem_Mat = gasMixture;
+  world_Mat = vacum;
 
-  // define some constant
-  G4double Xcenter, Ycenter, Zcenter;
+}
 
-  const G4int num_Gem_hole = 8;
-  G4double Gem_hole_outter_Diameter=60*um;
-  G4double Gem_hole_outter_Length=5*um;
-  G4double Gem_Hexagonal_Length=140*um*10*100;//1000x
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-  G4double Gem_outter_bar1_x=Gem_Hexagonal_Length*num_Gem_hole;
-  G4double Gem_outter_bar1_y=0.5*Gem_Hexagonal_Length*std::sqrt(3);
-  G4double Gem_outter_bar1_z=5*um;
+void DetectorConstruction::DefineConstants()
+{
 
-  G4double Gem_outter_bar2_x=Gem_outter_bar1_x;
-  G4double Gem_outter_bar2_y=Gem_outter_bar1_y;
-  G4double Gem_outter_bar2_z=Gem_outter_bar1_z;
-  G4double Gem_outter_x=Gem_outter_bar1_x;
-  G4double Gem_outter_y=Gem_outter_bar1_y*2*num_Gem_hole;//bar1 and bar2
-  G4double Gem_outter_z=Gem_outter_bar1_z;
+  Gem_hole_outter_Diameter=60*um;
+  Gem_hole_outter_Length=5*um;
+  Gem_Hexagonal_Length=140*um*10*100;//1000x
 
-   G4double Gem_hole_inner_rmin1=0*um, Gem_hole_inner_rmin2=0*um;
-   G4double Gem_hole_inner_rmax1=30*um, Gem_hole_inner_rmax2=25*um;
-   G4double Gem_hole_inner_hz=25*um;
-   G4double Gem_hole_inner_phimin=0.*deg, Gem_hole_inner_phimax=360.*deg;
+  Gem_outter_bar1_x=Gem_Hexagonal_Length*num_Gem_hole;
+  Gem_outter_bar1_y=0.5*Gem_Hexagonal_Length*std::sqrt(3);
+  Gem_outter_bar1_z=5*um;
 
-  G4double Gem_inner_bar1_x=Gem_outter_bar1_x;
-  G4double Gem_inner_bar1_y=Gem_outter_bar1_y;
-  G4double Gem_inner_bar1_z=Gem_hole_inner_hz*2;
-  G4double Gem_inner_bar2_x=Gem_inner_bar1_x;
-  G4double Gem_inner_bar2_y=Gem_inner_bar1_y;
-  G4double Gem_inner_bar2_z=Gem_inner_bar1_z;
+  Gem_outter_bar2_x=Gem_outter_bar1_x;
+  Gem_outter_bar2_y=Gem_outter_bar1_y;
+  Gem_outter_bar2_z=Gem_outter_bar1_z;
+  Gem_outter_x=Gem_outter_bar1_x;
+  Gem_outter_y=Gem_outter_bar1_y*2*num_Gem_hole;//bar1 and bar2
+  Gem_outter_z=Gem_outter_bar1_z;
 
-  G4double Gem_inner_x=Gem_inner_bar1_x;
-  G4double Gem_inner_y=Gem_outter_bar1_y*2*num_Gem_hole;//bar1 and bar2;
-  G4double Gem_inner_z=Gem_inner_bar1_z;
+  Gem_hole_inner_rmin1=0*um, Gem_hole_inner_rmin2=0*um;
+  Gem_hole_inner_rmax1=30*um, Gem_hole_inner_rmax2=25*um;
+  Gem_hole_inner_hz=25*um;
+  Gem_hole_inner_phimin=0.*deg, Gem_hole_inner_phimax=360.*deg;
 
-  G4double drift_cathode_x=Gem_outter_bar1_x;
-  G4double drift_cathode_y=Gem_outter_y;
-  G4double drift_cathode_z=0.1*mm;
+  Gem_inner_bar1_x=Gem_outter_bar1_x;
+  Gem_inner_bar1_y=Gem_outter_bar1_y;
+  Gem_inner_bar1_z=Gem_hole_inner_hz*2;
+  Gem_inner_bar2_x=Gem_inner_bar1_x;
+  Gem_inner_bar2_y=Gem_inner_bar1_y;
+  Gem_inner_bar2_z=Gem_inner_bar1_z;
 
-  G4double readout_bar_x=150*um;
-  G4double readout_bar_gap_x=210*um;
-  G4double readout_bar_y=Gem_outter_y;
-  G4double readout_bar_z=0.1*mm;
-  G4double readout_platte_x=Gem_outter_x;
-  G4double readout_platte_y=Gem_outter_y;
-  G4double readout_platte_z=0.1*mm;
+  Gem_inner_x=Gem_inner_bar1_x;
+  Gem_inner_y=Gem_outter_bar1_y*2*num_Gem_hole;//bar1 and bar2;
+  Gem_inner_z=Gem_inner_bar1_z;
 
-  G4double gap1 = 4.8*mm;
-  G4double gap2 = 2*mm;
-  G4double Gem_x=Gem_outter_x;
-  G4double Gem_y=Gem_outter_y;
-  const G4int num_Gem_outter=4*2;
-  const G4int num_Gem_inner=4;
-  G4double Gem_z=gap1+num_Gem_inner*gap2+(num_Gem_outter*Gem_outter_z+num_Gem_inner*Gem_inner_z)+drift_cathode_z+readout_bar_z+readout_platte_z;
+  drift_cathode_x=Gem_outter_bar1_x;
+  drift_cathode_y=Gem_outter_y;
+  drift_cathode_z=0.1*mm;
 
-  G4double Box_x=1*m;
-  G4double Box_y=1*m;
-  G4double Box_z=1*m;
+  readout_bar_x=150*um;
+  readout_bar_gap_x=210*um;
+  readout_bar_y=Gem_outter_y;
+  readout_bar_z=0.1*mm;
+  readout_platte_x=Gem_outter_x;
+  readout_platte_y=Gem_outter_y;
+  readout_platte_z=0.1*mm;
 
-  G4int num_Gem=4;
+  gap1 = 4.8*mm;
+  gap2 = 2*mm;
+  Gem_x=Gem_outter_x;
+  Gem_y=Gem_outter_y;
+  Gem_z=gap1+num_Gem_inner*gap2+(num_Gem_outter*Gem_outter_z+num_Gem_inner*Gem_inner_z)+drift_cathode_z+readout_bar_z+readout_platte_z;
 
-  G4double experimentalHall_x=1.1*fmax(Gem_outter_x,Box_x);
-  G4double experimentalHall_y=1.1*fmax(Gem_outter_y,Box_y);
-  G4double experimentalHall_z=1.1*(Box_z+Gem_z*4);
+  Box_x=1*m;
+  Box_y=1*m;
+  Box_z=1*m;
+
+  num_Gem=4;
+
+  experimentalHall_x=1.1*fmax(Gem_outter_x,Box_x);
+  experimentalHall_y=1.1*fmax(Gem_outter_y,Box_y);
+  experimentalHall_z=1.1*(Box_z+Gem_z*4);
  
-  G4double Pbplatte_x=100*mm;
-  G4double Pbplatte_y=100*mm;
-  G4double Pbplatte_z=0.1*mm;
+  Pbplatte_x=100*mm;
+  Pbplatte_y=100*mm;
+  Pbplatte_z=0.1*mm;
 
 /*
-  G4double Pbbox_x=0.5*m;
-  G4double Pbbox_y=0.5*m;
-  //G4double Pbbox_z=0.5*m;
-  G4double Pbbox_z=20*mm;
-  //G4double Pbbox_z=2*mm;
+  Pbbox_x=0.5*m;
+  Pbbox_y=0.5*m;
+  Pbbox_z=0.5*m;
+  //Pbbox_z=20*mm;
+  //Pbbox_z=1*mm;
 */
 
-  G4double Pbbox_x=20*mm;
-  G4double Pbbox_z=0.5*m;
-  G4double Pbbox_y=0.5*m;
+/*
+  Pbbox_x=20*mm;
+  Pbbox_z=0.5*m;
+  Pbbox_y=0.5*m;
+*/
 
-  G4double Vacbox_x=0.5*m-40*mm;
-  G4double Vacbox_y=0.5*m-40*mm;
-  G4double Vacbox_z=0.5*m-40*mm;
+  Pbbox_x=0.3*m;
+  Pbbox_y=0.3*m;
+  Pbbox_z=0.3*m;
 
+  Febox_x=0.3*m;
+  Febox_y=0.3*m;
+  Febox_z=0.3*m;
+
+  Wbox_x=0.3*m;
+  Wbox_y=0.3*m;
+  Wbox_z=0.3*m;
+
+  Vacbox_x=0.5*m-40*mm;
+  Vacbox_y=0.5*m-40*mm;
+  Vacbox_z=0.5*m-40*mm;
+
+  pku_box_x = 30*cm;
+  pku_box_y = 40*cm;
+  pku_box_z = 3*cm;
+
+  pku_bar_x = 3*cm;
+  pku_bar_y1 = 20*cm;
+  pku_bar_y2 = 40*cm;
+  pku_bar_z = 3*cm;
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
+{
     /*******************************
    * Gem hole outter       *
    *******************************/
@@ -219,8 +253,9 @@ G4cout<<"define mixgass"<<G4endl;
 
    G4LogicalVolume* Gem_hole_outter_Log
                         = new G4LogicalVolume(Gem_hole_outter_tub,          //solid
-                                   Gem_Mat,            //material
+                                   Gem_Mat,                             //material
                                    "Gem_hole_outter_Log");            //name
+  Gem_hole_outter_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
 
 
     /*******************************
@@ -239,6 +274,7 @@ G4cout<<"define mixgass"<<G4endl;
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
+  Gem_outter_bar1_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
 
    //G4VisAttributes* Gem_hole_outter_LogAtt = new G4VisAttributes(G4Colour(0/256.,0/256.,100/256,0.8));
 
@@ -250,7 +286,7 @@ G4cout<<"define mixgass"<<G4endl;
         Xcenter = Xcenter + Gem_Hexagonal_Length;
         G4cout<<j<<"hole with Xcenter = "<<Xcenter<<G4endl;
         new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(Xcenter,0,0),                    //at position
+                    G4ThreeVector(Xcenter,0,0),     //at position
                     Gem_hole_outter_Log,             //its logical volume
                     "Gem_hole_outter",                //its name
                     Gem_outter_bar1_Log,                //its mother  volume
@@ -275,6 +311,7 @@ G4cout<<"define mixgass"<<G4endl;
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
+  Gem_outter_bar2_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
 
   // put holes within Gem outter bar2
   //
@@ -283,7 +320,7 @@ G4cout<<"define mixgass"<<G4endl;
   for (int j=0; j<num_Gem_hole-1; j++){ //in x axis
         Xcenter = Xcenter + Gem_Hexagonal_Length;
         new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(Xcenter,0,0),                    //at position
+                    G4ThreeVector(Xcenter,0,0),     //at position
                     Gem_hole_outter_Log,             //its logical volume
                     "Gem_hole_outter",                //its name
                     Gem_outter_bar2_Log,                //its mother  volume
@@ -307,6 +344,7 @@ G4cout<<"define mixgass"<<G4endl;
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
+  Gem_outter_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
 
   // put bar within Gem outter
   //
@@ -316,9 +354,9 @@ G4cout<<"define mixgass"<<G4endl;
   for (int j=0; j<num_Gem_outter_bar1; j++){
         Ycenter = Ycenter + 2*Gem_outter_bar1_y;
         new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(0,Ycenter,0),                    //at position
+                    G4ThreeVector(0,Ycenter,0),     //at position
                     Gem_outter_bar1_Log,             //its logical volume
-                    "Gem_outter",                //its name
+                    "Gem_outter",                   //its name
                     Gem_outter_Log,                //its mother  volume
                     false,                   //no boolean operation
                     j+1);               //copy number
@@ -354,6 +392,7 @@ G4cout<<"define mixgass"<<G4endl;
                         = new G4LogicalVolume(Gem_hole_inner_cons,          //solid
                                    Gem_Mat,            //material
                                    "Gem_hole_inner_Log");            //name
+  Gem_hole_inner_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
 
    G4VSolid* Gem_hole_inner_box
             = new G4Box("Gem_hole_inner_box",                      //name
@@ -365,6 +404,7 @@ G4cout<<"define mixgass"<<G4endl;
                         = new G4LogicalVolume(Gem_hole_inner_box,          //solid
                                    Gem_inner_Mat,            //material
                                    "Gem_hole_inner_doubleLog");            //name
+  Gem_hole_inner_doubleLog->SetVisAttributes(G4VisAttributes::GetInvisible());
 
   // put cons within holes
   //
@@ -404,6 +444,7 @@ G4cout<<"define mixgass"<<G4endl;
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
+  Gem_inner_bar1_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
 
   // put holes within Gem inner bar1
   //
@@ -436,6 +477,7 @@ G4cout<<"define mixgass"<<G4endl;
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
+  Gem_inner_bar2_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
 
   // put holes within Gem inner bar2
   //
@@ -468,6 +510,7 @@ G4cout<<"define mixgass"<<G4endl;
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
+  Gem_inner_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
 
   // put bar within Gem inner
   //
@@ -569,6 +612,7 @@ G4cout<<"define mixgass"<<G4endl;
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
+  //GemLog->SetVisAttributes(G4VisAttributes::GetInvisible());
 
     // put Gem outter platte in Gem
     //
@@ -633,6 +677,7 @@ G4cout<<"define mixgass"<<G4endl;
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
+  readoutbarLog[i]->SetVisAttributes(G4VisAttributes::GetInvisible());
 
     Xcenter = Xcenter + readout_bar_gap_x;
     new G4PVPlacement(0,                       //no rotation
@@ -689,10 +734,48 @@ G4cout<<"define mixgass"<<G4endl;
   G4LogicalVolume* PbboxLog 
     = new G4LogicalVolume(Pbbox_box,
 			  pb,
+			  //pbMore,
                           "PbboxLog",
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
+
+    /*******************************
+   * The Fe box       *
+   *******************************/
+
+  G4VSolid* Febox_box 
+    = new G4Box("Febox_box",             // World Volume
+                Febox_x/2,        // x size
+                Febox_y/2,        // y size
+                Febox_z/2);       // z size
+  
+  G4LogicalVolume* FeboxLog 
+    = new G4LogicalVolume(Febox_box,
+			  fe,
+                          "FeboxLog",
+                          0,               //opt: fieldManager
+                          0,               //opt: SensitiveDetector
+                          0);              //opt: UserLimits
+
+    /*******************************
+   * The W box       *
+   *******************************/
+
+  G4VSolid* Wbox_box 
+    = new G4Box("Wbox_box",             // World Volume
+                Wbox_x/2,        // x size
+                Wbox_y/2,        // y size
+                Wbox_z/2);       // z size
+  
+  G4LogicalVolume* WboxLog 
+    = new G4LogicalVolume(Wbox_box,
+			  w,
+                          "WboxLog",
+                          0,               //opt: fieldManager
+                          0,               //opt: SensitiveDetector
+                          0);              //opt: UserLimits
+
 
     /*******************************
    * The Vaccum box       *
@@ -712,6 +795,176 @@ G4cout<<"define mixgass"<<G4endl;
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
 
+    /*******************************
+   * The Vaccum box PKU       *
+   *******************************/
+
+  G4VSolid* Vacbox_box_PKU 
+    = new G4Box("Vacbox_box_PKU",             // World Volume
+                pku_box_x/2,        // x size
+                pku_box_y/2,        // y size
+                pku_box_z/2);       // z size
+  
+  G4LogicalVolume* VacboxPLog 
+    = new G4LogicalVolume(Vacbox_box_PKU,
+			  vacum,
+                          "VacboxPLog",
+                          0,               //opt: fieldManager
+                          0,               //opt: SensitiveDetector
+                          0);              //opt: UserLimits
+  VacboxPLog->SetVisAttributes(G4VisAttributes::GetInvisible());
+  
+  G4LogicalVolume* VacboxKLog 
+    = new G4LogicalVolume(Vacbox_box_PKU,
+			  vacum,
+                          "VacboxKLog",
+                          0,               //opt: fieldManager
+                          0,               //opt: SensitiveDetector
+                          0);              //opt: UserLimits
+  VacboxKLog->SetVisAttributes(G4VisAttributes::GetInvisible());
+  
+  G4LogicalVolume* VacboxULog 
+    = new G4LogicalVolume(Vacbox_box_PKU,
+			  vacum,
+                          "VacboxULog",
+                          0,               //opt: fieldManager
+                          0,               //opt: SensitiveDetector
+                          0);              //opt: UserLimits
+  VacboxULog->SetVisAttributes(G4VisAttributes::GetInvisible());
+
+
+    /*******************************
+   * The PKU Bar1 & 2       *
+   *******************************/
+
+  G4VSolid* Bar1_box 
+    = new G4Box("Bar1_box",             // World Volume
+                pku_bar_x/2,        // x size
+                pku_bar_y1/2,        // y size
+                pku_bar_z/2);       // z size
+  
+  G4LogicalVolume* Bar1Log 
+    = new G4LogicalVolume(Bar1_box,
+			  pb,
+                          "Bar1Log",
+                          0,               //opt: fieldManager
+                          0,               //opt: SensitiveDetector
+                          0);              //opt: UserLimits
+
+  G4VSolid* Bar2_box 
+    = new G4Box("Bar2_box",             // World Volume
+                pku_bar_x/2,        // x size
+                pku_bar_y2/2,        // y size
+                pku_bar_z/2);       // z size
+  
+  G4LogicalVolume* Bar2Log 
+    = new G4LogicalVolume(Bar2_box,
+			  pb,
+                          "Bar2Log",
+                          0,               //opt: fieldManager
+                          0,               //opt: SensitiveDetector
+                          0);              //opt: UserLimits
+
+  // put Bar in PKUBox P
+  //
+G4RotationMatrix rotmP1;                    //rotation matrix to place modules
+rotmP1.rotateZ(90*deg);
+G4Transform3D transformP1(rotmP1, G4ThreeVector(0.,pku_bar_y2/2.-pku_bar_x/2.,0.));
+  new G4PVPlacement(transformP1,
+                    Bar1Log,             //its logical volume
+                    "PKUbar",                //its name
+                    VacboxPLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+
+G4RotationMatrix rotmP2;                    //rotation matrix to place modules
+rotmP2.rotateZ(90*deg);
+G4Transform3D transformP2(rotmP1, G4ThreeVector(0.,+pku_bar_x/2.,0.));
+  new G4PVPlacement(transformP2,
+                    Bar1Log,             //its logical volume
+                    "PKUbar",                //its name
+                    VacboxPLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+
+  new G4PVPlacement(0,                       //no rotation
+                    G4ThreeVector(pku_bar_y1/2.+pku_bar_x/2.,pku_bar_y2/2.-pku_bar_y1/2.,0),     //at position
+                    Bar1Log,             //its logical volume
+                    "PKUbar",                //its name
+                    VacboxPLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+
+  new G4PVPlacement(0,                       //no rotation
+                    G4ThreeVector(-pku_bar_y1/2.-pku_bar_x/2.,0,0),     //at position
+                    Bar2Log,             //its logical volume
+                    "PKUbar",                //its name
+                    VacboxPLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+
+G4RotationMatrix rotmK1;                    //rotation matrix to place modules
+rotmK1.rotateZ(-45*deg);
+G4Transform3D transformK1(rotmK1, G4ThreeVector(0.,(pku_bar_y1/2.+pku_bar_x/2.)/std::sqrt(2),0.));
+new G4PVPlacement(transformK1,                       //rotation+position
+            Bar1Log,             //its logical volume
+            "PKUbar",                //its name
+            VacboxKLog,                //its mother  volume
+            false,                   //no boolean operation
+            0);               //copy number
+
+G4RotationMatrix rotmK2;                    //rotation matrix to place modules
+rotmK2.rotateZ(45*deg);
+G4Transform3D transformK2(rotmK2, G4ThreeVector(0.,-(pku_bar_y1/2.+pku_bar_x/2.)/std::sqrt(2),0.));
+new G4PVPlacement(transformK2,                       //rotation+position
+            Bar1Log,             //its logical volume
+            "PKUbar",                //its name
+            VacboxKLog,                //its mother  volume
+            false,                   //no boolean operation
+            0);               //copy number
+
+  G4double a=(pku_bar_y1/2.-pku_bar_x/2.)/std::sqrt(2) + pku_bar_x/2.*std::sqrt(2);
+  new G4PVPlacement(0,                       //no rotation
+                    G4ThreeVector(-a-pku_bar_x/2.,0,0),     //at position
+                    Bar2Log,             //its logical volume
+                    "PKUbar",                //its name
+                    VacboxKLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+
+  new G4PVPlacement(0,                       //no rotation
+                    G4ThreeVector(-pku_bar_y1/2.-pku_bar_x/2.,0,0),     //at position
+                    Bar2Log,             //its logical volume
+                    "PKUbar",                //its name
+                    VacboxULog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+
+  new G4PVPlacement(0,                       //no rotation
+                    G4ThreeVector(pku_bar_y1/2.+pku_bar_x/2.,0,0),     //at position
+                    Bar2Log,             //its logical volume
+                    "PKUbar",                //its name
+                    VacboxULog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+
+G4RotationMatrix rotmU1;                    //rotation matrix to place modules
+rotmU1.rotateZ(90*deg);
+G4Transform3D transformU1(rotmP1, G4ThreeVector(0.,-pku_bar_y2/2.+pku_bar_x/2.,0.));
+  new G4PVPlacement(transformU1,
+                    Bar1Log,             //its logical volume
+                    "PKUbar",                //its name
+                    VacboxULog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
 
     /*******************************
    * The Box       *
@@ -761,12 +1014,45 @@ G4cout<<"define mixgass"<<G4endl;
                     0);          //overlaps checking
 */
 
+  // put Vacbox PKU in Pbbox
+  //
+  G4VPhysicalVolume* VacPboxPhys 
+    = new G4PVPlacement(0,                       //no rotation
+                    G4ThreeVector(-1./3.*m,0,0),                    //at position
+                    VacboxPLog,             //its logical volume
+                    "VacPbox",                //its name
+                    BoxLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+
+  G4VPhysicalVolume* VacKboxPhys 
+    = new G4PVPlacement(0,                       //no rotation
+                    G4ThreeVector(0,0,0),                    //at position
+                    VacboxKLog,             //its logical volume
+                    "VacKbox",                //its name
+                    BoxLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+
+  G4VPhysicalVolume* VacUboxPhys 
+    = new G4PVPlacement(0,                       //no rotation
+                    G4ThreeVector(1./3.*m,0,0),                    //at position
+                    VacboxULog,             //its logical volume
+                    "VacUbox",                //its name
+                    BoxLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+
 /*
   // put Pbbox in Box
   //
   G4VPhysicalVolume* PbboxPhys 
     = new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(),                    //at position
+                    //G4ThreeVector(),                    //at position
+                    G4ThreeVector(-1./3.*m,1./3.*m,0),                    //at position
                     PbboxLog,             //its logical volume
                     "Pbbox",                //its name
                     BoxLog,                //its mother  volume
@@ -775,6 +1061,7 @@ G4cout<<"define mixgass"<<G4endl;
                     0);          //overlaps checking
 */
 
+/*
   // put Pbbox in Box
   //
   G4VPhysicalVolume* PbboxPhys1 
@@ -796,8 +1083,35 @@ G4cout<<"define mixgass"<<G4endl;
                     false,                   //no boolean operation
                     1,                       //copy number
                     0);          //overlaps checking
+*/
 
+/*
+  // put Febox in Box
+  //
+  G4VPhysicalVolume* FeboxPhys 
+    = new G4PVPlacement(0,                       //no rotation
+                    //G4ThreeVector(),                    //at position
+                    G4ThreeVector(0,-1./3.*m,1./3.*m),                    //at position
+                    FeboxLog,             //its logical volume
+                    "Febox",                //its name
+                    BoxLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
 
+  // put Wbox in Box
+  //
+  G4VPhysicalVolume* WboxPhys 
+    = new G4PVPlacement(0,                       //no rotation
+                    //G4ThreeVector(),                    //at position
+                    G4ThreeVector(1./3.*m,0,-1./3.*m),                    //at position
+                    WboxLog,             //its logical volume
+                    "Wbox",                //its name
+                    BoxLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+*/
 
     /*******************************
    * The Experimental Hall       *
@@ -879,9 +1193,29 @@ G4cout<<"define mixgass"<<G4endl;
   visAttributes = new G4VisAttributes(G4Colour(0,0,1));
   VacboxLog->SetVisAttributes(visAttributes);
 
-
-
   return experimentalHallPhys;
+
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+G4VPhysicalVolume* DetectorConstruction::Construct()
+{
+  G4cout << "Construt the DetectorGeometry" <<G4endl;
+  
+  G4GeometryManager::GetInstance()->OpenGeometry();
+  G4PhysicalVolumeStore::GetInstance()->Clean();
+  G4LogicalVolumeStore::GetInstance()->Clean();
+  G4SolidStore::GetInstance()->Clean();
+
+  // define a material
+  DefineMaterials();
+    
+  // define some constant
+  DefineConstants();
+
+  // Define volumes
+  return DefineVolumes();
 
 }
 

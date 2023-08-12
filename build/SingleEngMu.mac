@@ -15,5 +15,6 @@
 /gps/pos/halfy 50 cm
 /gps/direction 0.0  0.0  1.
 
-/rlt/SetFileName mu1GeV.root
+/rlt/SetFileName root_file/mu1GeV_i.root
 /run/beamOn 5000
+#/run/beamOn 100

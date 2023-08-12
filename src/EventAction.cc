@@ -65,6 +65,10 @@ void EventAction::EndOfEventAction(const G4Event* evt)
 {  //if(Run::GetInstance()->GetStatus()==true){
     //Run::GetInstance()->Fill();
   //}
+    G4int event_id = evt->GetEventID();
+    if (event_id % 10000 == 0) {
+        G4cout << ">>> Event " << evt->GetEventID() << " done" << G4endl;
+    }
     Run::GetInstance()->Fill();
 }
 

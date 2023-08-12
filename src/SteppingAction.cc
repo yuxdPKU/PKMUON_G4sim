@@ -63,6 +63,7 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
     ->GetVolume()->GetLogicalVolume();
   
   G4double energy = aStep->GetTotalEnergyDeposit();
+  G4double totalenergy = aStep->GetTrack()->GetTotalEnergy();
   if(energy>0){
  
     if (!fScoringVolume) { 
@@ -116,17 +117,21 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
       Run::GetInstance()->AddReadoutEdepY(y/mm);
       Run::GetInstance()->AddReadoutEdepZ(z/mm);
       Run::GetInstance()->AddReadoutEdep(energy/MeV);
+      Run::GetInstance()->AddReadoutE(totalenergy/MeV);
 
       Run::GetInstance()->AddPx(px);
       Run::GetInstance()->AddPy(py);
       Run::GetInstance()->AddPz(pz);
 
       G4int iTrkID = aStep->GetTrack()->GetTrackID();
+      G4int iTrkparentID = aStep->GetTrack()->GetParentID();
       Run::GetInstance()->AddReadoutTrkid(iTrkID);
+      Run::GetInstance()->AddReadoutTrkparentid(iTrkparentID);
 
       //G4cout<<"TrkID = "<<iTrkID<<G4endl;
       //G4cout<<"x,y,z = "<<x/mm<<" , "<<y/mm<<" , "<<z/mm<<" mm"<<G4endl;
       //G4cout<<"energy = "<<energy/MeV<<" MeV"<<G4endl;
+      //G4cout<<"taotal energy = "<<totalenergy/MeV<<" MeV"<<G4endl;
 
       //kill the track touched the bottom floor.
       //aStep->GetTrack()->SetTrackStatus(fStopAndKill);
@@ -150,6 +155,7 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
       //G4cout<<"TrkID = "<<iTrkID<<G4endl;
       //G4cout<<"x,y,z = "<<x/mm<<" , "<<y/mm<<" , "<<z/mm<<" mm"<<G4endl;
       //G4cout<<"energy = "<<energy/MeV<<" MeV"<<G4endl;
+      //G4cout<<"total energy = "<<totalenergy/MeV<<" MeV"<<G4endl;
 
     }
 

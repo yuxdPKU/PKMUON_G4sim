@@ -75,6 +75,8 @@ void Run::initTree() {
 */
 
   _tree->Branch("vReadoutTrkid",&vReadoutTrkid); //Trk id in readout bar
+  _tree->Branch("vReadoutTrkparentid",&vReadoutTrkparentid); //Trk parent id in readout bar
+  _tree->Branch("vReadoutE",&vReadoutE); //Total Energy in readout bar
   _tree->Branch("vReadoutEdep",&vReadoutEdep); //Edep Energy in readout bar
   _tree->Branch("vReadoutPosX",&vReadoutPosX); //Edep X in readout bar
   _tree->Branch("vReadoutPosY",&vReadoutPosY); //Edep Y in readout bar
@@ -117,6 +119,8 @@ void Run::initTree() {
   vTrkID.clear();
  
   vReadoutTrkid.clear();
+  vReadoutTrkparentid.clear();
+  vReadoutE.clear();
   vReadoutEdep.clear();
   vReadoutPosX.clear();
   vReadoutPosY.clear();
@@ -135,6 +139,8 @@ void Run::initTree() {
   std::vector<Double_t>().swap(vZ);
   std::vector<Int_t>().swap(vTrkID);
   std::vector<Int_t>().swap(vReadoutTrkid);
+  std::vector<Int_t>().swap(vReadoutTrkparentid);
+  std::vector<Double_t>().swap(vReadoutE);
   std::vector<Double_t>().swap(vReadoutEdep);
   std::vector<Double_t>().swap(vReadoutPosX);
   std::vector<Double_t>().swap(vReadoutPosY);
@@ -210,6 +216,8 @@ void Run::ClearAll(){
   vTrkID.clear();
 
   vReadoutTrkid.clear();
+  vReadoutTrkparentid.clear();
+  vReadoutE.clear();
   vReadoutEdep.clear();
   vReadoutPosX.clear();
   vReadoutPosY.clear();
@@ -228,6 +236,8 @@ void Run::ClearAll(){
   std::vector<Double_t>().swap(vZ);
   std::vector<Int_t>().swap(vTrkID);
   std::vector<Int_t>().swap(vReadoutTrkid);
+  std::vector<Int_t>().swap(vReadoutTrkparentid);
+  std::vector<Double_t>().swap(vReadoutE);
   std::vector<Double_t>().swap(vReadoutEdep);
   std::vector<Double_t>().swap(vReadoutPosX);
   std::vector<Double_t>().swap(vReadoutPosY);
@@ -282,6 +292,10 @@ void  Run::AddPbEdepZ(G4double Z){
   vPbPosZ.push_back(Z);
 }
 
+void  Run::AddReadoutE(G4double E){
+  vReadoutE.push_back(E);
+}
+
 void  Run::AddReadoutEdep(G4double E){
   vReadoutEdep.push_back(E);
 }
@@ -300,6 +314,10 @@ void  Run::AddPz(G4double Z){
 
 void  Run::AddReadoutTrkid(G4int i){
   vReadoutTrkid.push_back(i);
+}
+
+void  Run::AddReadoutTrkparentid(G4int i){
+  vReadoutTrkparentid.push_back(i);
 }
 
 void  Run::AddPbTrkid(G4int i){

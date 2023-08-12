@@ -4,17 +4,17 @@
 /gps/particle mu-
 /gps/energy 1 GeV
 
-/gps/position 0 0 -1.1  m
-/gps/direction 0.1  0.1  1.
+#/gps/position 0 0 -1.1  m
+#/gps/direction 0.1  0.1  1.
 #/gps/direction 0.0  0.0  1.
 
-#/gps/pos/type Plane
-#/gps/pos/shape Square
-#/gps/pos/centre 0 0 -1.1 m
-#/gps/pos/halfx 50 cm
-#/gps/pos/halfy 50 cm
-#/gps/direction 0.0  0.0  1.
+/gps/pos/type Plane
+/gps/pos/shape Square
+/gps/pos/centre 0 0 -1.1 m
+/gps/pos/halfx 50 cm
+/gps/pos/halfy 50 cm
+/gps/direction 0.0  0.0  1.
 
-/rlt/SetFileName mu1GeV.root
-/run/beamOn 10000
+/rlt/SetFileName root_file/mu1GeV_i.root
+/run/beamOn 5000
 #/run/beamOn 100

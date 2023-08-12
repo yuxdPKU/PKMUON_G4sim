@@ -36,7 +36,9 @@ public:
   void  AddReadoutEdepY(G4double Y);
   void  AddReadoutEdepZ(G4double Z);
   void  AddReadoutEdep(G4double E);
+  void  AddReadoutE(G4double E);
   void  AddReadoutTrkid(G4int i);
+  void  AddReadoutTrkparentid(G4int i);
   void AddPbEdepX(G4double X);
   void AddPbEdepY(G4double Y);
   void AddPbEdepZ(G4double Z);
@@ -83,8 +85,10 @@ private:
   std::vector<Double_t> vReadoutPosX; //Edep X in readout bar
   std::vector<Double_t> vReadoutPosY; //Edep Y in readout bar
   std::vector<Double_t> vReadoutPosZ; //Edep Z in readout bar
+  std::vector<Double_t> vReadoutE; //Total Energy in readout bar
   std::vector<Double_t> vReadoutEdep; //Edep Energy in readout bar
-  std::vector<Int_t> vReadoutTrkid; //Edep Energy in readout bar
+  std::vector<Int_t> vReadoutTrkid; //Trk id in readout bar
+  std::vector<Int_t> vReadoutTrkparentid; //Trk id in readout bar
   std::vector<Double_t> vPbPosX; //Edep X in Pb Box
   std::vector<Double_t> vPbPosY; //Edep Y in Pb Box
   std::vector<Double_t> vPbPosZ; //Edep Z in Pb Box

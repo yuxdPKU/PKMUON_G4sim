@@ -1,0 +1,53 @@
+# 忽略单个文件
+#filename.txt
+
+# 忽略整个文件夹
+#folder/
+
+# 忽略特定类型的文件
+#*.txt
+
+# 忽略以特定字符串开头的文件
+#temp_*
+
+# 忽略以特定字符串结尾的文件
+#*_temp
+
+# 忽略特定路径下的文件或文件夹
+#path/to/file.txt
+#path/to/folder/
+
+SingleEngMu.mac
+SingleEngMu_0.mac
+SingleEngMu_1.mac
+SingleEngMu_10.mac
+SingleEngMu_11.mac
+SingleEngMu_12.mac
+SingleEngMu_13.mac
+SingleEngMu_14.mac
+SingleEngMu_15.mac
+SingleEngMu_16.mac
+SingleEngMu_17.mac
+SingleEngMu_18.mac
+SingleEngMu_19.mac
+SingleEngMu_2.mac
+SingleEngMu_3.mac
+SingleEngMu_4.mac
+SingleEngMu_5.mac
+SingleEngMu_6.mac
+SingleEngMu_7.mac
+SingleEngMu_8.mac
+SingleEngMu_9.mac
+mu1GeV.root
+root_file
+root_file_2Pb
+root_file_pbfew
+root_file_rho_thickness
+root_file_singlePb
+root_file_singlePbbox
+
+/Users/yuxd/Desktop/PKMUON_G4sim/analysis/backup/singlePb
+
+/Users/yuxd/Desktop/PKMUON_G4sim/analysis/figure/*
+
+*root
