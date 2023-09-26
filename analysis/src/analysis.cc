@@ -1,3 +1,8 @@
+#pragma cling add_include_path("/opt/homebrew/opt/boost/include")
+#pragma cling add_library_path("/opt/homebrew/opt/boost/lib")
+#pragma cling load("libboost_filesystem.dylib")
+#pragma cling load("libboost_system.dylib")
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -16,9 +21,7 @@ void analysis(){
 TRandom *rand = new TRandom();
 double sigma=100*0.001;
 
-//TFile *f = new TFile("../../build/root_file/box.root","");
-//TFile *f = new TFile("../../build/root_file/pbfew.root","");
-TFile *f = new TFile("../../build/root_file/pku.root","");
+TFile *f = new TFile("../../build/root_file/all_muCRY_air.root","");
 TTree *t = (TTree*)f->Get("T1");
 
 std::vector<double> *vReadoutPosX=0; //Edep X in readout bar
@@ -54,9 +57,7 @@ t->SetBranchAddress("vPbTrkid",&vPbTrkid);
 //t->Print();
 
 //new file and new tree
-//TFile * fn = new TFile("../root/mu1GeV_box.root","recreate");
-//TFile * fn = new TFile("../root/mu1GeV_pbfew.root","recreate");
-TFile * fn = new TFile("../root/mu1GeV_pku.root","recreate");
+TFile * fn = new TFile("../root/muCRY_air.root","recreate");
 TTree * tn = new TTree("T1","tree");
 tn = t->CloneTree(0);
 
@@ -64,6 +65,7 @@ double muonE[4];
 double rec_x[4], rec_y[4], rec_z[4];
 double rec_x_smear[4], rec_y_smear[4];
 double angle, angle_smear;
+double costheta, costheta_smear;
 double poca_x, poca_y, poca_z, dca;
 int poca_status;
 double poca_x_smear, poca_y_smear, poca_z_smear, dca_smear;
@@ -77,6 +79,8 @@ tn->Branch("rec_x_smear", rec_x_smear, "rec_x_smear[4]/D");
 tn->Branch("rec_y_smear", rec_y_smear, "rec_y_smear[4]/D");
 tn->Branch("angle", &angle, "angle/D");
 tn->Branch("angle_smear", &angle_smear, "angle_smear/D");
+tn->Branch("costheta", &costheta, "costheta/D");
+tn->Branch("costheta_smear", &costheta_smear, "costheta_smear/D");
 tn->Branch("poca_x", &poca_x, "poca_x/D");
 tn->Branch("poca_y", &poca_y, "poca_y/D");
 tn->Branch("poca_z", &poca_z, "poca_z/D");
@@ -109,9 +113,11 @@ for(int ievent=0; ievent<nevent; ievent++){
                 rec_z[igem]=0;
         }
         double Etot[4]={0,0,0,0};
+        bool gemstatus[4]={false};
 
         TVector3 *pmom[4];
         double nhit = vReadoutTrkid->size();
+        if(nhit < 4) continue;
         //cout<<"nhit = "<<nhit<<endl;
         for(int itrk=0; itrk<nhit; itrk++){
                 // muon track id
@@ -123,11 +129,12 @@ for(int ievent=0; ievent<nevent; ievent++){
                 //if((*vReadoutTrkparentid)[itrk]==0) if((*vReadoutTrkid)[itrk]!=1) cout<<"what!!!"<<endl;
 
                 // gem layer number
-                int igem=0;
+                int igem=-1;
                 if( fabs((*vReadoutPosZ)[itrk]-gem_z_sim[0])<1 ) igem=0;
                 if( fabs((*vReadoutPosZ)[itrk]-gem_z_sim[1])<1 ) igem=1;
                 if( fabs((*vReadoutPosZ)[itrk]-gem_z_sim[2])<1 ) igem=2;
                 if( fabs((*vReadoutPosZ)[itrk]-gem_z_sim[3])<1 ) igem=3;
+                if(igem==-1) continue;
                 // cout<<"igem = "<<igem<<endl;
 
                 // energy weight position
@@ -138,7 +145,21 @@ for(int ievent=0; ievent<nevent; ievent++){
                 //rec_z[igem]+=(*vReadoutEdep)[itrk]*(*vReadoutPosZ)[itrk];
                 rec_z[igem]+=(*vReadoutEdep)[itrk]*gem_z_sim[igem];
                 pmom[igem] = new TVector3((*vPx)[itrk],(*vPy)[itrk],(*vPz)[itrk]);
+                gemstatus[igem]=true;
         }
+
+        bool hasFalse=false;
+        for (bool element : gemstatus) {
+            if (!element) {
+                hasFalse = true;
+                break;
+            }
+        }
+        if (hasFalse) {
+            //cout<<"Don't have signals in all GEM detector"<<endl;
+            continue;
+        }
+
         for(int igem=0; igem<4; igem++){
         rec_x[igem] = rec_x[igem]/Etot[igem];
         rec_y[igem] = rec_y[igem]/Etot[igem];
@@ -167,6 +188,7 @@ for(int ievent=0; ievent<nevent; ievent++){
         TVector3 Veci = *Pos2 - *Pos1;
         TVector3 Veco = *Pos4 - *Pos3;
         angle = Veci.Angle(Veco) * 180 / M_PI;
+        costheta = cos(Veci.Angle(Veco));
         //cout<<"angle = "<<angle/3.1415926*180.<<endl;
         //angle = cal_ang(rec_x[0],rec_y[0],rec_z[0],rec_x[1],rec_y[1],rec_z[1],rec_x[2],rec_y[2],rec_z[2],rec_x[3],rec_y[3],rec_z[3]); // old function
 
@@ -177,6 +199,7 @@ for(int ievent=0; ievent<nevent; ievent++){
         TVector3 Veci_smear = *Pos2_smear - *Pos1_smear;
         TVector3 Veco_smear = *Pos4_smear - *Pos3_smear;
         angle_smear = Veci_smear.Angle(Veco_smear) * 180 / M_PI;
+        costheta_smear = cos(Veci_smear.Angle(Veco_smear));
         //angle_smear = cal_ang(rec_x_smear[0],rec_y_smear[0],rec_z[0],rec_x_smear[1],rec_y_smear[1],rec_z[1],rec_x_smear[2],rec_y_smear[2],rec_z[2],rec_x_smear[3],rec_y_smear[3],rec_z[3]);
         angle_gem12 = pmom[0]->Angle(*pmom[1]);
 

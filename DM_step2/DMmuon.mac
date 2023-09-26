@@ -1,0 +1,6 @@
+/control/verbose 2
+/run/verbose 2
+/run/initialize
+/primary/SetFileName MuonHitDM/DM-Constant/Mu_out\(mDM=0.05GeV\).txt
+/rlt/SetFileName root_file/DMmuon_const_0p05.root
+/run/beamOn 300207

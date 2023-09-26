@@ -51,3 +51,7 @@ root_file_singlePbbox
 /Users/yuxd/Desktop/PKMUON_G4sim/analysis/figure/*
 
 *root
+
+*dat
+
+MuonHitDM/

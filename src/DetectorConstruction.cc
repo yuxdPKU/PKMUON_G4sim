@@ -67,14 +67,17 @@ DetectorConstruction::~DetectorConstruction()
      delete air;
      delete pb;
      delete cu;
+     delete cuLess;
      delete pbMore;
      delete kapton;
+     delete kaptonLess;
      delete gasMixture;
 
      delete Drift_cathode_Mat;
      delete Gem_inner_Mat;
      delete Gem_outter_Mat;
-     delete Readout_platte_Mat;
+     delete Readout_plate_Mat;
+     delete Shell_Mat;
      delete Readout_bar_Mat;
      delete Gem_Mat;
      delete world_Mat;
@@ -102,13 +105,27 @@ void DetectorConstruction::DefineMaterials()
   pbMore   = new G4Material("pbMore",11.34*1*g/cm3,nComponent=1);
   pbMore -> AddMaterial(pb,fracmass);
 
+  G4cout<<"define low density Cu"<<G4endl;
+  // define low density Cu
+  G4double ratio_outter = 0.77790212; // 1-(3600*pi)/(29400*sqrt(3))
+  G4double density = ratio_outter * 8.94 * g/cm3;
+  cuLess   = new G4Material("cuLess",density,nComponent=1);
+  cuLess -> AddMaterial(cu,fracmass);
+
   G4cout<<"define Kapton"<<G4endl;
   // Define Kapton material
-  G4double density = 1.42 * g/cm3; // Density of Kapton
+  density = 1.42 * g/cm3; // Density of Kapton
   kapton = new G4Material("Kapton", density, 3);
   kapton->AddElement(nistManager->FindOrBuildElement("H"), 0.0273);
   kapton->AddElement(nistManager->FindOrBuildElement("C"), 0.7213);
   kapton->AddElement(nistManager->FindOrBuildElement("O"), 0.2514);
+
+  G4double ratio_inner = 0.81183374; // 1-(3600*pi+2500*pi)/2/(29400*sqrt(3))
+  density = ratio_inner * 1.42 * g/cm3; // Density of Kapton
+  kaptonLess = new G4Material("KaptonLess", density, 3);
+  kaptonLess->AddElement(nistManager->FindOrBuildElement("H"), 0.0273);
+  kaptonLess->AddElement(nistManager->FindOrBuildElement("C"), 0.7213);
+  kaptonLess->AddElement(nistManager->FindOrBuildElement("O"), 0.2514);
 
   G4cout<<"define mixgass"<<G4endl;
   // Define 70%Ar and 30%CO2 gas mixture
@@ -121,9 +138,10 @@ void DetectorConstruction::DefineMaterials()
   G4cout<<"define detector material"<<G4endl;
   // Define detector material
   Drift_cathode_Mat = cu;
-  Gem_inner_Mat = kapton;
-  Gem_outter_Mat = cu;
-  Readout_platte_Mat = cu;
+  Gem_inner_Mat = kaptonLess;
+  Gem_outter_Mat = cuLess;
+  Readout_plate_Mat = cu;
+  Shell_Mat = kapton;
   Readout_bar_Mat = cu;
   Gem_Mat = gasMixture;
   world_Mat = vacum;
@@ -134,55 +152,38 @@ void DetectorConstruction::DefineMaterials()
 
 void DetectorConstruction::DefineConstants()
 {
+  Gem_outter_x=1*m;
+  Gem_outter_y=1*m;
+  Gem_outter_z=5*um;
 
-  Gem_hole_outter_Diameter=60*um;
-  Gem_hole_outter_Length=5*um;
-  Gem_Hexagonal_Length=140*um*10*100;//1000x
+  Gem_inner_x=1*m;
+  Gem_inner_y=1*m;
+  Gem_inner_z=50*um;
 
-  Gem_outter_bar1_x=Gem_Hexagonal_Length*num_Gem_hole;
-  Gem_outter_bar1_y=0.5*Gem_Hexagonal_Length*std::sqrt(3);
-  Gem_outter_bar1_z=5*um;
-
-  Gem_outter_bar2_x=Gem_outter_bar1_x;
-  Gem_outter_bar2_y=Gem_outter_bar1_y;
-  Gem_outter_bar2_z=Gem_outter_bar1_z;
-  Gem_outter_x=Gem_outter_bar1_x;
-  Gem_outter_y=Gem_outter_bar1_y*2*num_Gem_hole;//bar1 and bar2
-  Gem_outter_z=Gem_outter_bar1_z;
-
-  Gem_hole_inner_rmin1=0*um, Gem_hole_inner_rmin2=0*um;
-  Gem_hole_inner_rmax1=30*um, Gem_hole_inner_rmax2=25*um;
-  Gem_hole_inner_hz=25*um;
-  Gem_hole_inner_phimin=0.*deg, Gem_hole_inner_phimax=360.*deg;
-
-  Gem_inner_bar1_x=Gem_outter_bar1_x;
-  Gem_inner_bar1_y=Gem_outter_bar1_y;
-  Gem_inner_bar1_z=Gem_hole_inner_hz*2;
-  Gem_inner_bar2_x=Gem_inner_bar1_x;
-  Gem_inner_bar2_y=Gem_inner_bar1_y;
-  Gem_inner_bar2_z=Gem_inner_bar1_z;
-
-  Gem_inner_x=Gem_inner_bar1_x;
-  Gem_inner_y=Gem_outter_bar1_y*2*num_Gem_hole;//bar1 and bar2;
-  Gem_inner_z=Gem_inner_bar1_z;
-
-  drift_cathode_x=Gem_outter_bar1_x;
-  drift_cathode_y=Gem_outter_y;
+  drift_cathode_x=1*m;
+  drift_cathode_y=1*m;
   drift_cathode_z=0.1*mm;
 
-  readout_bar_x=150*um;
   readout_bar_gap_x=210*um;
-  readout_bar_y=Gem_outter_y;
+  readout_bar_x=150*um;
+  readout_bar_y=1*m;
   readout_bar_z=0.1*mm;
-  readout_platte_x=Gem_outter_x;
-  readout_platte_y=Gem_outter_y;
-  readout_platte_z=0.1*mm;
+
+  readout_plate_x=1*m;
+  readout_plate_y=1*m;
+  readout_plate_z=0.1*mm;
 
   gap1 = 4.8*mm;
   gap2 = 2*mm;
-  Gem_x=Gem_outter_x;
-  Gem_y=Gem_outter_y;
-  Gem_z=gap1+num_Gem_inner*gap2+(num_Gem_outter*Gem_outter_z+num_Gem_inner*Gem_inner_z)+drift_cathode_z+readout_bar_z+readout_platte_z;
+  Gem_x=1*m;
+  Gem_y=1*m;
+  Gem_z=
+        gap1
+        +num_Gem_inner*gap2
+        +(num_Gem_outter*Gem_outter_z+num_Gem_inner*Gem_inner_z)
+        +drift_cathode_z
+        +readout_bar_z
+        +readout_plate_z;
 
   Box_x=1*m;
   Box_y=1*m;
@@ -190,21 +191,19 @@ void DetectorConstruction::DefineConstants()
 
   num_Gem=4;
 
-  experimentalHall_x=1.1*fmax(Gem_outter_x,Box_x);
-  experimentalHall_y=1.1*fmax(Gem_outter_y,Box_y);
-  experimentalHall_z=1.1*(Box_z+Gem_z*4);
+  experimentalHall_x=1.1*Box_x;
+  experimentalHall_y=1.1*Box_y;
+  experimentalHall_z=1.1*(Box_z+Gem_z*num_Gem);
  
-  Pbplatte_x=100*mm;
-  Pbplatte_y=100*mm;
-  Pbplatte_z=0.1*mm;
+  Pbplate_x=100*mm;
+  Pbplate_y=100*mm;
+  Pbplate_z=0.1*mm;
 
-/*
   Pbbox_x=0.5*m;
   Pbbox_y=0.5*m;
-  Pbbox_z=0.5*m;
+  //Pbbox_z=0.5*m;
   //Pbbox_z=20*mm;
-  //Pbbox_z=1*mm;
-*/
+  Pbbox_z=1*mm;
 
 /*
   Pbbox_x=20*mm;
@@ -212,9 +211,11 @@ void DetectorConstruction::DefineConstants()
   Pbbox_y=0.5*m;
 */
 
+/*
   Pbbox_x=0.3*m;
   Pbbox_y=0.3*m;
   Pbbox_z=0.3*m;
+*/
 
   Febox_x=0.3*m;
   Febox_y=0.3*m;
@@ -242,94 +243,9 @@ void DetectorConstruction::DefineConstants()
 
 G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
 {
-    /*******************************
-   * Gem hole outter       *
-   *******************************/
-   G4VSolid* Gem_hole_outter_tub
-            = new G4Tubs("Gem_hole_outter_tub",                      //name
-                         0*mm, 0.5*Gem_hole_outter_Diameter,       //r1, r2
-                         0.5*Gem_hole_outter_Length,               //half-length
-                         0., twopi);                    //theta1, theta2
-
-   G4LogicalVolume* Gem_hole_outter_Log
-                        = new G4LogicalVolume(Gem_hole_outter_tub,          //solid
-                                   Gem_Mat,                             //material
-                                   "Gem_hole_outter_Log");            //name
-  Gem_hole_outter_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
-
 
     /*******************************
-   * Gem outter bar1      *
-   *******************************/
-  G4VSolid* Gem_outter_bar1_box
-    = new G4Box("Gem_outter_bar1_box",             // World Volume
-                Gem_outter_bar1_x/2,        // x size
-                Gem_outter_bar1_y/2,        // y size
-                Gem_outter_bar1_z/2);       // z size
-
-  G4LogicalVolume* Gem_outter_bar1_Log
-    = new G4LogicalVolume(Gem_outter_bar1_box,
-			  Gem_outter_Mat,
-                          "Gem_outter_bar1_Log",
-                          0,               //opt: fieldManager
-                          0,               //opt: SensitiveDetector
-                          0);              //opt: UserLimits
-  Gem_outter_bar1_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
-
-   //G4VisAttributes* Gem_hole_outter_LogAtt = new G4VisAttributes(G4Colour(0/256.,0/256.,100/256,0.8));
-
-  // put holes within Gem outter bar1
-  //
-  Xcenter = -0.5*(Gem_outter_bar1_x+Gem_Hexagonal_Length);
-
-  for (int j=0; j<num_Gem_hole; j++){ //in x axis
-        Xcenter = Xcenter + Gem_Hexagonal_Length;
-        G4cout<<j<<"hole with Xcenter = "<<Xcenter<<G4endl;
-        new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(Xcenter,0,0),     //at position
-                    Gem_hole_outter_Log,             //its logical volume
-                    "Gem_hole_outter",                //its name
-                    Gem_outter_bar1_Log,                //its mother  volume
-                    false,                   //no boolean operation
-                    j+1);               //copy number
-  }
-
-    /*******************************
-   * Gem outter bar2      *
-   *******************************/
-
-  G4VSolid* Gem_outter_bar2_box
-    = new G4Box("Gem_outter_bar2_box",             // World Volume
-                Gem_outter_bar2_x/2,        // x size
-                Gem_outter_bar2_y/2,        // y size
-                Gem_outter_bar2_z/2);       // z size
-
-  G4LogicalVolume* Gem_outter_bar2_Log
-    = new G4LogicalVolume(Gem_outter_bar2_box,
-			  Gem_outter_Mat,
-                          "Gem_outter_bar2_Log",
-                          0,               //opt: fieldManager
-                          0,               //opt: SensitiveDetector
-                          0);              //opt: UserLimits
-  Gem_outter_bar2_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
-
-  // put holes within Gem outter bar2
-  //
-  Xcenter = -0.5*(Gem_outter_bar2_x);
-
-  for (int j=0; j<num_Gem_hole-1; j++){ //in x axis
-        Xcenter = Xcenter + Gem_Hexagonal_Length;
-        new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(Xcenter,0,0),     //at position
-                    Gem_hole_outter_Log,             //its logical volume
-                    "Gem_hole_outter",                //its name
-                    Gem_outter_bar2_Log,                //its mother  volume
-                    false,                   //no boolean operation
-                    j+1);               //copy number
-  }
-
-    /*******************************
-   * Gem outter platte       *
+   * Gem outter plate       *
    *******************************/
   G4VSolid* Gem_outter_box
     = new G4Box("Gem_outter_box",             // World Volume
@@ -346,156 +262,8 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
                           0);              //opt: UserLimits
   Gem_outter_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
 
-  // put bar within Gem outter
-  //
-  Ycenter = -0.5*(Gem_outter_y+Gem_outter_bar1_y)-Gem_outter_bar1_y;
-
-  G4int num_Gem_outter_bar1 = 3;
-  for (int j=0; j<num_Gem_outter_bar1; j++){
-        Ycenter = Ycenter + 2*Gem_outter_bar1_y;
-        new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(0,Ycenter,0),     //at position
-                    Gem_outter_bar1_Log,             //its logical volume
-                    "Gem_outter",                   //its name
-                    Gem_outter_Log,                //its mother  volume
-                    false,                   //no boolean operation
-                    j+1);               //copy number
-  }
-
-  Ycenter = -0.5*(Gem_outter_y-Gem_outter_bar2_y)-Gem_outter_bar2_y;
-
-  G4int num_Gem_outter_bar2 = 3;
-  for (int j=0; j<num_Gem_outter_bar2; j++){
-        Ycenter = Ycenter + 2*Gem_outter_bar2_y;
-        new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(0,Ycenter,0),                    //at position
-                    Gem_outter_bar2_Log,             //its logical volume
-                    "Gem_outter",                //its name
-                    Gem_outter_Log,                //its mother  volume
-                    false,                   //no boolean operation
-                    j+1);               //copy number
-  }
-
-
-
     /*******************************
-   * Gem hole inner       *
-   *******************************/
-   G4VSolid* Gem_hole_inner_cons
-            = new G4Cons("Gem_hole_inner_cons",                      //name
-                Gem_hole_inner_rmin1,Gem_hole_inner_rmax1,
-                Gem_hole_inner_rmin2,Gem_hole_inner_rmax2,
-                Gem_hole_inner_hz/2,
-                Gem_hole_inner_phimin,Gem_hole_inner_phimax);
-
-   G4LogicalVolume* Gem_hole_inner_Log
-                        = new G4LogicalVolume(Gem_hole_inner_cons,          //solid
-                                   Gem_Mat,            //material
-                                   "Gem_hole_inner_Log");            //name
-  Gem_hole_inner_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
-
-   G4VSolid* Gem_hole_inner_box
-            = new G4Box("Gem_hole_inner_box",                      //name
-                Gem_hole_inner_rmax1,        // x size
-                Gem_hole_inner_rmax1,        // y size
-                Gem_hole_inner_hz);       // z size
-
-   G4LogicalVolume* Gem_hole_inner_doubleLog
-                        = new G4LogicalVolume(Gem_hole_inner_box,          //solid
-                                   Gem_inner_Mat,            //material
-                                   "Gem_hole_inner_doubleLog");            //name
-  Gem_hole_inner_doubleLog->SetVisAttributes(G4VisAttributes::GetInvisible());
-
-  // put cons within holes
-  //
-  Zcenter = -0.5*Gem_hole_inner_hz;
-  new G4PVPlacement(0,                       //no rotation
-              G4ThreeVector(0,0,Zcenter),                    //at position
-              Gem_hole_inner_Log,             //its logical volume
-              "Gem_hole_inner_Log",                //its name
-              Gem_hole_inner_doubleLog,                //its mother  volume
-              false,                   //no boolean operation
-              0);               //copy number
-
-  Zcenter = 0.5*Gem_hole_inner_hz;
-  G4RotationMatrix rotm;                    //rotation matrix to place modules
-  rotm.rotateX(180*deg);
-      G4Transform3D transform(rotm, G4ThreeVector(0.,0.,Zcenter));
-  new G4PVPlacement(transform,                       //rotation+position
-              Gem_hole_inner_Log,             //its logical volume
-              "Gem_hole_inner_Log",                //its name
-              Gem_hole_inner_doubleLog,                //its mother  volume
-              false,                   //no boolean operation
-              1);               //copy number
-
-    /*******************************
-   * Gem inner bar1      *
-   *******************************/
-  G4VSolid* Gem_inner_bar1_box
-    = new G4Box("Gem_inner_bar1_box",             // World Volume
-                Gem_inner_bar1_x/2,        // x size
-                Gem_inner_bar1_y/2,        // y size
-                Gem_inner_bar1_z/2);       // z size
-
-  G4LogicalVolume* Gem_inner_bar1_Log
-    = new G4LogicalVolume(Gem_inner_bar1_box,
-			  Gem_inner_Mat,
-                          "Gem_inner_bar1_Log",
-                          0,               //opt: fieldManager
-                          0,               //opt: SensitiveDetector
-                          0);              //opt: UserLimits
-  Gem_inner_bar1_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
-
-  // put holes within Gem inner bar1
-  //
-  Xcenter = -0.5*(Gem_inner_bar1_x+Gem_Hexagonal_Length);
-
-  for (int j=0; j<num_Gem_hole; j++){ //in x axis
-        Xcenter = Xcenter + Gem_Hexagonal_Length;
-        new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(Xcenter,0,0),                    //at position
-                    Gem_hole_inner_doubleLog,             //its logical volume
-                    "Gem_hole_inner_doubleLog",                //its name
-                    Gem_inner_bar1_Log,                //its mother  volume
-                    false,                   //no boolean operation
-                    j+1);               //copy number
-  }
-
-    /*******************************
-   * Gem inner bar2      *
-   *******************************/
-  G4VSolid* Gem_inner_bar2_box
-    = new G4Box("Gem_inner_bar2_box",             // World Volume
-                Gem_inner_bar2_x/2,        // x size
-                Gem_inner_bar2_y/2,        // y size
-                Gem_inner_bar2_z/2);       // z size
-
-  G4LogicalVolume* Gem_inner_bar2_Log
-    = new G4LogicalVolume(Gem_inner_bar2_box,
-			  Gem_inner_Mat,
-                          "Gem_inner_bar2_Log",
-                          0,               //opt: fieldManager
-                          0,               //opt: SensitiveDetector
-                          0);              //opt: UserLimits
-  Gem_inner_bar2_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
-
-  // put holes within Gem inner bar2
-  //
-  Xcenter = -0.5*(Gem_inner_bar2_x);
-
-  for (int j=0; j<num_Gem_hole-1; j++){ //in x axis
-        Xcenter = Xcenter + Gem_Hexagonal_Length;
-        new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(Xcenter,0,0),                    //at position
-                    Gem_hole_inner_doubleLog,             //its logical volume
-                    "Gem_hole_inner_doubleLog",                //its name
-                    Gem_inner_bar2_Log,                //its mother  volume
-                    false,                   //no boolean operation
-                    j+1);               //copy number
-  }
-
-    /*******************************
-   * Gem inner platte       *
+   * Gem inner plate       *
    *******************************/
   G4VSolid* Gem_inner_box
     = new G4Box("Gem_inner_box",             // World Volume
@@ -511,36 +279,6 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
   Gem_inner_Log->SetVisAttributes(G4VisAttributes::GetInvisible());
-
-  // put bar within Gem inner
-  //
-  Ycenter = -0.5*(Gem_inner_y+Gem_inner_bar1_y)-Gem_inner_bar1_y;
-
-  G4int num_Gem_inner_bar1 = 3;
-  for (int j=0; j<num_Gem_inner_bar1; j++){
-        Ycenter = Ycenter + 2*Gem_inner_bar1_y;
-        new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(0,Ycenter,0),                    //at position
-                    Gem_inner_bar1_Log,             //its logical volume
-                    "Gem_inner",                //its name
-                    Gem_inner_Log,                //its mother  volume
-                    false,                   //no boolean operation
-                    j+1);               //copy number
-  }
-
-  Ycenter = -0.5*(Gem_inner_y-Gem_inner_bar2_y)-Gem_inner_bar2_y;
-
-  G4int num_Gem_inner_bar2 = 3;
-  for (int j=0; j<num_Gem_inner_bar2; j++){
-        Ycenter = Ycenter + 2*Gem_inner_bar2_y;
-        new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(0,Ycenter,0),                    //at position
-                    Gem_inner_bar2_Log,             //its logical volume
-                    "Gem_inner",                //its name
-                    Gem_inner_Log,                //its mother  volume
-                    false,                   //no boolean operation
-                    j+1);               //copy number
-  }
 
     /*******************************
    * Drift cathode       *
@@ -571,33 +309,41 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
                 readout_bar_x/2,        // x size
                 readout_bar_y/2,        // y size
                 readout_bar_z/2);       // z size
-  
+
+  G4LogicalVolume* readoutbarLog
+    = new G4LogicalVolume(readout_bar_box,
+			  Readout_bar_Mat,
+                          "readoutbarLog",
+                          0,               //opt: fieldManager
+                          0,               //opt: SensitiveDetector
+                          0);              //opt: UserLimits
+  readoutbarLog->SetVisAttributes(G4VisAttributes::GetInvisible());
+
     /*******************************
-   * Readout platte       *
+   * Readout plate       *
    *******************************/
-  G4VSolid* readout_platte_box 
-    = new G4Box("readoutplatte_box",             // World Volume
-                readout_platte_x/2,        // x size
-                readout_platte_y/2,        // y size
-                readout_platte_z/2);       // z size
+  G4VSolid* readout_plate_box 
+    = new G4Box("readoutplate_box",             // World Volume
+                readout_plate_x/2,        // x size
+                readout_plate_y/2,        // y size
+                readout_plate_z/2);       // z size
   
-  G4LogicalVolume* readoutplatteLog 
-    = new G4LogicalVolume(readout_platte_box,
-			  Readout_platte_Mat,
-                          "readoutplatteLog",
+  G4LogicalVolume* readoutplateLog 
+    = new G4LogicalVolume(readout_plate_box,
+			  Readout_plate_Mat,
+                          "readoutplateLog",
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
 
-  G4VisAttributes* readoutplatteLogAtt = new G4VisAttributes(G4Colour(233/256.,0/256.,0/256,0.7));
-  //readoutplatteLog->SetVisAttributes(readoutplatteLogAtt);
-  readoutplatteLog->SetVisAttributes(G4VisAttributes::GetInvisible());
+  G4VisAttributes* readoutplateLogAtt = new G4VisAttributes(G4Colour(233/256.,0/256.,0/256,0.7));
+  //readoutplateLog->SetVisAttributes(readoutplateLogAtt);
+  readoutplateLog->SetVisAttributes(G4VisAttributes::GetInvisible());
 
 
     /*******************************
    * The Gem       *
    *******************************/
-
 
   G4VSolid* Gem_box 
     = new G4Box("Gem_box",             // World Volume
@@ -614,7 +360,7 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
                           0);              //opt: UserLimits
   //GemLog->SetVisAttributes(G4VisAttributes::GetInvisible());
 
-    // put Gem outter platte in Gem
+    // put Gem outter plate in Gem
     //
 
   Zcenter = -0.5*Gem_z + drift_cathode_z + gap1 - gap2 - 0.5*Gem_outter_z;
@@ -631,7 +377,7 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
                     1);          //overlaps checking
   }
 
-    // put Gem inner platte in Gem
+    // put Gem inner plate in Gem
     //
 
   Zcenter = -0.5*Gem_z + drift_cathode_z + gap1 - gap2 - Gem_outter_z - 0.5*Gem_inner_z;
@@ -663,60 +409,49 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
   // put readout bar in Gem
   //
   const G4int num_readout_bar=Gem_x/readout_bar_gap_x;
-  G4LogicalVolume* readoutbarLog[num_readout_bar];
-  Zcenter = 0.5*Gem_z-readout_platte_z-0.5*readout_bar_z;
+
+  Zcenter = 0.5*Gem_z-readout_plate_z-0.5*readout_bar_z;
   Xcenter = -0.5*(Gem_x-readout_bar_x)-readout_bar_gap_x;
   for (int i=0; i<num_readout_bar; i++){
-
-  G4String name = "readoutbarLog" + std::to_string(i);
-
-  readoutbarLog[i]
-    = new G4LogicalVolume(readout_bar_box,
-			  Readout_bar_Mat,
-                          name,
-                          0,               //opt: fieldManager
-                          0,               //opt: SensitiveDetector
-                          0);              //opt: UserLimits
-  readoutbarLog[i]->SetVisAttributes(G4VisAttributes::GetInvisible());
 
     Xcenter = Xcenter + readout_bar_gap_x;
     new G4PVPlacement(0,                       //no rotation
                     G4ThreeVector(Xcenter,0,Zcenter),                    //at position
-                    readoutbarLog[i],             //its logical volume
-                    name,                //its name
+                    readoutbarLog,             //its logical volume
+                    "readoutbar",                //its name
                     GemLog,                //its mother  volume
                     false,                   //no boolean operation
                     i+1,                       //copy number
                     0);          //overlaps checking
   }
 
-  // put readout platte in Gem
+  // put readout plate in Gem
   //
-  Zcenter = 0.5*(Gem_z-readout_platte_z);
-  G4VPhysicalVolume* readoutplattePhys 
+  Zcenter = 0.5*(Gem_z-readout_plate_z);
+  G4VPhysicalVolume* readoutplatePhys 
     = new G4PVPlacement(0,                       //no rotation
                     G4ThreeVector(0,0,Zcenter),                    //at position
-                    readoutplatteLog,             //its logical volume
-                    "readoutplatte",                //its name
+                    readoutplateLog,             //its logical volume
+                    "readoutplate",                //its name
                     GemLog,                //its mother  volume
                     false,                   //no boolean operation
                     0,                       //copy number
                     1);          //overlaps checking
 
     /*******************************
-   * The Pb platte       *
+   * The Pb plate       *
    *******************************/
 
-  G4VSolid* Pbplatte_box 
-    = new G4Box("Pbplatte_box",             // World Volume
-                Pbplatte_x/2,        // x size
-                Pbplatte_y/2,        // y size
-                Pbplatte_z/2);       // z size
+  G4VSolid* Pbplate_box 
+    = new G4Box("Pbplate_box",             // World Volume
+                Pbplate_x/2,        // x size
+                Pbplate_y/2,        // y size
+                Pbplate_z/2);       // z size
   
-  G4LogicalVolume* PbplatteLog 
-    = new G4LogicalVolume(Pbplatte_box,
+  G4LogicalVolume* PbplateLog 
+    = new G4LogicalVolume(Pbplate_box,
 			  pb,
-                          "PbplatteLog",
+                          "PbplateLog",
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
@@ -970,6 +705,22 @@ G4Transform3D transformU1(rotmP1, G4ThreeVector(0.,-pku_bar_y2/2.+pku_bar_x/2.,0
    * The Box       *
    *******************************/
 
+  G4VSolid* Box1_box 
+    = new G4Box("Box1_box",             // World Volume
+                (Box_x-200*um)/2,        // x size
+                (Box_y-200*um)/2,        // y size
+                (Box_z-200*um)/2);       // z size
+  
+  G4LogicalVolume* Box1Log 
+    = new G4LogicalVolume(Box1_box,
+                          air,
+			  //world_Mat,
+                          "Box1Log",
+                          0,               //opt: fieldManager
+                          0,               //opt: SensitiveDetector
+                          0);              //opt: UserLimits
+  Box1Log->SetVisAttributes(G4VisAttributes::GetInvisible());
+
   G4VSolid* Box_box 
     = new G4Box("Box_box",             // World Volume
                 Box_x/2,        // x size
@@ -978,22 +729,32 @@ G4Transform3D transformU1(rotmP1, G4ThreeVector(0.,-pku_bar_y2/2.+pku_bar_x/2.,0
   
   G4LogicalVolume* BoxLog 
     = new G4LogicalVolume(Box_box,
+                          Shell_Mat,
                           //air,
-			  world_Mat,
+			  //world_Mat,
                           "BoxLog",
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
   BoxLog->SetVisAttributes(G4VisAttributes::GetInvisible());
 
+  new G4PVPlacement(0,                       //no rotation
+                    G4ThreeVector(0,0,0),     //at position
+                    Box1Log,             //its logical volume
+                    "Box1",                //its name
+                    BoxLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+
 /*
-  // put Pbplatte in Box
+  // put Pbplate in Box
   //
-  G4VPhysicalVolume* PbplattePhys 
+  G4VPhysicalVolume* PbplatePhys 
     = new G4PVPlacement(0,                       //no rotation
                     G4ThreeVector(),                    //at position
-                    PbplatteLog,             //its logical volume
-                    "Pbplatte",                //its name
+                    PbplateLog,             //its logical volume
+                    "Pbplate",                //its name
                     BoxLog,                //its mother  volume
                     false,                   //no boolean operation
                     0,                       //copy number
@@ -1014,6 +775,7 @@ G4Transform3D transformU1(rotmP1, G4ThreeVector(0.,-pku_bar_y2/2.+pku_bar_x/2.,0
                     0);          //overlaps checking
 */
 
+/*
   // put Vacbox PKU in Pbbox
   //
   G4VPhysicalVolume* VacPboxPhys 
@@ -1045,6 +807,7 @@ G4Transform3D transformU1(rotmP1, G4ThreeVector(0.,-pku_bar_y2/2.+pku_bar_x/2.,0
                     false,                   //no boolean operation
                     0,                       //copy number
                     0);          //overlaps checking
+*/
 
 /*
   // put Pbbox in Box
@@ -1064,9 +827,24 @@ G4Transform3D transformU1(rotmP1, G4ThreeVector(0.,-pku_bar_y2/2.+pku_bar_x/2.,0
 /*
   // put Pbbox in Box
   //
+  G4VPhysicalVolume* PbboxPhys 
+    = new G4PVPlacement(0,                       //no rotation
+                    //G4ThreeVector(),                    //at position
+                    G4ThreeVector(0,0,0),                    //at position
+                    PbboxLog,             //its logical volume
+                    "Pbbox",                //its name
+                    BoxLog,                //its mother  volume
+                    false,                   //no boolean operation
+                    0,                       //copy number
+                    0);          //overlaps checking
+*/
+
+/*
+  // put Pbbox in Box
+  //
   G4VPhysicalVolume* PbboxPhys1 
     = new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(-200*mm,0,0),                    //at position
+                    G4ThreeVector(0,0,-200*mm),                    //at position
                     PbboxLog,             //its logical volume
                     "Pbbox",                //its name
                     BoxLog,                //its mother  volume
@@ -1076,7 +854,7 @@ G4Transform3D transformU1(rotmP1, G4ThreeVector(0.,-pku_bar_y2/2.+pku_bar_x/2.,0
 
   G4VPhysicalVolume* PbboxPhys2 
     = new G4PVPlacement(0,                       //no rotation
-                    G4ThreeVector(200*mm,0,0),                    //at position
+                    G4ThreeVector(0,0,200*mm),                    //at position
                     PbboxLog,             //its logical volume
                     "Pbbox",                //its name
                     BoxLog,                //its mother  volume
@@ -1174,7 +952,7 @@ G4Transform3D transformU1(rotmP1, G4ThreeVector(0.,-pku_bar_y2/2.+pku_bar_x/2.,0
   GemLog->SetVisAttributes(GemLogAtt);
 
   fScoringVolume = GemLog;
-  fScoringVolume2 = readoutplatteLog;
+  fScoringVolume2 = readoutplateLog;
   fScoringVolume3 = PbboxLog;
 
   // visualization attributes ------------------------------------------------

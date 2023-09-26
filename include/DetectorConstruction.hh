@@ -68,14 +68,17 @@ class DetectorConstruction : public G4VUserDetectorConstruction
      G4Material* fe;
      G4Material* w;
      G4Material* cu;
+     G4Material* cuLess;
      G4Material* pbMore;
      G4Material* kapton;
+     G4Material* kaptonLess;
      G4Material* gasMixture;
 
      G4Material* Drift_cathode_Mat;
      G4Material* Gem_inner_Mat;
      G4Material* Gem_outter_Mat;
-     G4Material* Readout_platte_Mat;
+     G4Material* Readout_plate_Mat;
+     G4Material* Shell_Mat;
      G4Material* Readout_bar_Mat;
      G4Material* Gem_Mat;
      G4Material* world_Mat;
@@ -124,9 +127,9 @@ class DetectorConstruction : public G4VUserDetectorConstruction
      G4double readout_bar_gap_x;
      G4double readout_bar_y;
      G4double readout_bar_z;
-     G4double readout_platte_x;
-     G4double readout_platte_y;
-     G4double readout_platte_z;
+     G4double readout_plate_x;
+     G4double readout_plate_y;
+     G4double readout_plate_z;
      
      G4double gap1;
      G4double gap2;
@@ -147,9 +150,9 @@ class DetectorConstruction : public G4VUserDetectorConstruction
      G4double experimentalHall_y;
      G4double experimentalHall_z;
      
-     G4double Pbplatte_x;
-     G4double Pbplatte_y;
-     G4double Pbplatte_z;
+     G4double Pbplate_x;
+     G4double Pbplate_y;
+     G4double Pbplate_z;
      
      G4double Pbbox_x;
      G4double Pbbox_y;

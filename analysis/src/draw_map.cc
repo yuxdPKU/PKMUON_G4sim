@@ -16,9 +16,18 @@ void draw_map(){
 
 //TFile *f = new TFile("../root/mu1GeV_box.root","");
 //TFile *f = new TFile("../root/mu1GeV_pbfew.root","");
-TFile *f = new TFile("../root/mu1GeV_pku.root","");
+//TFile *f = new TFile("../root/mu1GeV_pku.root","");
+//TFile *f = new TFile("../root/muCRY_pku.root","");
+//TFile *f = new TFile("../root/mu1GeV_2pb.root","");
+//TFile *f = new TFile("../root/mu1GeV_pbbox.root","");
+//TFile *f = new TFile("../root/muCRY_pbbox.root","");
+//TFile *f = new TFile("../root/muCRY_all.root","");
+//TFile *f = new TFile("../root/mu1GeV_all.root","");
+//TFile *f = new TFile("../root/muCRY_vac.root","");
+TFile *f = new TFile("../root/muCRY_air.root","");
 TTree *t = (TTree*)f->Get("T1");
 
+double muonE[4];
 double rec_x[4], rec_y[4], rec_z[4];
 double rec_x_smear[4], rec_y_smear[4];
 double angle, angle_smear;
@@ -27,6 +36,7 @@ int poca_status;
 double poca_x_smear, poca_y_smear, poca_z_smear, dca_smear;
 int poca_status_smear;
 
+t->SetBranchAddress("muonE",&muonE);
 t->SetBranchAddress("rec_x",&rec_x);
 t->SetBranchAddress("rec_y",&rec_y);
 t->SetBranchAddress("rec_z",&rec_z);
@@ -59,8 +69,11 @@ gettimeofday(&start, NULL); // 计时开始
 
 int point_count = 0;
 int bad_point_count = 0;
+//int nevent = 0.1*(t->GetEntries());
 int nevent = t->GetEntries();
+cout<<"nevent = "<<nevent<<endl;
 for(int ievent=0; ievent<nevent; ievent++){
+//for(int ievent=4*nevent; ievent<5*nevent; ievent++){
         if (ievent % (int)(nevent / 10) == 0) cout << "Processing progress: " << ievent / (int)(nevent / 10) << "0%" << endl;
         t->GetEntry(ievent);
 
@@ -72,7 +85,10 @@ for(int ievent=0; ievent<nevent; ievent++){
                          {rec_x[1], rec_y[1], Z2}, // p2
                          {rec_x[2], rec_y[2], Z3}, // p3
                          {rec_x[3], rec_y[3], Z4}, // p4
-                         1000, count, sig))
+                         //1000, count, sig))
+                         //muonE[1], count, sig))
+                         //muonE[2], count, sig))
+                         3000, count, sig))
         {
             ++bad_point_count;
         }
