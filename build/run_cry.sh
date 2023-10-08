@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # 循环运行Geant4模拟，传入不同的i值
-for i in {0..19}
+for i in {0..99}
+#for i in {0..19}
 #for i in {0..199}
 do
 

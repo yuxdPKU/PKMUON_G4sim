@@ -47,10 +47,7 @@
 #include "G4RunManager.hh"
 
 SteppingAction::SteppingAction():fScoringVolume(nullptr),fScoringVolume2(nullptr),fScoringVolume3(nullptr)
-{
-  //fScoringVolume2=nullptr;
-  //fScoringVolume2.clear();
-}
+{}
 
 SteppingAction::~SteppingAction()
 {}
@@ -66,24 +63,29 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
   G4double totalenergy = aStep->GetTrack()->GetTotalEnergy();
   if(energy>0){
  
+/*
     if (!fScoringVolume) { 
       const DetectorConstruction * detectorConstruction
      	= static_cast<const DetectorConstruction*>
      	(G4RunManager::GetRunManager()->GetUserDetectorConstruction());
       fScoringVolume = detectorConstruction->GetScoringVolume();   
     }
+*/
     if (!fScoringVolume2) { 
       const DetectorConstruction * detectorConstruction
      	= static_cast<const DetectorConstruction*>
      	(G4RunManager::GetRunManager()->GetUserDetectorConstruction());
       fScoringVolume2 = detectorConstruction->GetScoringVolume2();   
     }
+/*
     if (!fScoringVolume3) { 
       const DetectorConstruction * detectorConstruction
      	= static_cast<const DetectorConstruction*>
      	(G4RunManager::GetRunManager()->GetUserDetectorConstruction());
       fScoringVolume3 = detectorConstruction->GetScoringVolume3();   
     }
+*/
+/*
     if (volume == fScoringVolume) {
       G4int iTrkID = aStep->GetTrack()->GetTrackID();
       Run::GetInstance()->AddTrkID(iTrkID);
@@ -99,45 +101,63 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
       Run::GetInstance()->AddZ(z/mm);
       Run::GetInstance()->AddEdep(energy/MeV);   
     }
+*/
     if (volume == fScoringVolume2) {
+      G4int iTrkID = aStep->GetTrack()->GetTrackID();
+      G4int iTrkparentID = aStep->GetTrack()->GetParentID();
+      //Run::GetInstance()->AddReadoutTrkid(iTrkID);
+      //Run::GetInstance()->AddReadoutTrkparentid(iTrkparentID);
+      if( !(iTrkID==1 && iTrkparentID==0) ) return;
+
       G4StepPoint* prePoint  = aStep->GetPreStepPoint();
       G4StepPoint* postPoint = aStep->GetPostStepPoint();
       G4double x = (prePoint->GetPosition().x()+ postPoint->GetPosition().x())/2.;
       G4double y = (prePoint->GetPosition().y()+ postPoint->GetPosition().y())/2.;
       G4double z = (prePoint->GetPosition().z()+ postPoint->GetPosition().z())/2.;
-      //Run::GetInstance()->SetPosF(x/mm,y/mm,z/mm);
+      int igem=-1;
+      if(std::fabs(z/mm-Z1)<deltaZ) igem=0;
+      else if(std::fabs(z/mm-Z2)<deltaZ) igem=1;
+      else if(std::fabs(z/mm-Z3)<deltaZ) igem=2;
+      else if(std::fabs(z/mm-Z4)<deltaZ) igem=3;
+      else return;
 
       G4ThreeVector curDirection =  aStep->GetPreStepPoint()->GetMomentumDirection();
       G4double px = curDirection.x();
       G4double py = curDirection.y();
       G4double pz = curDirection.z();
-      //Run::GetInstance()->SetPxyzF(px/MeV,py/MeV,pz/MeV);
 
-      Run::GetInstance()->AddReadoutEdepX(x/mm);
-      Run::GetInstance()->AddReadoutEdepY(y/mm);
-      Run::GetInstance()->AddReadoutEdepZ(z/mm);
-      Run::GetInstance()->AddReadoutEdep(energy/MeV);
-      Run::GetInstance()->AddReadoutE(totalenergy/MeV);
+      Run::GetInstance()->SetGemTrkPx(igem,px);
+      Run::GetInstance()->SetGemTrkPy(igem,py);
+      Run::GetInstance()->SetGemTrkPz(igem,pz);
+      Run::GetInstance()->SetGemTrkE(igem,totalenergy/MeV);
+      Run::GetInstance()->SetGemTrkEdep(igem,energy/MeV);
+      Run::GetInstance()->SetGemTrkX(igem,x/mm);
+      Run::GetInstance()->SetGemTrkY(igem,y/mm);
+      Run::GetInstance()->SetGemTrkZ(igem,z/mm);
+      Run::GetInstance()->SetGemTrkStatus(igem,true);
 
-      Run::GetInstance()->AddPx(px);
-      Run::GetInstance()->AddPy(py);
-      Run::GetInstance()->AddPz(pz);
+      //Run::GetInstance()->AddReadoutEdepX(x/mm);
+      //Run::GetInstance()->AddReadoutEdepY(y/mm);
+      //Run::GetInstance()->AddReadoutEdepZ(z/mm);
+      //Run::GetInstance()->AddReadoutEdep(energy/MeV);
+      //Run::GetInstance()->AddReadoutE(totalenergy/MeV);
 
-      G4int iTrkID = aStep->GetTrack()->GetTrackID();
-      G4int iTrkparentID = aStep->GetTrack()->GetParentID();
-      Run::GetInstance()->AddReadoutTrkid(iTrkID);
-      Run::GetInstance()->AddReadoutTrkparentid(iTrkparentID);
+      //Run::GetInstance()->AddPx(px);
+      //Run::GetInstance()->AddPy(py);
+      //Run::GetInstance()->AddPz(pz);
 
       //G4cout<<"TrkID = "<<iTrkID<<G4endl;
+      //G4cout<<"TrkParentID = "<<iTrkparentID<<G4endl;
       //G4cout<<"x,y,z = "<<x/mm<<" , "<<y/mm<<" , "<<z/mm<<" mm"<<G4endl;
       //G4cout<<"energy = "<<energy/MeV<<" MeV"<<G4endl;
       //G4cout<<"taotal energy = "<<totalenergy/MeV<<" MeV"<<G4endl;
 
       //kill the track touched the bottom floor.
       //aStep->GetTrack()->SetTrackStatus(fStopAndKill);
-      Run::GetInstance()->SetStatus(true);
+      //Run::GetInstance()->SetStatus(true);
 
     }
+/*
     if (volume == fScoringVolume3) {
       G4StepPoint* prePoint  = aStep->GetPreStepPoint();
       G4StepPoint* postPoint = aStep->GetPostStepPoint();
@@ -158,9 +178,7 @@ void SteppingAction::UserSteppingAction(const G4Step* aStep)
       //G4cout<<"total energy = "<<totalenergy/MeV<<" MeV"<<G4endl;
 
     }
-
-
-
+*/
 
 
   }

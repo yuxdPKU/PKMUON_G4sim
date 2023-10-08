@@ -5,6 +5,7 @@
 
 /control/verbose 2
 #/tracking/verbose 1 #very detailed info of track in every step
+/tracking/verbose 0
 /event/verbose 0
 /gps/verbose 0
 
@@ -15,7 +16,7 @@
 # Position and Structure: /gps/pos (ref: "2.7.3.3. Position and Structure" p.23)
 /gps/pos/type Plane
 /gps/pos/shape Square
-/gps/pos/centre 0 0 -1.1 m
+/gps/pos/centre 0 0 -527 mm
 
 /gps/pos/halfx 50 cm
 /gps/pos/halfy 50 cm
@@ -250,4 +251,5 @@
 #/run/beamOn 1 # for check
 /rlt/SetFileName root_file/muCRY_i.root
 /run/printProgress 1000
-/run/beamOn 5000
+/run/beamOn 100
+#/run/beamOn 1000000

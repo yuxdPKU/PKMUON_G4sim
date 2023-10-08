@@ -50,6 +50,7 @@
 #include "G4MaterialPropertiesTable.hh"
 #include "G4GenericTrap.hh"
 #include "G4UserLimits.hh"
+#include "Run.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -73,14 +74,6 @@ DetectorConstruction::~DetectorConstruction()
      delete kaptonLess;
      delete gasMixture;
 
-     delete Drift_cathode_Mat;
-     delete Gem_inner_Mat;
-     delete Gem_outter_Mat;
-     delete Readout_plate_Mat;
-     delete Shell_Mat;
-     delete Readout_bar_Mat;
-     delete Gem_Mat;
-     delete world_Mat;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -130,7 +123,7 @@ void DetectorConstruction::DefineMaterials()
   G4cout<<"define mixgass"<<G4endl;
   // Define 70%Ar and 30%CO2 gas mixture
   density = 1.822 * mg/cm3; // Density of the gas mixture
-  G4Material* gasMixture = new G4Material("ArCO2GasMixture", density, 3);
+  gasMixture = new G4Material("ArCO2GasMixture", density, 3);
   gasMixture->AddElement(nistManager->FindOrBuildElement("Ar"), 0.7);
   gasMixture->AddElement(nistManager->FindOrBuildElement("C"), 0.3/3);
   gasMixture->AddElement(nistManager->FindOrBuildElement("O"), 0.3/3*2);
@@ -296,9 +289,6 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
-
-  G4VisAttributes* driftcathodeLogAtt = new G4VisAttributes(G4Colour(233/256.,0/256.,0/256,0.7));
-  //driftcathodeLog->SetVisAttributes(driftcathodeLogAtt);
   driftcathodeLog->SetVisAttributes(G4VisAttributes::GetInvisible());
 
     /*******************************
@@ -335,9 +325,6 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
-
-  G4VisAttributes* readoutplateLogAtt = new G4VisAttributes(G4Colour(233/256.,0/256.,0/256,0.7));
-  //readoutplateLog->SetVisAttributes(readoutplateLogAtt);
   readoutplateLog->SetVisAttributes(G4VisAttributes::GetInvisible());
 
 
@@ -367,10 +354,12 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
   for (int i=0; i<num_Gem_outter; i++){
     if(i%2==0) Zcenter = Zcenter + gap2 + Gem_outter_z;
     if(i%2==1) Zcenter = Zcenter + Gem_inner_z + Gem_outter_z;
+    G4cout<<i<<" Gem outter plate with Zcenter = "<<Zcenter<<" mm"<<G4endl;
+    G4String name = "Gem_outter_" + G4String(std::to_string(i).c_str());
     new G4PVPlacement(0,                       //no rotation
                     G4ThreeVector(0,0,Zcenter),                    //at position
                     Gem_outter_Log,             //its logical volume
-                    "Gem_outter",                //its name
+                    name,                //its name
                     GemLog,                //its mother  volume
                     false,                   //no boolean operation
                     i+1,                       //copy number
@@ -383,10 +372,12 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
   Zcenter = -0.5*Gem_z + drift_cathode_z + gap1 - gap2 - Gem_outter_z - 0.5*Gem_inner_z;
   for (int i=0; i<num_Gem_inner; i++){
     Zcenter = Zcenter + gap2 + 2*Gem_outter_z + Gem_inner_z;
+    G4cout<<i<<" Gem inner plate with Zcenter = "<<Zcenter<<" mm"<<G4endl;
+    G4String name = "Gem_inner_" + G4String(std::to_string(i).c_str());
     new G4PVPlacement(0,                       //no rotation
                     G4ThreeVector(0,0,Zcenter),                    //at position
                     Gem_inner_Log,             //its logical volume
-                    "Gem_inner",                //its name
+                    name,                //its name
                     GemLog,                //its mother  volume
                     false,                   //no boolean operation
                     i+1,                       //copy number
@@ -412,13 +403,15 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
 
   Zcenter = 0.5*Gem_z-readout_plate_z-0.5*readout_bar_z;
   Xcenter = -0.5*(Gem_x-readout_bar_x)-readout_bar_gap_x;
+  G4cout<<" Gem readout bar with Zcenter = "<<Zcenter<<" mm"<<G4endl;
   for (int i=0; i<num_readout_bar; i++){
-
     Xcenter = Xcenter + readout_bar_gap_x;
+    //G4cout<<i<<" Gem readout bar with Xcenter = "<<Xcenter<<" mm"<<G4endl;
+    G4String name = "Gem_readoutbar_" + G4String(std::to_string(i).c_str());
     new G4PVPlacement(0,                       //no rotation
                     G4ThreeVector(Xcenter,0,Zcenter),                    //at position
                     readoutbarLog,             //its logical volume
-                    "readoutbar",                //its name
+                    name,                //its name
                     GemLog,                //its mother  volume
                     false,                   //no boolean operation
                     i+1,                       //copy number
@@ -442,6 +435,7 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
    * The Pb plate       *
    *******************************/
 
+/*
   G4VSolid* Pbplate_box 
     = new G4Box("Pbplate_box",             // World Volume
                 Pbplate_x/2,        // x size
@@ -455,11 +449,13 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
+*/
 
     /*******************************
    * The Pb box       *
    *******************************/
 
+/*
   G4VSolid* Pbbox_box 
     = new G4Box("Pbbox_box",             // World Volume
                 Pbbox_x/2,        // x size
@@ -474,11 +470,13 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
+*/
 
     /*******************************
    * The Fe box       *
    *******************************/
 
+/*
   G4VSolid* Febox_box 
     = new G4Box("Febox_box",             // World Volume
                 Febox_x/2,        // x size
@@ -492,11 +490,13 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
+*/
 
     /*******************************
    * The W box       *
    *******************************/
 
+/*
   G4VSolid* Wbox_box 
     = new G4Box("Wbox_box",             // World Volume
                 Wbox_x/2,        // x size
@@ -510,12 +510,14 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
+*/
 
 
     /*******************************
    * The Vaccum box       *
    *******************************/
 
+/*
   G4VSolid* Vacbox_box 
     = new G4Box("Vacbox_box",             // World Volume
                 Vacbox_x/2,        // x size
@@ -529,11 +531,13 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
+*/
 
     /*******************************
    * The Vaccum box PKU       *
    *******************************/
 
+/*
   G4VSolid* Vacbox_box_PKU 
     = new G4Box("Vacbox_box_PKU",             // World Volume
                 pku_box_x/2,        // x size
@@ -566,12 +570,14 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
   VacboxULog->SetVisAttributes(G4VisAttributes::GetInvisible());
+*/
 
 
     /*******************************
    * The PKU Bar1 & 2       *
    *******************************/
 
+/*
   G4VSolid* Bar1_box 
     = new G4Box("Bar1_box",             // World Volume
                 pku_bar_x/2,        // x size
@@ -700,6 +706,7 @@ G4Transform3D transformU1(rotmP1, G4ThreeVector(0.,-pku_bar_y2/2.+pku_bar_x/2.,0
                     false,                   //no boolean operation
                     0,                       //copy number
                     0);          //overlaps checking
+*/
 
     /*******************************
    * The Box       *
@@ -730,8 +737,6 @@ G4Transform3D transformU1(rotmP1, G4ThreeVector(0.,-pku_bar_y2/2.+pku_bar_x/2.,0
   G4LogicalVolume* BoxLog 
     = new G4LogicalVolume(Box_box,
                           Shell_Mat,
-                          //air,
-			  //world_Mat,
                           "BoxLog",
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
@@ -939,21 +944,20 @@ G4Transform3D transformU1(rotmP1, G4ThreeVector(0.,-pku_bar_y2/2.+pku_bar_x/2.,0
   for (int j=0; j<num_Gem; j++){ //in z axis
         if(j!=2) Zcenter += Gem_z;
         else if(j==2) Zcenter += Gem_z+Box_z;
-        G4cout<<j<<" Gem with Zcenter = "<<Zcenter<<G4endl;
+        G4cout<<j<<" Gem with Zcenter = "<<Zcenter<<" mm"<<G4endl;
+        G4String name = "Gem_" + G4String(std::to_string(j).c_str());
         new G4PVPlacement(0,                       //no rotation
                     G4ThreeVector(0,0,Zcenter),                    //at position
                     GemLog,             //its logical volume
-                    "Gem",                //its name
+                    name,                //its name
                     experimentalHallLog,                //its mother  volume
                     false,                   //no boolean operation
                     j+1);               //copy number
   }
-  G4VisAttributes* GemLogAtt = new G4VisAttributes(G4Colour(233/256.,206/256.,238./256,0.1));
-  GemLog->SetVisAttributes(GemLogAtt);
 
   fScoringVolume = GemLog;
   fScoringVolume2 = readoutplateLog;
-  fScoringVolume3 = PbboxLog;
+  //fScoringVolume3 = PbboxLog;
 
   // visualization attributes ------------------------------------------------
 
@@ -964,12 +968,16 @@ G4Transform3D transformU1(rotmP1, G4ThreeVector(0.,-pku_bar_y2/2.+pku_bar_x/2.,0
   visAttributes = new G4VisAttributes(G4Colour(0.9,0.9,0.9));   // LightGray
   BoxLog->SetVisAttributes(visAttributes);
 
+  visAttributes = new G4VisAttributes(G4Colour(233/256.,206/256.,238./256,0.1));
+  GemLog->SetVisAttributes(visAttributes);
 
+/*
   visAttributes = new G4VisAttributes(G4Colour(0,1,0));
   PbboxLog->SetVisAttributes(visAttributes);
 
   visAttributes = new G4VisAttributes(G4Colour(0,0,1));
   VacboxLog->SetVisAttributes(visAttributes);
+*/
 
   return experimentalHallPhys;
 

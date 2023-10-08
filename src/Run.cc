@@ -47,6 +47,7 @@ void Run::initTree() {
   _file = new TFile(rootFileName.c_str(), "RECREATE");
   _tree = new TTree("T1", "Simple Out Tree");
 
+/*
   _tree->Branch("GunEng", &_GunEng, "GunEng/D");
   _tree->Branch("totEdep", &totEdep, "totEdep/D");
   _tree->Branch("cosTh", &cosTh, "cosTh/D");
@@ -64,6 +65,7 @@ void Run::initTree() {
 
   _tree->Branch("vEdep",&vEdep); //Edep Energy
   _tree->Branch("vTrkID",&vTrkID); //TrackID
+*/
  
 /*
   _tree->Branch("X1", &X1, "X1/D"); //final Position
@@ -74,6 +76,7 @@ void Run::initTree() {
   _tree->Branch("pz1", &pz1, "pz1/D"); //final pz
 */
 
+/*
   _tree->Branch("vReadoutTrkid",&vReadoutTrkid); //Trk id in readout bar
   _tree->Branch("vReadoutTrkparentid",&vReadoutTrkparentid); //Trk parent id in readout bar
   _tree->Branch("vReadoutE",&vReadoutE); //Total Energy in readout bar
@@ -81,15 +84,31 @@ void Run::initTree() {
   _tree->Branch("vReadoutPosX",&vReadoutPosX); //Edep X in readout bar
   _tree->Branch("vReadoutPosY",&vReadoutPosY); //Edep Y in readout bar
   _tree->Branch("vReadoutPosZ",&vReadoutPosZ); //Edep Z in readout bar
+*/
 
+//  _tree->Branch("GemTrkID", &GemTrkID, "GemTrkID[4]/I");
+//  _tree->Branch("GemTrkMID", &GemTrkMID, "GemTrkMID[4]/I");
+  _tree->Branch("GemTrkPx", &GemTrkPx, "GemTrkPx[4]/D");
+  _tree->Branch("GemTrkPy", &GemTrkPy, "GemTrkPy[4]/D");
+  _tree->Branch("GemTrkPz", &GemTrkPz, "GemTrkPz[4]/D");
+  _tree->Branch("GemTrkE", &GemTrkE, "GemTrkE[4]/D");
+  _tree->Branch("GemTrkEdep", &GemTrkEdep, "GemTrkEdep[4]/D");
+  _tree->Branch("GemTrkX", &GemTrkX, "GemTrkX[4]/D");
+  _tree->Branch("GemTrkY", &GemTrkY, "GemTrkY[4]/D");
+  _tree->Branch("GemTrkZ", &GemTrkZ, "GemTrkZ[4]/D");
+
+/*
   _tree->Branch("vPbTrkid",&vPbTrkid); //Trk id in Pb Box
   _tree->Branch("vPbPosX",&vPbPosX);//Edep X in Pb Box
   _tree->Branch("vPbPosY",&vPbPosY);//Edep Y in Pb Box
   _tree->Branch("vPbPosZ",&vPbPosZ);//Edep Z in Pb Box
+*/
 
+/*
   _tree->Branch("vPx",&vPx); //Pvx
   _tree->Branch("vPy",&vPy); //Pvy
   _tree->Branch("vPz",&vPz); //Pvz
+*/
 
   totEdep = 0;
   _GunEng =0;
@@ -153,6 +172,21 @@ void Run::initTree() {
   std::vector<Double_t>().swap(vPbPosY);
   std::vector<Double_t>().swap(vPbPosZ);
   
+  for (int i=0; i<4; i++)
+  {
+    GemTrkID[i]=0;
+    GemTrkMID[i]=0;
+    GemTrkPx[i]=0;
+    GemTrkPy[i]=0;
+    GemTrkPz[i]=0;
+    GemTrkE[i]=0;
+    GemTrkEdep[i]=0;
+    GemTrkX[i]=0;
+    GemTrkY[i]=0;
+    GemTrkZ[i]=0;
+    GemTrkStatus[i]=false;
+  }
+
   G4cout << "ROOT Name = " << rootFileName << G4endl;
 
 }
@@ -250,7 +284,70 @@ void Run::ClearAll(){
   std::vector<Double_t>().swap(vPbPosY);
   std::vector<Double_t>().swap(vPbPosZ);
  
+  for (int i=0; i<4; i++)
+  {
+    GemTrkID[i]=0;
+    GemTrkMID[i]=0;
+    GemTrkPx[i]=0;
+    GemTrkPy[i]=0;
+    GemTrkPz[i]=0;
+    GemTrkE[i]=0;
+    GemTrkEdep[i]=0;
+    GemTrkX[i]=0;
+    GemTrkY[i]=0;
+    GemTrkZ[i]=0;
+    GemTrkStatus[i]=false;
+  }
 }
+
+void Run::SetGemTrkID(int i, int ID){
+  GemTrkID[i]=ID;
+}
+
+void Run::SetGemTrkMID(int i, int MID){
+  GemTrkMID[i]=MID;
+}
+
+void Run::SetGemTrkPx(int i, double Px){
+  GemTrkPx[i]=Px;
+}
+
+void Run::SetGemTrkPy(int i, double Py){
+  GemTrkPy[i]=Py;
+}
+
+void Run::SetGemTrkPz(int i, double Pz){
+  GemTrkPz[i]=Pz;
+}
+
+void Run::SetGemTrkE(int i, double E){
+  GemTrkE[i]=E;
+}
+
+void Run::SetGemTrkEdep(int i, double Edep){
+  GemTrkEdep[i]=Edep;
+}
+
+void Run::SetGemTrkX(int i, double X){
+  GemTrkX[i]=X;
+}
+
+void Run::SetGemTrkY(int i, double Y){
+  GemTrkY[i]=Y;
+}
+
+void Run::SetGemTrkZ(int i, double Z){
+  GemTrkZ[i]=Z;
+}
+
+void Run::SetGemTrkStatus(int i, bool status){
+  GemTrkStatus[i]=status;
+}
+
+void Run::SetGemTruthZ(int i, double Z){
+  GemTruthZ[i]=Z;
+}
+
 void  Run::AddX(G4double inX){
   vX.push_back(inX);
 }

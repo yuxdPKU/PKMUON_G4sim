@@ -21,7 +21,8 @@ void analysis(){
 TRandom *rand = new TRandom();
 double sigma=100*0.001;
 
-TFile *f = new TFile("../../build/root_file/all_muCRY_air.root","");
+//TFile *f = new TFile("../../build/root_file/all_muCRY_air.root","");
+TFile *f = new TFile("../../build/root_file/muCRY_i.root","");
 TTree *t = (TTree*)f->Get("T1");
 
 std::vector<double> *vReadoutPosX=0; //Edep X in readout bar
@@ -35,10 +36,10 @@ std::vector<double> *vPx=0;
 std::vector<double> *vPy=0;
 std::vector<double> *vPz=0;
 
-std::vector<double> *vPbPosX=0;
-std::vector<double> *vPbPosY=0;
-std::vector<double> *vPbPosZ=0;
-std::vector<int> *vPbTrkid=0;
+//std::vector<double> *vPbPosX=0;
+//std::vector<double> *vPbPosY=0;
+//std::vector<double> *vPbPosZ=0;
+//std::vector<int> *vPbTrkid=0;
 
 t->SetBranchAddress("vReadoutPosX",&vReadoutPosX);
 t->SetBranchAddress("vReadoutPosY",&vReadoutPosY);
@@ -50,10 +51,10 @@ t->SetBranchAddress("vReadoutTrkparentid",&vReadoutTrkparentid);
 t->SetBranchAddress("vPx",&vPx);
 t->SetBranchAddress("vPy",&vPy);
 t->SetBranchAddress("vPz",&vPz);
-t->SetBranchAddress("vPbPosX",&vPbPosX);
-t->SetBranchAddress("vPbPosY",&vPbPosY);
-t->SetBranchAddress("vPbPosZ",&vPbPosZ);
-t->SetBranchAddress("vPbTrkid",&vPbTrkid);
+//t->SetBranchAddress("vPbPosX",&vPbPosX);
+//t->SetBranchAddress("vPbPosY",&vPbPosY);
+//t->SetBranchAddress("vPbPosZ",&vPbPosZ);
+//t->SetBranchAddress("vPbTrkid",&vPbTrkid);
 //t->Print();
 
 //new file and new tree
@@ -175,10 +176,10 @@ for(int ievent=0; ievent<nevent; ievent++){
 
         // Edep in Pb box
         //cout<<"vPbTrkid->size() = "<<vPbTrkid->size()<<endl;
-        for(int itrk=0; itrk<vPbTrkid->size(); itrk++){
-        if((*vPbTrkid)[itrk]!=1) continue;
+//        for(int itrk=0; itrk<vPbTrkid->size(); itrk++){
+//        if((*vPbTrkid)[itrk]!=1) continue;
         //cout<<"Pb pos x="<<(*vPbPosX)[itrk]<<" , y="<<(*vPbPosY)[itrk]<<" , z="<<(*vPbPosZ)[itrk]<<endl;
-        }
+//        }
 
         // angle <incoming vector, outcoming vector>
         TVector3 *Pos1 = new TVector3(rec_x[0],rec_y[0],rec_z[0]);

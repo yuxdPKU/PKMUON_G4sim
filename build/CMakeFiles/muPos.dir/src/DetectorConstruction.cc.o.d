@@ -563,4 +563,69 @@ CMakeFiles/muPos.dir/src/DetectorConstruction.cc.o: \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4Voxelizer.icc \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4GenericTrap.icc \
   /Applications/Geant4-11.1.1/install/include/Geant4/G4UserLimits.hh \
-  /Applications/Geant4-11.1.1/install/include/Geant4/G4UserLimits.icc
+  /Applications/Geant4-11.1.1/install/include/Geant4/G4UserLimits.icc \
+  /Users/yuxd/Desktop/PKMUON_G4sim/include/Run.hh \
+  /Applications/root/include/TROOT.h \
+  /Applications/root/include/TDirectory.h \
+  /Applications/root/include/TNamed.h \
+  /Applications/root/include/TObject.h \
+  /Applications/root/include/Rtypes.h \
+  /Applications/root/include/RtypesCore.h \
+  /Applications/root/include/ROOT/RConfig.hxx \
+  /Applications/root/include/ROOT/../RVersion.h \
+  /Applications/root/include/RConfigure.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/AvailabilityMacros.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/TargetConditionals.h \
+  /Applications/root/include/DllImport.h \
+  /Applications/root/include/strtok.h \
+  /Applications/root/include/strlcpy.h \
+  /Applications/root/include/snprintf.h \
+  /Applications/root/include/TGenericClassInfo.h \
+  /Applications/root/include/TSchemaHelper.h \
+  /Applications/root/include/TIsAProxy.h \
+  /Applications/root/include/TVirtualIsAProxy.h \
+  /Applications/root/include/TStorage.h \
+  /Applications/root/include/TVersionCheck.h \
+  /Applications/root/include/RVersion.h \
+  /Applications/root/include/TString.h \
+  /Applications/root/include/TMathBase.h \
+  /Applications/root/include/ROOT/RStringView.hxx \
+  /Applications/root/include/ROOT/TypeTraits.hxx \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/cstdarg \
+  /Applications/root/include/TClass.h \
+  /Applications/root/include/TDictionary.h \
+  /Applications/root/include/ESTLType.h \
+  /Applications/root/include/TObjArray.h \
+  /Applications/root/include/TSeqCollection.h \
+  /Applications/root/include/TCollection.h \
+  /Applications/root/include/TIterator.h \
+  /Applications/root/include/TVirtualRWMutex.h \
+  /Applications/root/include/TVirtualMutex.h \
+  /Applications/root/include/ROOT/RRangeCast.hxx \
+  /Applications/root/include/ROOT/RSpan.hxx \
+  /Applications/root/include/ROOT/span.hxx \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/array \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/unordered_set \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/include/c++/v1/__hash_table \
+  /Applications/root/include/TUUID.h /Applications/root/include/TList.h \
+  /Applications/root/include/TBuffer.h \
+  /Applications/root/include/TDataType.h \
+  /Applications/root/include/Bytes.h /Applications/root/include/TFile.h \
+  /Applications/root/include/Compression.h \
+  /Applications/root/include/TDirectoryFile.h \
+  /Applications/root/include/TDatime.h /Applications/root/include/TUrl.h \
+  /Applications/root/include/ROOT/RConcurrentHashColl.hxx \
+  /Applications/root/include/ROOT/TRWSpinLock.hxx \
+  /Applications/root/include/ROOT/TSpinMutex.hxx \
+  /Applications/root/include/TTree.h \
+  /Applications/root/include/ROOT/TIOFeatures.hxx \
+  /Applications/root/include/TArrayD.h \
+  /Applications/root/include/TArray.h \
+  /Applications/root/include/TArrayI.h \
+  /Applications/root/include/TAttFill.h \
+  /Applications/root/include/TAttLine.h \
+  /Applications/root/include/TAttMarker.h \
+  /Applications/root/include/TVirtualTreePlayer.h \
+  /Applications/root/include/TBranch.h \
+  /Applications/root/include/TBranchCacheInfo.h \
+  /Applications/root/include/TBits.h

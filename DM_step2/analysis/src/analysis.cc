@@ -91,8 +91,8 @@ t1->SetBranchAddress("vPbTrkid",&vPbTrkid1);
 //TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file/DMmuon_const_1.root","");
 //ifstream infile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/MuonHitDM/DM-Constant-More/Mu_out(mDM=0.5GeV).txt");
 //TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file/DMmuon_const_0p5.root","");
-ifstream infile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/MuonHitDM/DM-Constant-More/Mu_out(mDM=0.4GeV).txt");
-TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file/DMmuon_const_0p4.root","");
+//ifstream infile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/MuonHitDM/DM-Constant-More/Mu_out(mDM=0.4GeV).txt");
+//TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file/DMmuon_const_0p4.root","");
 //ifstream infile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/MuonHitDM/DM-Constant-More/Mu_out(mDM=0.3GeV).txt");
 //TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file/DMmuon_const_0p3.root","");
 //ifstream infile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/MuonHitDM/DM-Constant-More/Mu_out(mDM=0.2GeV).txt");
@@ -102,6 +102,24 @@ TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file
 //ifstream infile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/MuonHitDM/DM-Constant-More/Mu_out(mDM=0.05GeV).txt");
 //TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file/DMmuon_const_0p05.root","");
 //ifstream infile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/MuonHitDM/DM-Constant-More/Mu_out(mDM=0.005GeV).txt");
+//TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file/DMmuon_const_0p005.root","");
+
+//9.25
+ifstream infile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/MuonHitDM/DM-Constant-9.25/Mu_out(mDM=100.0GeV).txt");
+TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file/DMmuon_const_100.root","");
+//ifstream infile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/MuonHitDM/DM-Constant-9.25/Mu_out(mDM=10.0GeV).txt");
+//TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file/DMmuon_const_10.root","");
+//ifstream infile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/MuonHitDM/DM-Constant-9.25/Mu_out(mDM=1.0GeV).txt");
+//TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file/DMmuon_const_1.root","");
+//ifstream infile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/MuonHitDM/DM-Constant-9.25/Mu_out(mDM=0.5GeV).txt");
+//TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file/DMmuon_const_0p5.root","");
+//ifstream infile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/MuonHitDM/DM-Constant-9.25/Mu_out(mDM=0.2GeV).txt");
+//TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file/DMmuon_const_0p2.root","");
+//ifstream infile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/MuonHitDM/DM-Constant-9.25/Mu_out(mDM=0.1GeV).txt");
+//TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file/DMmuon_const_0p1.root","");
+//ifstream infile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/MuonHitDM/DM-Constant-9.25/Mu_out(mDM=0.05GeV).txt");
+//TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file/DMmuon_const_0p05.root","");
+//ifstream infile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/MuonHitDM/DM-Constant-9.25/Mu_out(mDM=0.005GeV).txt");
 //TFile *f2 = new TFile("/Users/yuxd/Desktop/PKMUON_G4sim/DM_step2/build/root_file/DMmuon_const_0p005.root","");
 
 TTree *t2 = (TTree*)f2->Get("T1");
@@ -140,11 +158,11 @@ t2->SetBranchAddress("vPbTrkid",&vPbTrkid2);
 
 //Constant
 //TFile * fn = new TFile("../root/DMmuon_const_1000.root","recreate");
-//TFile * fn = new TFile("../root/DMmuon_const_100.root","recreate");
+TFile * fn = new TFile("../root/DMmuon_const_100.root","recreate");
 //TFile * fn = new TFile("../root/DMmuon_const_10.root","recreate");
 //TFile * fn = new TFile("../root/DMmuon_const_1.root","recreate");
 //TFile * fn = new TFile("../root/DMmuon_const_0p5.root","recreate");
-TFile * fn = new TFile("../root/DMmuon_const_0p4.root","recreate");
+//TFile * fn = new TFile("../root/DMmuon_const_0p4.root","recreate");
 //TFile * fn = new TFile("../root/DMmuon_const_0p3.root","recreate");
 //TFile * fn = new TFile("../root/DMmuon_const_0p2.root","recreate");
 //TFile * fn = new TFile("../root/DMmuon_const_0p1.root","recreate");

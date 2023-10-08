@@ -520,6 +520,15 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
               false,                   //no boolean operation
               0);               //copy number
 
+  Zcenter = -Gem_z-1*um/2;
+  new G4PVPlacement(0,                       //no rotation
+              G4ThreeVector(0,0,Zcenter),                    //at position
+              vacLog,             //its logical volume
+              "vaclog",                //its name
+              experimentalHallLog,                //its mother  volume
+              false,                   //no boolean operation
+              1);               //copy number
+
   fScoringVolume = GemLog;
   fScoringVolume2 = readoutplateLog;
   fScoringVolume3 = vacLog;
