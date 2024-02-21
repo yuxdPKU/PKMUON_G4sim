@@ -73,14 +73,6 @@ DetectorConstruction::~DetectorConstruction()
      delete kaptonLess;
      delete gasMixture;
 
-     delete Drift_cathode_Mat;
-     delete Gem_inner_Mat;
-     delete Gem_outter_Mat;
-     delete Readout_plate_Mat;
-     delete Shell_Mat;
-     delete Readout_bar_Mat;
-     delete Gem_Mat;
-     delete world_Mat;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -107,7 +99,7 @@ void DetectorConstruction::DefineMaterials()
 
   G4cout<<"define low density Cu"<<G4endl;
   // define low density Cu
-  G4double ratio_outter = 0.77790212; // 1-(3600*pi)/(29400*sqrt(3))
+  G4double ratio_outter = 0.83342659; // 1-(2700*pi)/(29400*sqrt(3)) 
   G4double density = ratio_outter * 8.94 * g/cm3;
   cuLess   = new G4Material("cuLess",density,nComponent=1);
   cuLess -> AddMaterial(cu,fracmass);
@@ -120,7 +112,7 @@ void DetectorConstruction::DefineMaterials()
   kapton->AddElement(nistManager->FindOrBuildElement("C"), 0.7213);
   kapton->AddElement(nistManager->FindOrBuildElement("O"), 0.2514);
 
-  G4double ratio_inner = 0.81183374; // 1-(3600*pi+2500*pi)/2/(29400*sqrt(3))
+  G4double ratio_inner = 0.85887530; // 1-(2700*pi+1875*pi)/2/(29400*sqrt(3))
   density = ratio_inner * 1.42 * g/cm3; // Density of Kapton
   kaptonLess = new G4Material("KaptonLess", density, 3);
   kaptonLess->AddElement(nistManager->FindOrBuildElement("H"), 0.0273);
@@ -130,7 +122,7 @@ void DetectorConstruction::DefineMaterials()
   G4cout<<"define mixgass"<<G4endl;
   // Define 70%Ar and 30%CO2 gas mixture
   density = 1.822 * mg/cm3; // Density of the gas mixture
-  G4Material* gasMixture = new G4Material("ArCO2GasMixture", density, 3);
+  gasMixture = new G4Material("ArCO2GasMixture", density, 3);
   gasMixture->AddElement(nistManager->FindOrBuildElement("Ar"), 0.7);
   gasMixture->AddElement(nistManager->FindOrBuildElement("C"), 0.3/3);
   gasMixture->AddElement(nistManager->FindOrBuildElement("O"), 0.3/3*2);
@@ -300,9 +292,6 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
-
-  G4VisAttributes* driftcathodeLogAtt = new G4VisAttributes(G4Colour(233/256.,0/256.,0/256,0.7));
-  //driftcathodeLog->SetVisAttributes(driftcathodeLogAtt);
   driftcathodeLog->SetVisAttributes(G4VisAttributes::GetInvisible());
 
     /*******************************
@@ -339,9 +328,6 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector
                           0);              //opt: UserLimits
-
-  G4VisAttributes* readoutplateLogAtt = new G4VisAttributes(G4Colour(233/256.,0/256.,0/256,0.7));
-  //readoutplateLog->SetVisAttributes(readoutplateLogAtt);
   readoutplateLog->SetVisAttributes(G4VisAttributes::GetInvisible());
 
 
@@ -371,10 +357,12 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
   for (int i=0; i<num_Gem_outter; i++){
     if(i%2==0) Zcenter = Zcenter + gap2 + Gem_outter_z;
     if(i%2==1) Zcenter = Zcenter + Gem_inner_z + Gem_outter_z;
+    G4cout<<i<<" Gem outter plate with Zcenter = "<<Zcenter<<" mm"<<G4endl;
+    G4String name = "Gem_outter_" + G4String(std::to_string(i).c_str());
     new G4PVPlacement(0,                       //no rotation
                     G4ThreeVector(0,0,Zcenter),                    //at position
                     Gem_outter_Log,             //its logical volume
-                    "Gem_outter",                //its name
+                    name,                //its name
                     GemLog,                //its mother  volume
                     false,                   //no boolean operation
                     i+1,                       //copy number
@@ -387,10 +375,12 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
   Zcenter = -0.5*Gem_z + drift_cathode_z + gap1 - gap2 - Gem_outter_z - 0.5*Gem_inner_z;
   for (int i=0; i<num_Gem_inner; i++){
     Zcenter = Zcenter + gap2 + 2*Gem_outter_z + Gem_inner_z;
+    G4cout<<i<<" Gem inner plate with Zcenter = "<<Zcenter<<" mm"<<G4endl;
+    G4String name = "Gem_inner_" + G4String(std::to_string(i).c_str());
     new G4PVPlacement(0,                       //no rotation
                     G4ThreeVector(0,0,Zcenter),                    //at position
                     Gem_inner_Log,             //its logical volume
-                    "Gem_inner",                //its name
+                    name,                //its name
                     GemLog,                //its mother  volume
                     false,                   //no boolean operation
                     i+1,                       //copy number
@@ -416,13 +406,15 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
 
   Zcenter = 0.5*Gem_z-readout_plate_z-0.5*readout_bar_z;
   Xcenter = -0.5*(Gem_x-readout_bar_x)-readout_bar_gap_x;
+  G4cout<<" Gem readout bar with Zcenter = "<<Zcenter<<" mm"<<G4endl;
   for (int i=0; i<num_readout_bar; i++){
-
     Xcenter = Xcenter + readout_bar_gap_x;
+    //G4cout<<i<<" Gem readout bar with Xcenter = "<<Xcenter<<" mm"<<G4endl;
+    G4String name = "Gem_readoutbar_" + G4String(std::to_string(i).c_str());
     new G4PVPlacement(0,                       //no rotation
                     G4ThreeVector(Xcenter,0,Zcenter),                    //at position
                     readoutbarLog,             //its logical volume
-                    "readoutbar",                //its name
+                    name,                //its name
                     GemLog,                //its mother  volume
                     false,                   //no boolean operation
                     i+1,                       //copy number
@@ -495,7 +487,6 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
   G4VisAttributes* GemLogAtt = new G4VisAttributes(G4Colour(233/256.,206/256.,238./256,0.1));
   GemLog->SetVisAttributes(GemLogAtt);
 
-/*
   G4VSolid* shell_box = new G4Box("shell_box",shell_x/2,  shell_y/2,  shell_z/2); 
   G4LogicalVolume* shellLog = new G4LogicalVolume(shell_box, Shell_Mat,"shellLog",0, 0, 0);
 
@@ -508,14 +499,9 @@ G4VPhysicalVolume *DetectorConstruction::DefineVolumes()
               experimentalHallLog,                //its mother  volume
               false,                   //no boolean operation
               0);               //copy number
-*/
 
   fScoringVolume = GemLog;
   fScoringVolume2 = readoutplateLog;
-
-  // 创建一个用户限制对象
-  //G4UserLimits* userLimits = new G4UserLimits(DBL_MAX, DBL_MAX, 0.06 * mm); // 最大步长设置为0.1毫米
-  //readoutplateLog->SetUserLimits(userLimits);
 
   // visualization attributes ------------------------------------------------
 

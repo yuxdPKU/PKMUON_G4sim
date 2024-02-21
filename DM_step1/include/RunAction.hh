@@ -41,7 +41,7 @@ class GpsPrimaryGeneratorAction;
 class RunAction : public G4UserRunAction
 {
   public:
-    //RunAction(PrimaryGeneratorAction *frunAction);
+  //RunAction(PrimaryGeneratorAction *frunAction);
     RunAction(  GpsPrimaryGeneratorAction *frunAction);
    ~RunAction();
 
@@ -52,7 +52,7 @@ class RunAction : public G4UserRunAction
   
 private:
     
-  //PrimaryGeneratorAction *fPrimary;
+  // PrimaryGeneratorAction *fPrimary;
   GpsPrimaryGeneratorAction *fPrimary;
 };
 #endif

@@ -34,7 +34,7 @@
 #define DetectorConstruction_h 1
 
 #include "G4VUserDetectorConstruction.hh"
-#include "globals.hh"
+//#include "globals.hh"
 #include "G4Material.hh"
 //#include "G4LogicalVolume.hh"
 //#include "G4PVPlacement.hh"

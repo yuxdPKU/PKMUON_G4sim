@@ -1,22 +1,43 @@
-Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
-Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc 
-Build flags: 
-Id flags:  
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/pku/yuxd/bond/PKMUON_G4sim/build/CMakeFiles/CMakeTmp
 
-The output was:
-1
-ld: library not found for -lSystem
-clang: error: linker command failed with exit code 1 (use -v to see invocation)
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_7ce55/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_7ce55.dir/build.make CMakeFiles/cmTC_7ce55.dir/build
+gmake[1]: 进入目录“/data/bond/yuxd/PKMUON_G4sim/build/CMakeFiles/CMakeTmp”
+Building C object CMakeFiles/cmTC_7ce55.dir/src.c.o
+/home/pku/yuxd/bond/gcc-12.2.0/bin/gcc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_7ce55.dir/src.c.o -c /home/pku/yuxd/bond/PKMUON_G4sim/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_7ce55
+/data/bond/yuxd/miniconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7ce55.dir/link.txt --verbose=1
+/home/pku/yuxd/bond/gcc-12.2.0/bin/gcc CMakeFiles/cmTC_7ce55.dir/src.c.o -o cmTC_7ce55 
+CMakeFiles/cmTC_7ce55.dir/src.c.o：在函数‘main’中：
+src.c:(.text+0x2d)：对‘pthread_create’未定义的引用
+src.c:(.text+0x39)：对‘pthread_detach’未定义的引用
+src.c:(.text+0x45)：对‘pthread_cancel’未定义的引用
+src.c:(.text+0x56)：对‘pthread_join’未定义的引用
+src.c:(.text+0x6a)：对‘pthread_atfork’未定义的引用
+collect2: 错误：ld 返回 1
+gmake[1]: *** [cmTC_7ce55] 错误 1
+gmake[1]: 离开目录“/data/bond/yuxd/PKMUON_G4sim/build/CMakeFiles/CMakeTmp”
+gmake: *** [cmTC_7ce55/fast] 错误 2
 
 
-Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
-Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ 
-Build flags: 
-Id flags:  
+Source file was:
+#include <pthread.h>
 
-The output was:
-1
-ld: library not found for -lc++
-clang: error: linker command failed with exit code 1 (use -v to see invocation)
+static void* test_func(void* data)
+{
+  return data;
+}
 
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
 

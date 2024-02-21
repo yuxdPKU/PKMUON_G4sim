@@ -50,29 +50,42 @@ EventAction::~EventAction()
 
 void EventAction::BeginOfEventAction(const G4Event* evt)
 {
- G4int trackID = evt->GetPrimaryVertex(0)->GetPrimary(0)->GetTrackID();
+ //G4int trackID = evt->GetPrimaryVertex(0)->GetPrimary(0)->GetTrackID();
  //G4cout<<"Here is BeginOfEventAction, trackID = "<<trackID<<G4endl;
+ G4int eventid = Run::GetInstance()->GetEvtID();
+ //G4cout<<"EvtID in txt = "<<eventid<<G4endl;
 
  Run::GetInstance()->ClearAll();
+ Run::GetInstance()->SetEvtID(eventid);
  G4PrimaryVertex *pv = evt->GetPrimaryVertex(0);
  G4double kinE =  pv-> GetPrimary()->GetKineticEnergy();
- Run::GetInstance()->RecPrimPartEng(kinE/MeV);
- Run::GetInstance()->SetPos(pv->GetX0()/mm,pv->GetY0()/mm,pv->GetZ0()/mm);
  G4ThreeVector mom =  pv->GetPrimary()->GetMomentum();
- Run::GetInstance()->SetPxyz(mom.x()/MeV,mom.y()/MeV,mom.z()/MeV);
+
+// Run::GetInstance()->RecPrimPartEng(kinE/MeV);
+// Run::GetInstance()->SetPos(pv->GetX0()/mm,pv->GetY0()/mm,pv->GetZ0()/mm);
+// Run::GetInstance()->SetPxyz(mom.x()/MeV,mom.y()/MeV,mom.z()/MeV);
+
+//G4cout<<"(x,y,z) = "<<pv->GetX0()/mm<<" "<<pv->GetY0()/mm<<" "<<pv->GetZ0()/mm<<" mm"<<G4endl;
+//G4cout<<"Momentum direction= "<<pv->GetPrimary()->GetMomentumDirection()<<G4endl;
+//G4cout<<"total Energy = "<<pv->GetPrimary()->GetTotalEnergy()<<G4endl;
  
 }
  
 void EventAction::EndOfEventAction(const G4Event* evt)
-{  //if(Run::GetInstance()->GetStatus()==true){
-    //Run::GetInstance()->Fill();
-  //}
-    G4int trackID = evt->GetPrimaryVertex(0)->GetPrimary(0)->GetTrackID();
-    //G4cout<<"Here is EndOfEventAction, trackID = "<<trackID<<G4endl;
-    G4int event_id = evt->GetEventID();
-    if (event_id % 10000 == 0) {
-        G4cout << ">>> Event " << evt->GetEventID() << " done" << G4endl;
+{
+    bool status=true;
+    for(int i=0; i<2; i++){
+        status = status && Run::GetInstance()->GetGemTrkStatus(i);
     }
-    Run::GetInstance()->Fill();
+
+    if(status){
+      //G4int trackID = evt->GetPrimaryVertex(0)->GetPrimary(0)->GetTrackID();
+      //G4cout<<"Here is EndOfEventAction, trackID = "<<trackID<<G4endl;
+      G4int event_id = evt->GetEventID();
+      if (event_id % 10000 == 0) {
+        G4cout << ">>> Event " << evt->GetEventID() << " done" << G4endl;
+      }
+      Run::GetInstance()->Fill();
+    }
 }
 

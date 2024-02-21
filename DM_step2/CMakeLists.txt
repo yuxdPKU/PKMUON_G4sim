@@ -49,7 +49,7 @@ target_link_libraries(muPos ${Geant4_LIBRARIES}  ${ROOT_LIBRARIES} )
 # relies on these scripts being in the current working directory.
 #
 set(muPos_SCRIPTS
-   vis.mac  SingleEngMu.mac CryMu.mac DMmuon.mac
+   vis.mac  CryMu.mac DMmuon.mac run.sh run_cry.sh
   )
 
 foreach(_script ${muPos_SCRIPTS})

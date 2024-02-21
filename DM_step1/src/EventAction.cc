@@ -50,25 +50,37 @@ EventAction::~EventAction()
 
 void EventAction::BeginOfEventAction(const G4Event* evt)
 {
+//G4cout<<"Begin of event "<<evt->GetEventID()<<G4endl;
 
  Run::GetInstance()->ClearAll();
  G4PrimaryVertex *pv = evt->GetPrimaryVertex(0);
  G4double kinE =  pv-> GetPrimary()->GetKineticEnergy();
- Run::GetInstance()->RecPrimPartEng(kinE/MeV);
- Run::GetInstance()->SetPos(pv->GetX0()/mm,pv->GetY0()/mm,pv->GetZ0()/mm);
  G4ThreeVector mom =  pv->GetPrimary()->GetMomentum();
- Run::GetInstance()->SetPxyz(mom.x()/MeV,mom.y()/MeV,mom.z()/MeV);
+
+// Run::GetInstance()->RecPrimPartEng(kinE/MeV);
+// Run::GetInstance()->SetPos(pv->GetX0()/mm,pv->GetY0()/mm,pv->GetZ0()/mm);
+// Run::GetInstance()->SetPxyz(mom.x()/MeV,mom.y()/MeV,mom.z()/MeV);
+
+//G4cout<<"(x,y,z) = "<<pv->GetX0()/mm<<" "<<pv->GetY0()/mm<<" "<<pv->GetZ0()/mm<<" mm"<<G4endl;
+//G4cout<<"Momentum direction= "<<pv->GetPrimary()->GetMomentumDirection()<<G4endl;
+//G4cout<<"total Energy = "<<pv->GetPrimary()->GetTotalEnergy()<<G4endl;
  
 }
  
 void EventAction::EndOfEventAction(const G4Event* evt)
-{  //if(Run::GetInstance()->GetStatus()==true){
-    //Run::GetInstance()->Fill();
-  //}
-    G4int event_id = evt->GetEventID();
-    if (event_id % 10000 == 0) {
-        G4cout << ">>> Event " << evt->GetEventID() << " done" << G4endl;
+{  
+    bool status=true;
+    for(int i=0; i<3; i++){
+        status = status && Run::GetInstance()->GetGemTrkStatus(i);
     }
-    Run::GetInstance()->Fill();
+
+    if(status){
+        G4int event_id = evt->GetEventID();
+        if (event_id % 10000 == 0) {
+                //G4cout << ">>> Event " << evt->GetEventID() << " done" << G4endl;
+                Run::GetInstance()->AutoSave();
+        }
+        Run::GetInstance()->Fill();
+    }
 }
 

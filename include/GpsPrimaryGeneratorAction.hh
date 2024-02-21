@@ -32,7 +32,7 @@
 #define GpsPrimaryGeneratorAction_h 1
 
 #include "G4VUserPrimaryGeneratorAction.hh"
-#include "globals.hh"
+//#include "globals.hh"
 
 class G4GeneralParticleSource;
 class G4Event;
@@ -53,8 +53,8 @@ class GpsPrimaryGeneratorAction: public G4VUserPrimaryGeneratorAction
 
   private:
     // static data members
-    static const G4String fgkDefaultParticleName;
-    static const G4double fgkDefaultEnergy;
+    //static const G4String fgkDefaultParticleName;
+    //static const G4double fgkDefaultEnergy;
 
     // data members
     G4GeneralParticleSource*  fGeneralParticleSource;

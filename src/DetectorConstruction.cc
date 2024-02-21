@@ -100,7 +100,7 @@ void DetectorConstruction::DefineMaterials()
 
   G4cout<<"define low density Cu"<<G4endl;
   // define low density Cu
-  G4double ratio_outter = 0.77790212; // 1-(3600*pi)/(29400*sqrt(3))
+  G4double ratio_outter = 0.83342659; // 1-(2700*pi)/(29400*sqrt(3)) 
   G4double density = ratio_outter * 8.94 * g/cm3;
   cuLess   = new G4Material("cuLess",density,nComponent=1);
   cuLess -> AddMaterial(cu,fracmass);
@@ -113,7 +113,7 @@ void DetectorConstruction::DefineMaterials()
   kapton->AddElement(nistManager->FindOrBuildElement("C"), 0.7213);
   kapton->AddElement(nistManager->FindOrBuildElement("O"), 0.2514);
 
-  G4double ratio_inner = 0.81183374; // 1-(3600*pi+2500*pi)/2/(29400*sqrt(3))
+  G4double ratio_inner = 0.85887530; // 1-(2700*pi+1875*pi)/2/(29400*sqrt(3))
   density = ratio_inner * 1.42 * g/cm3; // Density of Kapton
   kaptonLess = new G4Material("KaptonLess", density, 3);
   kaptonLess->AddElement(nistManager->FindOrBuildElement("H"), 0.0273);
@@ -720,8 +720,8 @@ G4Transform3D transformU1(rotmP1, G4ThreeVector(0.,-pku_bar_y2/2.+pku_bar_x/2.,0
   
   G4LogicalVolume* Box1Log 
     = new G4LogicalVolume(Box1_box,
-                          air,
-			  //world_Mat,
+                          //air,
+			  world_Mat,
                           "Box1Log",
                           0,               //opt: fieldManager
                           0,               //opt: SensitiveDetector

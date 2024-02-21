@@ -1,0 +1,525 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeDetermineSystem.cmake:204 (message)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      The system is: Linux - 3.10.0-1160.el7.x86_64 - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /home/pku/yuxd/bond/gcc-12.2.0/bin/gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /home/pku/yuxd/bond/PKMUON_G4sim/DM_step2/build/CMakeFiles/3.26.4/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /home/pku/yuxd/bond/gcc-12.2.0/bin/g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /home/pku/yuxd/bond/PKMUON_G4sim/DM_step2/build/CMakeFiles/3.26.4/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/pku/yuxd/bond/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-eEchXR"
+      binary: "/home/pku/yuxd/bond/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-eEchXR"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: /home/pku/yuxd/bond/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-eEchXR
+        
+        Run Build Command(s):/data/bond/yuxd/miniconda3/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9f380/fast && gmake[1]: Entering directory `/data/bond/yuxd/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-eEchXR'
+        /usr/bin/gmake  -f CMakeFiles/cmTC_9f380.dir/build.make CMakeFiles/cmTC_9f380.dir/build
+        gmake[2]: Entering directory `/data/bond/yuxd/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-eEchXR'
+        Building C object CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o
+        /home/pku/yuxd/bond/gcc-12.2.0/bin/gcc   -v -o CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o -c /home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/home/pku/yuxd/bond/gcc-12.2.0/bin/gcc
+        Target: x86_64-pc-linux-gnu
+        Configured with: ../configure --enable-checking=release --enable-languages=c,c++ --disable-multilib --enable-threads=posix --prefix=/home/pku/yuxd/bond/gcc-12.2.0
+        Thread model: posix
+        Supported LTO compression algorithms: zlib
+        gcc version 12.2.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9f380.dir/'
+         /data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/cc1 -quiet -v -iprefix /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/ /home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_9f380.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /tmp/cc5jEaY1.s
+        GNU C17 (GCC) version 12.2.0 (x86_64-pc-linux-gnu)
+        	compiled by GNU C version 12.2.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../x86_64-pc-linux-gnu/include"
+        ignoring duplicate directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include"
+        ignoring duplicate directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed"
+        ignoring nonexistent directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../x86_64-pc-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include
+         /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed
+         /usr/local/include
+         /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../include
+         /usr/include
+        End of search list.
+        GNU C17 (GCC) version 12.2.0 (x86_64-pc-linux-gnu)
+        	compiled by GNU C version 12.2.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 8b7c06039d0bf2bdd79f4269310f2d8e
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9f380.dir/'
+         as -v --64 -o CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o /tmp/cc5jEaY1.s
+        GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-44.base.el7
+        COMPILER_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/
+        LIBRARY_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_9f380
+        /data/bond/yuxd/miniconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9f380.dir/link.txt --verbose=1
+        /home/pku/yuxd/bond/gcc-12.2.0/bin/gcc  -v -rdynamic CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o -o cmTC_9f380 
+        Using built-in specs.
+        COLLECT_GCC=/home/pku/yuxd/bond/gcc-12.2.0/bin/gcc
+        COLLECT_LTO_WRAPPER=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/lto-wrapper
+        Target: x86_64-pc-linux-gnu
+        Configured with: ../configure --enable-checking=release --enable-languages=c,c++ --disable-multilib --enable-threads=posix --prefix=/home/pku/yuxd/bond/gcc-12.2.0
+        Thread model: posix
+        Supported LTO compression algorithms: zlib
+        gcc version 12.2.0 (GCC) 
+        COMPILER_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/
+        LIBRARY_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_9f380' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_9f380.'
+         /data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/collect2 -plugin /data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/liblto_plugin.so -plugin-opt=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccbzXE36.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_9f380 /lib/../lib64/crt1.o /lib/../lib64/crti.o /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtbegin.o -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0 -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../.. CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtend.o /lib/../lib64/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_9f380' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_9f380.'
+        gmake[2]: Leaving directory `/data/bond/yuxd/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-eEchXR'
+        gmake[1]: Leaving directory `/data/bond/yuxd/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-eEchXR'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include]
+          add: [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed]
+          add: [/usr/local/include]
+          add: [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../include]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include]
+        collapse include dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../include] ==> [/home/pku/yuxd/bond/gcc-12.2.0/include]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include;/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed;/usr/local/include;/home/pku/yuxd/bond/gcc-12.2.0/include;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:152 (message)"
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: /home/pku/yuxd/bond/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-eEchXR]
+        ignore line: []
+        ignore line: [Run Build Command(s):/data/bond/yuxd/miniconda3/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9f380/fast && gmake[1]: Entering directory `/data/bond/yuxd/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-eEchXR']
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_9f380.dir/build.make CMakeFiles/cmTC_9f380.dir/build]
+        ignore line: [gmake[2]: Entering directory `/data/bond/yuxd/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-eEchXR']
+        ignore line: [Building C object CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/home/pku/yuxd/bond/gcc-12.2.0/bin/gcc   -v -o CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o -c /home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/home/pku/yuxd/bond/gcc-12.2.0/bin/gcc]
+        ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Configured with: ../configure --enable-checking=release --enable-languages=c c++ --disable-multilib --enable-threads=posix --prefix=/home/pku/yuxd/bond/gcc-12.2.0]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 12.2.0 (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9f380.dir/']
+        ignore line: [ /data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/cc1 -quiet -v -iprefix /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/ /home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_9f380.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o /tmp/cc5jEaY1.s]
+        ignore line: [GNU C17 (GCC) version 12.2.0 (x86_64-pc-linux-gnu)]
+        ignore line: [	compiled by GNU C version 12.2.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../x86_64-pc-linux-gnu/include"]
+        ignore line: [ignoring duplicate directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include"]
+        ignore line: [ignoring duplicate directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../x86_64-pc-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include]
+        ignore line: [ /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../include]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C17 (GCC) version 12.2.0 (x86_64-pc-linux-gnu)]
+        ignore line: [	compiled by GNU C version 12.2.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: 8b7c06039d0bf2bdd79f4269310f2d8e]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9f380.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o /tmp/cc5jEaY1.s]
+        ignore line: [GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-44.base.el7]
+        ignore line: [COMPILER_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/]
+        ignore line: [LIBRARY_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_9f380]
+        ignore line: [/data/bond/yuxd/miniconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9f380.dir/link.txt --verbose=1]
+        ignore line: [/home/pku/yuxd/bond/gcc-12.2.0/bin/gcc  -v -rdynamic CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o -o cmTC_9f380 ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/home/pku/yuxd/bond/gcc-12.2.0/bin/gcc]
+        ignore line: [COLLECT_LTO_WRAPPER=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/lto-wrapper]
+        ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Configured with: ../configure --enable-checking=release --enable-languages=c c++ --disable-multilib --enable-threads=posix --prefix=/home/pku/yuxd/bond/gcc-12.2.0]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 12.2.0 (GCC) ]
+        ignore line: [COMPILER_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/]
+        ignore line: [LIBRARY_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_9f380' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_9f380.']
+        link line: [ /data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/collect2 -plugin /data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/liblto_plugin.so -plugin-opt=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccbzXE36.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_9f380 /lib/../lib64/crt1.o /lib/../lib64/crti.o /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtbegin.o -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0 -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../.. CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtend.o /lib/../lib64/crtn.o]
+          arg [/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccbzXE36.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [-export-dynamic] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_9f380] ==> ignore
+          arg [/lib/../lib64/crt1.o] ==> obj [/lib/../lib64/crt1.o]
+          arg [/lib/../lib64/crti.o] ==> obj [/lib/../lib64/crti.o]
+          arg [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtbegin.o] ==> obj [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtbegin.o]
+          arg [-L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0] ==> dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0]
+          arg [-L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc] ==> dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc]
+          arg [-L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64] ==> dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64]
+          arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+          arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+          arg [-L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../..] ==> dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../..]
+          arg [CMakeFiles/cmTC_9f380.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--no-as-needed] ==> ignore
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--no-as-needed] ==> ignore
+          arg [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtend.o] ==> obj [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtend.o]
+          arg [/lib/../lib64/crtn.o] ==> obj [/lib/../lib64/crtn.o]
+        collapse obj [/lib/../lib64/crt1.o] ==> [/lib64/crt1.o]
+        collapse obj [/lib/../lib64/crti.o] ==> [/lib64/crti.o]
+        collapse obj [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtbegin.o] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtbegin.o]
+        collapse obj [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtend.o] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtend.o]
+        collapse obj [/lib/../lib64/crtn.o] ==> [/lib64/crtn.o]
+        collapse library dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0]
+        collapse library dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc]
+        collapse library dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib64]
+        collapse library dir [/lib/../lib64] ==> [/lib64]
+        collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+        collapse library dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../..] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib]
+        implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+        implicit objs: [/lib64/crt1.o;/lib64/crti.o;/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtbegin.o;/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtend.o;/lib64/crtn.o]
+        implicit dirs: [/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0;/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc;/home/pku/yuxd/bond/gcc-12.2.0/lib64;/lib64;/usr/lib64;/home/pku/yuxd/bond/gcc-12.2.0/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/pku/yuxd/bond/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-954PlJ"
+      binary: "/home/pku/yuxd/bond/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-954PlJ"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: /home/pku/yuxd/bond/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-954PlJ
+        
+        Run Build Command(s):/data/bond/yuxd/miniconda3/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ff370/fast && gmake[1]: Entering directory `/data/bond/yuxd/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-954PlJ'
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ff370.dir/build.make CMakeFiles/cmTC_ff370.dir/build
+        gmake[2]: Entering directory `/data/bond/yuxd/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-954PlJ'
+        Building CXX object CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o
+        /home/pku/yuxd/bond/gcc-12.2.0/bin/g++   -v -o CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o -c /home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=/home/pku/yuxd/bond/gcc-12.2.0/bin/g++
+        Target: x86_64-pc-linux-gnu
+        Configured with: ../configure --enable-checking=release --enable-languages=c,c++ --disable-multilib --enable-threads=posix --prefix=/home/pku/yuxd/bond/gcc-12.2.0
+        Thread model: posix
+        Supported LTO compression algorithms: zlib
+        gcc version 12.2.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ff370.dir/'
+         /data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/cc1plus -quiet -v -iprefix /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/ -D_GNU_SOURCE /home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_ff370.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o /tmp/ccpY7kIb.s
+        GNU C++17 (GCC) version 12.2.0 (x86_64-pc-linux-gnu)
+        	compiled by GNU C version 12.2.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../x86_64-pc-linux-gnu/include"
+        ignoring duplicate directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0"
+        ignoring duplicate directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0/x86_64-pc-linux-gnu"
+        ignoring duplicate directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0/backward"
+        ignoring duplicate directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include"
+        ignoring duplicate directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed"
+        ignoring nonexistent directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../x86_64-pc-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0
+         /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0/x86_64-pc-linux-gnu
+         /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0/backward
+         /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include
+         /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed
+         /usr/local/include
+         /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../include
+         /usr/include
+        End of search list.
+        GNU C++17 (GCC) version 12.2.0 (x86_64-pc-linux-gnu)
+        	compiled by GNU C version 12.2.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: c89b57298a502cb5eedb9ebe947b35c2
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ff370.dir/'
+         as -v --64 -o CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccpY7kIb.s
+        GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-44.base.el7
+        COMPILER_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/
+        LIBRARY_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_ff370
+        /data/bond/yuxd/miniconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ff370.dir/link.txt --verbose=1
+        /home/pku/yuxd/bond/gcc-12.2.0/bin/g++  -v -rdynamic CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_ff370 
+        Using built-in specs.
+        COLLECT_GCC=/home/pku/yuxd/bond/gcc-12.2.0/bin/g++
+        COLLECT_LTO_WRAPPER=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/lto-wrapper
+        Target: x86_64-pc-linux-gnu
+        Configured with: ../configure --enable-checking=release --enable-languages=c,c++ --disable-multilib --enable-threads=posix --prefix=/home/pku/yuxd/bond/gcc-12.2.0
+        Thread model: posix
+        Supported LTO compression algorithms: zlib
+        gcc version 12.2.0 (GCC) 
+        COMPILER_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/
+        LIBRARY_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_ff370' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ff370.'
+         /data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/collect2 -plugin /data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/liblto_plugin.so -plugin-opt=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwBpIuk.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_ff370 /lib/../lib64/crt1.o /lib/../lib64/crti.o /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtbegin.o -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0 -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../.. CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtend.o /lib/../lib64/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_ff370' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ff370.'
+        gmake[2]: Leaving directory `/data/bond/yuxd/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-954PlJ'
+        gmake[1]: Leaving directory `/data/bond/yuxd/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-954PlJ'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0]
+          add: [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0/x86_64-pc-linux-gnu]
+          add: [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0/backward]
+          add: [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include]
+          add: [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed]
+          add: [/usr/local/include]
+          add: [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../include]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0] ==> [/home/pku/yuxd/bond/gcc-12.2.0/include/c++/12.2.0]
+        collapse include dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0/x86_64-pc-linux-gnu] ==> [/home/pku/yuxd/bond/gcc-12.2.0/include/c++/12.2.0/x86_64-pc-linux-gnu]
+        collapse include dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0/backward] ==> [/home/pku/yuxd/bond/gcc-12.2.0/include/c++/12.2.0/backward]
+        collapse include dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include]
+        collapse include dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../include] ==> [/home/pku/yuxd/bond/gcc-12.2.0/include]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/home/pku/yuxd/bond/gcc-12.2.0/include/c++/12.2.0;/home/pku/yuxd/bond/gcc-12.2.0/include/c++/12.2.0/x86_64-pc-linux-gnu;/home/pku/yuxd/bond/gcc-12.2.0/include/c++/12.2.0/backward;/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include;/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed;/usr/local/include;/home/pku/yuxd/bond/gcc-12.2.0/include;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:152 (message)"
+      - "/home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: /home/pku/yuxd/bond/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-954PlJ]
+        ignore line: []
+        ignore line: [Run Build Command(s):/data/bond/yuxd/miniconda3/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ff370/fast && gmake[1]: Entering directory `/data/bond/yuxd/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-954PlJ']
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_ff370.dir/build.make CMakeFiles/cmTC_ff370.dir/build]
+        ignore line: [gmake[2]: Entering directory `/data/bond/yuxd/PKMUON_G4sim/DM_step2/build/CMakeFiles/CMakeScratch/TryCompile-954PlJ']
+        ignore line: [Building CXX object CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/home/pku/yuxd/bond/gcc-12.2.0/bin/g++   -v -o CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o -c /home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/home/pku/yuxd/bond/gcc-12.2.0/bin/g++]
+        ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Configured with: ../configure --enable-checking=release --enable-languages=c c++ --disable-multilib --enable-threads=posix --prefix=/home/pku/yuxd/bond/gcc-12.2.0]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 12.2.0 (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ff370.dir/']
+        ignore line: [ /data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/cc1plus -quiet -v -iprefix /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/ -D_GNU_SOURCE /home/pku/yuxd/bond/miniconda3/share/cmake-3.26/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_ff370.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o /tmp/ccpY7kIb.s]
+        ignore line: [GNU C++17 (GCC) version 12.2.0 (x86_64-pc-linux-gnu)]
+        ignore line: [	compiled by GNU C version 12.2.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../x86_64-pc-linux-gnu/include"]
+        ignore line: [ignoring duplicate directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0"]
+        ignore line: [ignoring duplicate directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0/x86_64-pc-linux-gnu"]
+        ignore line: [ignoring duplicate directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0/backward"]
+        ignore line: [ignoring duplicate directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include"]
+        ignore line: [ignoring duplicate directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../x86_64-pc-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0]
+        ignore line: [ /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0/x86_64-pc-linux-gnu]
+        ignore line: [ /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../include/c++/12.2.0/backward]
+        ignore line: [ /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include]
+        ignore line: [ /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/../../include]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C++17 (GCC) version 12.2.0 (x86_64-pc-linux-gnu)]
+        ignore line: [	compiled by GNU C version 12.2.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: c89b57298a502cb5eedb9ebe947b35c2]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ff370.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccpY7kIb.s]
+        ignore line: [GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-44.base.el7]
+        ignore line: [COMPILER_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/]
+        ignore line: [LIBRARY_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_ff370]
+        ignore line: [/data/bond/yuxd/miniconda3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ff370.dir/link.txt --verbose=1]
+        ignore line: [/home/pku/yuxd/bond/gcc-12.2.0/bin/g++  -v -rdynamic CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_ff370 ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/home/pku/yuxd/bond/gcc-12.2.0/bin/g++]
+        ignore line: [COLLECT_LTO_WRAPPER=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/lto-wrapper]
+        ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Configured with: ../configure --enable-checking=release --enable-languages=c c++ --disable-multilib --enable-threads=posix --prefix=/home/pku/yuxd/bond/gcc-12.2.0]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib]
+        ignore line: [gcc version 12.2.0 (GCC) ]
+        ignore line: [COMPILER_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/]
+        ignore line: [LIBRARY_PATH=/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_ff370' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ff370.']
+        link line: [ /data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/collect2 -plugin /data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/liblto_plugin.so -plugin-opt=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwBpIuk.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_ff370 /lib/../lib64/crt1.o /lib/../lib64/crti.o /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtbegin.o -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0 -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../.. CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtend.o /lib/../lib64/crtn.o]
+          arg [/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/data/bond/yuxd/gcc-12.2.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/12.2.0/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccwBpIuk.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [-export-dynamic] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_ff370] ==> ignore
+          arg [/lib/../lib64/crt1.o] ==> obj [/lib/../lib64/crt1.o]
+          arg [/lib/../lib64/crti.o] ==> obj [/lib/../lib64/crti.o]
+          arg [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtbegin.o] ==> obj [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtbegin.o]
+          arg [-L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0] ==> dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0]
+          arg [-L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc] ==> dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc]
+          arg [-L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64] ==> dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64]
+          arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+          arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+          arg [-L/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../..] ==> dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../..]
+          arg [CMakeFiles/cmTC_ff370.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtend.o] ==> obj [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtend.o]
+          arg [/lib/../lib64/crtn.o] ==> obj [/lib/../lib64/crtn.o]
+        collapse obj [/lib/../lib64/crt1.o] ==> [/lib64/crt1.o]
+        collapse obj [/lib/../lib64/crti.o] ==> [/lib64/crti.o]
+        collapse obj [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtbegin.o] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtbegin.o]
+        collapse obj [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtend.o] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtend.o]
+        collapse obj [/lib/../lib64/crtn.o] ==> [/lib64/crtn.o]
+        collapse library dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0]
+        collapse library dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc]
+        collapse library dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../../../lib64] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib64]
+        collapse library dir [/lib/../lib64] ==> [/lib64]
+        collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+        collapse library dir [/data/bond/yuxd/gcc-12.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/12.2.0/../../..] ==> [/home/pku/yuxd/bond/gcc-12.2.0/lib]
+        implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+        implicit objs: [/lib64/crt1.o;/lib64/crti.o;/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtbegin.o;/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0/crtend.o;/lib64/crtn.o]
+        implicit dirs: [/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc/x86_64-pc-linux-gnu/12.2.0;/home/pku/yuxd/bond/gcc-12.2.0/lib/gcc;/home/pku/yuxd/bond/gcc-12.2.0/lib64;/lib64;/usr/lib64;/home/pku/yuxd/bond/gcc-12.2.0/lib]
+        implicit fwks: []
+      
+      
+...

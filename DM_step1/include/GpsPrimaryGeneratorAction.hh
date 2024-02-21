@@ -53,8 +53,8 @@ class GpsPrimaryGeneratorAction: public G4VUserPrimaryGeneratorAction
 
   private:
     // static data members
-    static const G4String fgkDefaultParticleName;
-    static const G4double fgkDefaultEnergy;
+    //static const G4String fgkDefaultParticleName;
+    //static const G4double fgkDefaultEnergy;
 
     // data members
     G4GeneralParticleSource*  fGeneralParticleSource;

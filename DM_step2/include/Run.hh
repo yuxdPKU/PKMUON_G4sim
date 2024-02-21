@@ -67,6 +67,22 @@ public:
   G4double GetPx(){return px0;};
   G4double GetPy(){return py0;};
   G4double GetPz(){return pz0;};
+  void SetEvtID(int i);
+  int GetEvtID(){return EvtID;};
+  void SetGemTrkID(int i, int ID);
+  void SetGemTrkMID(int i, int MID);
+  void SetGemTrkPx(int i, double Px);
+  void SetGemTrkPy(int i, double Py);
+  void SetGemTrkPz(int i, double Pz);
+  void SetGemTrkE(int i, double E);
+  void SetGemTrkEdep(int i, double Edep);
+  void SetGemTrkX(int i, double X);
+  void SetGemTrkY(int i, double Y);
+  void SetGemTrkZ(int i, double Z);
+  void SetGemTrkStatus(int i, bool status);
+  bool GetGemTrkStatus(int i){return GemTrkStatus[i];};
+  void SetGemTruthZ(int i, double Z);
+  double GetGemTruthZ(int i){return GemTruthZ[i];};
   
 private:
   G4String rootFileName;
@@ -97,7 +113,22 @@ private:
   std::vector<Double_t> vPy;
   std::vector<Double_t> vPz;
   std::vector<Int_t> vTrkID; //TrackID
+  Int_t EvtID;
+
+  Int_t GemTrkID[2]={0};
+  Int_t GemTrkMID[2]={0};
+  Double_t GemTrkPx[2]={0};
+  Double_t GemTrkPy[2]={0};
+  Double_t GemTrkPz[2]={0};
+  Double_t GemTrkE[2]={0};
+  Double_t GemTrkEdep[2]={0};
+  Double_t GemTrkX[2]={0};
+  Double_t GemTrkY[2]={0};
+  Double_t GemTrkZ[2]={0};
+  bool GemTrkStatus[2]={false};
   
+  Double_t GemTruthZ[2]={0};
+
   RunMessenger* fRunMessenger;
     
 };

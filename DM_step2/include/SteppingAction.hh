@@ -32,6 +32,7 @@
 #define SteppingAction_h 1
 
 #include "G4UserSteppingAction.hh"
+#include "G4SystemOfUnits.hh"
 #include "G4LogicalVolume.hh"
 #include "globals.hh"
 #include <map>
@@ -50,6 +51,9 @@ class SteppingAction : public G4UserSteppingAction
 
    private:
     void printDaughters(const G4LogicalVolume* mother);
+    double Z1 = 0;
+    double Z2 = 13.34;
+    double deltaZ = 0.1;
 
 };
 #endif

@@ -1,10 +1,10 @@
 #ifndef DRAW_H
 #define DRAW_H
 
-#pragma cling add_include_path("/opt/homebrew/opt/boost/include")
-#pragma cling add_library_path("/opt/homebrew/opt/boost/lib")
-#pragma cling load("libboost_filesystem.dylib")
-#pragma cling load("libboost_system.dylib")
+//#pragma cling add_include_path("/opt/homebrew/opt/boost/include")
+//#pragma cling add_library_path("/opt/homebrew/opt/boost/lib")
+//#pragma cling load("libboost_filesystem.dylib")
+//#pragma cling load("libboost_system.dylib")
 
 // root headers are listed below
 #include "TCanvas.h"

@@ -39,6 +39,7 @@
 #include "G4Geantino.hh"
 #include "G4SystemOfUnits.hh"
 #include "Randomize.hh"
+#include "Run.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -87,13 +88,15 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
       }
     }
 
-    G4double eventid, x, y, px, py, pz, energy;
+    G4int eventid;
+    G4double x, y, px, py, pz, energy;
     input_stream >> eventid >> x >> y >> px >> py >> pz >> energy;
-//G4cout<<"x = "<<x<<" , y = "<<y<<", px = "<<px<<" , py = "<<py<<" , pz = "<<pz<<" , energy = "<<energy<<G4endl;
+//G4cout<<"evtid = "<<eventid<<" , x = "<<x<<" , y = "<<y<<", px = "<<px<<" , py = "<<py<<" , pz = "<<pz<<" , energy = "<<energy<<G4endl;
 
+    Run::GetInstance()->SetEvtID(eventid);
     fParticleGun->SetParticleEnergy(energy * MeV);
     //----------------------------------------------------------
-    fParticleGun->SetParticlePosition(G4ThreeVector(x * mm, y * mm, -14 * mm));
+    fParticleGun->SetParticlePosition(G4ThreeVector(x * mm, y * mm, -13.45 * mm));
     //----------------------------------------------------------
     G4ThreeVector v(px,py,pz);
     G4ThreeVector unitv = v.unit();

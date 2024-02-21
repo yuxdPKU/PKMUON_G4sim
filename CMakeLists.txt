@@ -14,6 +14,7 @@ if(WITH_GEANT4_UIVIS)
 else()
   find_package(Geant4 REQUIRED)
 endif()
+
 #----------------------------------------------------------------------------
 # Find ROOT (required package)
 #
@@ -26,6 +27,8 @@ include("${ROOT_DIR}/ROOTUseFile.cmake")   #ROOT6
 # Setup Geant4 include directories and compile definitions
 #
 include(${Geant4_USE_FILE})
+include(${ROOT_USE_FILE})
+
 
 #----------------------------------------------------------------------------
 # Locate sources and headers for this project
@@ -37,11 +40,13 @@ include_directories(${PROJECT_SOURCE_DIR}/include
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17") #newly added
+#set(CMAKE_CXX_STANDARD 17)
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
 #
 add_executable(muPos muPos.cc ${sources} ${headers})
-target_link_libraries(muPos ${Geant4_LIBRARIES}  ${ROOT_LIBRARIES} )
+target_link_libraries(muPos ${Geant4_LIBRARIES}  ${ROOT_LIBRARIES})
 
 #----------------------------------------------------------------------------
 # Copy all scripts to the build directory, i.e. the directory in which we
@@ -49,7 +54,7 @@ target_link_libraries(muPos ${Geant4_LIBRARIES}  ${ROOT_LIBRARIES} )
 # relies on these scripts being in the current working directory.
 #
 set(muPos_SCRIPTS
-   vis.mac  SingleEngMu.mac CryMu.mac
+   vis.mac  SingleEngMu.mac CryMu.mac run_cry.sh run.sh
   )
 
 foreach(_script ${muPos_SCRIPTS})
@@ -59,7 +64,4 @@ foreach(_script ${muPos_SCRIPTS})
     COPYONLY
     )
 endforeach()
-
-
-
 

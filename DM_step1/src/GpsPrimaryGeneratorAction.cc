@@ -33,8 +33,8 @@
 #include "G4GeneralParticleSource.hh"
 #include "G4SystemOfUnits.hh"
 
-const G4String GpsPrimaryGeneratorAction::fgkDefaultParticleName = "mu-";
-const G4double GpsPrimaryGeneratorAction::fgkDefaultEnergy = 1.*GeV;
+//const G4String GpsPrimaryGeneratorAction::fgkDefaultParticleName = "mu-";
+//const G4double GpsPrimaryGeneratorAction::fgkDefaultEnergy = 1.*GeV;
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 

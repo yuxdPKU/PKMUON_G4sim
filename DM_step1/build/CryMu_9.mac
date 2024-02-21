@@ -250,4 +250,4 @@
 #/run/beamOn 1 # for check
 /rlt/SetFileName root_file/muCRY_9.root
 /run/printProgress 1000
-/run/beamOn 100000
+/run/beamOn 1000000
