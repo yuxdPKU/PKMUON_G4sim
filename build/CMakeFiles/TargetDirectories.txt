@@ -1,3 +1,0 @@
-/home/pku/yuxd/bond/PKMUON_G4sim/build/CMakeFiles/muPos.dir
-/home/pku/yuxd/bond/PKMUON_G4sim/build/CMakeFiles/edit_cache.dir
-/home/pku/yuxd/bond/PKMUON_G4sim/build/CMakeFiles/rebuild_cache.dir

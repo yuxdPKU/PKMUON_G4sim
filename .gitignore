@@ -40,6 +40,11 @@ DMmuon_maxwell_*.mac
 log*
 job_*
 datacard_*.txt
+*.eps
+*.pdf
+*.png
+*.jpeg
+*.jpg
 
 CMakeCache.txt
 cmake_install.cmake
